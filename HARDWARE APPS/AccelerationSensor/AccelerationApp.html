@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>App: Accelerometer Sensor</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <style>
+      #content p {
+        font-size: 22px;
+        margin: 10px 0;
+      }
+      #content span {
+        font-weight: bold;
+        color: #4caf50;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">App: Accelerometer Sensor</div>
+
+    <div id="content">
+      <p>Move the phone...</p>
+      <p>X: <span id="val-x">0.00</span></p>
+      <p>Y: <span id="val-y">0.00</span></p>
+      <p>Z: <span id="val-z">0.00</span></p>
+    </div>
+
+    <div id="softkey-bar">
+      <span id="softkey-lsk"></span>
+      <span id="softkey-csk"></span>
+      <span id="softkey-rsk">Back</span>
+    </div>
+
+    <script src="AccelerationApp.js"></script>
+  </body>
+</html>

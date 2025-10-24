@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "name": "Hi KaiOS",
+  "description": "My first KaiOS app.",
+  "launch_path": "/index.html",
+  "icons": {
+    "56": "/icons/icon56.png",
+    "112": "/icons/icon112.png"
+  },
+  "developer": {
+    "name": "Your Name",
+    "url": "https://tu-web.com"
+  },
+  "type": "web",
+  "fullscreen": "true"
+}
