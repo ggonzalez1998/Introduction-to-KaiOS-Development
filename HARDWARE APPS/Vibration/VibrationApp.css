@@ -1,0 +1,13 @@
+#content p {
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-align: center;
+  padding: 0 10px;
+}
+/* Style for the key names */
+#content p.key {
+  font-weight: bold;
+  color: #4caf50; /* A green color for emphasis */
+  font-size: 20px;
+  margin-bottom: 5px;
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>App: Geolocation</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="..\..\Template\Template.css" />
+    <link rel="stylesheet" type="text/css" href="GPSApp.css" />
+  </head>
+  <body>
+    <div id="header">App: Geolocation</div>
+
+    <div id="content">
+      <p id="status" class="loading">Getting location...</p>
+
+      <p>
+        <span>Latitude:</span>
+        <code id="lat-value">-</code>
+      </p>
+      <p>
+        <span>Longitude:</span>
+        <code id="lon-value">-</code>
+      </p>
+      <p>
+        <span>Accuracy:</span>
+        <code id="acc-value">-</code>
+      </p>
+    </div>
+
+    <div id="softkey-bar">
+      <span id="softkey-lsk"></span>
+      <span id="softkey-csk">Refresh</span>
+      <span id="softkey-rsk">Back</span>
+    </div>
+
+    <script src="GPSApp.js"></script>
+  </body>
+</html>

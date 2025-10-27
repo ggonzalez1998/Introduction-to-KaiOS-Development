@@ -1,0 +1,20 @@
+/* app.css - Specific styles for the Audio App */
+
+#content {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#status {
+  font-size: 20px;
+  padding: 10px;
+  transition: all 0.2s; /* Smooth transition for color changes */
+}
+
+/* This class will be added via JavaScript */
+#status.playing {
+  color: #4caf50; /* Green */
+  transform: scale(1.1);
+  font-weight: bold;
+}

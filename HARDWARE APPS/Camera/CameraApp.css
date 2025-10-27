@@ -1,0 +1,37 @@
+/* app.css - Specific styles for the Camera App */
+
+#content {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* This is the placeholder shown before an image is taken */
+#image-placeholder {
+  width: 200px;
+  height: 200px;
+  border: 2px dashed #888;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #888;
+  padding: 10px;
+  /* Make it focusable for consistency */
+  border-color: transparent;
+}
+
+/* We'll add a .focus class to the placeholder */
+#image-placeholder.focus {
+  border-color: #007bff;
+}
+
+/* This is the actual image tag, hidden by default */
+#image-preview {
+  display: none; /* Hide it until we have an image */
+  width: 200px;
+  height: auto;
+  max-height: 200px; /* Limit height to fit screen */
+  border: 2px solid #fff;
+  object-fit: cover; /* Fill the 200px space nicely */
+}

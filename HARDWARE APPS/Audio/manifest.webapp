@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "name": "App: Audio",
+  "description": "Demonstrates the Audio playback API.",
+  "launch_path": "/index.html",
+  "icons": {
+    "56": "/icons/icon56.png",
+    "112": "/icons/icon112.png"
+  },
+  "developer": {
+    "name": "Your Name"
+  },
+  "type": "web",
+  "fullscreen": "true",
+  "permissions": {
+    /* No permissions needed for simple audio playback */
+  }
+}

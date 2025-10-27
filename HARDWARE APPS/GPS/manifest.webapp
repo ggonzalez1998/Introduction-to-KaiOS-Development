@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "name": "App: Geolocation",
+  "description": "Demonstrates the Geolocation (GPS) API.",
+  "launch_path": "/index.html",
+  "icons": {
+    "56": "/icons/icon56.png",
+    "112": "/icons/icon112.png"
+  },
+  "developer": {
+    "name": "Your Name"
+  },
+  "type": "web",
+  "fullscreen": "true",
+  "permissions": {
+    "geolocation": {
+      "description": "Required to access the device's GPS location."
+    }
+  }
+}

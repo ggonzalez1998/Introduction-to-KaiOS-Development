@@ -1,0 +1,42 @@
+/* app.css - Specific styles for the Geolocation App */
+
+#content {
+  justify-content: center;
+  align-items: flex-start; /* Align text to the left */
+  padding: 10px 15px;
+}
+
+#content p {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+/* Style for the data labels */
+#content p span {
+  font-weight: bold;
+  color: #4caf50; /* Green for the label */
+  display: inline-block;
+  min-width: 100px; /* Aligns the values */
+}
+
+/* Style for the data values */
+#content p code {
+  color: #e0e0e0;
+}
+
+/* Status message for loading or errors */
+#status {
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+}
+
+#status.error {
+  color: #ff5252; /* Red for errors */
+}
+
+#status.loading {
+  color: #ffeb3b; /* Yellow for loading */
+}

@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "name": "App: Flashlight",
+  "description": "Demonstrates the flashlight (torch) API.",
+  "launch_path": "/index.html",
+  "icons": {
+    "56": "/icons/icon56.png",
+    "112": "/icons/icon112.png"
+  },
+  "developer": {
+    "name": "Your Name"
+  },
+  "type": "web",
+  "fullscreen": "true",
+  "permissions": {
+    "camera": {
+      "description": "Required to control the camera flash."
+    }
+  }
+}
