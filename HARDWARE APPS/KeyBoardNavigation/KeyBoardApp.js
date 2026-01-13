@@ -1,12 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // --- Helper Function: Update Softkeys ---
   window.updateSoftkeys = function (lsk = "", csk = "", rsk = "") {
     document.getElementById("softkey-lsk").textContent = lsk;
     document.getElementById("softkey-csk").textContent = csk;
     document.getElementById("softkey-rsk").textContent = rsk;
   };
-
-  // --- Navigation Management ---
 
   // 1. Get all focusable items from the DOM
   const verticalItems = Array.from(
@@ -48,70 +45,55 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // --- Global Key Handler ---
   function handleKeyDown(event) {
-    // Prevent the browser's default D-Pad behavior (scrolling the page)
-    event.preventDefault();
-
     switch (event.key) {
       case "ArrowUp":
+        event.preventDefault(); // Evita scroll nativo
         if (currentY === 0) {
-          // In vertical list
-          const newY = Math.max(0, currentX - 1); // Move up the list
-          setFocus(0, newY);
-        } else if (currentY === 1) {
-          // In horizontal list
-          // Move up to the vertical list (last selected item)
-          setFocus(0, verticalItems.length - 1);
+          setFocus(0, Math.max(0, currentX - 1));
+        } else {
+          setFocus(0, verticalItems.length - 1); // Sube de la horizontal a la vertical
         }
         break;
 
       case "ArrowDown":
+        event.preventDefault();
         if (currentY === 0) {
-          // In vertical list
-          const newY = Math.min(verticalItems.length - 1, currentX + 1);
-          if (newY === verticalItems.length - 1) {
-            // Reached bottom
-            setFocus(0, newY); // Focus last item
+          if (currentX < verticalItems.length - 1) {
+            setFocus(0, currentX + 1); //Baja un elemento
           } else {
-            setFocus(0, newY); // Move down the list
+            setFocus(1, 0); //Al llegar al final del grupo 0, salta al primer elemento del grupo 1
           }
         }
-        // Optional: Move from vertical list to horizontal
-        // if (currentX === verticalItems.length -1) { setFocus(1, 0) }
         break;
 
       case "ArrowLeft":
         if (currentY === 1) {
-          // In horizontal list
-          const newX = Math.max(0, currentX - 1);
-          setFocus(1, newX);
-        } else if (currentY === 0) {
-          // In vertical list
-          // Move from vertical list to horizontal
-          setFocus(1, 0);
+          setFocus(1, Math.max(0, currentX - 1));
         }
         break;
 
       case "ArrowRight":
         if (currentY === 1) {
-          // In horizontal list
-          const newX = Math.min(horizontalItems.length - 1, currentX + 1);
-          setFocus(1, newX);
-        } else if (currentY === 0) {
-          // In vertical list
-          // Move from vertical list to horizontal
-          setFocus(1, 0);
+          setFocus(1, Math.min(horizontalItems.length - 1, currentX + 1));
         }
         break;
 
+      case "SoftLeft":
+        console.log("Acción izquierda"); // Por ejemplo: Abrir Opciones
+        break;
+
+      case "SoftRight":
+        // En KaiOS, la derecha suele ser "Atrás" o "Cerrar"
+        window.close();
+        break;
+
       case "Enter":
-      case "Accept":
-        // Get the currently focused item and do something with it
-        const selectedItem = navMap[currentY][currentX];
-        alert("You selected: " + selectedItem.textContent);
+        const selected = navMap[currentY][currentX];
+        console.log("Ejecutando:", selected.textContent);
         break;
 
       case "Backspace":
-        event.preventDefault();
+        event.preventDefault(); // ¡IMPORTANTE! Si no, la app se cierra o vuelve a la anterior
         window.close();
         break;
     }
