@@ -3,54 +3,44 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no" />
-    <title data-l10n-id="app_title">Guía Navegación</title>
+    <title>Guía Navegación</title>
     <link rel="stylesheet" href="css/Template.css" />
     <link rel="stylesheet" href="css/KeyBoardApp.css" />
-
     <script src="js/libs/l10n.js" defer></script>
     <script src="js/KeyBoardApp.js" defer></script>
-
-    <link rel="prefetch" type="application/l10n" href="data/locales.ini" />
   </head>
   <body>
-    <div id="header" data-l10n-id="app_title">Guía Navegación</div>
+    <div id="header">Guía Navegación</div>
 
     <div id="content">
-      <p data-l10n-id="instructions">Usa el D-Pad para navegar</p>
+      <p>Control de Navegación</p>
 
       <ul id="vertical-list" class="nav-group">
-        <li class="focusable" tabindex="0" data-l10n-id="opt_1">Opción 1</li>
-        <li class="focusable" tabindex="0" data-l10n-id="opt_2">Opción 2</li>
-        <li class="focusable" tabindex="0" data-l10n-id="opt_3">Opción 3</li>
+        <li class="focusable" tabindex="0">Opción 1</li>
+        <li class="focusable" tabindex="0">Opción 2</li>
+        <li class="focusable" tabindex="0">Opción 3</li>
       </ul>
 
-      <div id="input-section" class="nav-group">
+      <div id="input-container" class="nav-group">
         <input
-          id="main-input"
           type="text"
+          id="main-input"
           class="focusable"
-          data-l10n-id="input_ph"
           placeholder="Escribe aquí..."
         />
-        <button id="action-btn" class="focusable" data-l10n-id="btn_show">
-          Mostrar Texto
-        </button>
-        <div id="result-container">
-          <span data-l10n-id="result_label">Resultado:</span>
-          <strong id="display-area">---</strong>
-        </div>
+        <button id="alert-btn" class="focusable">ENVIAR MENSAJE</button>
       </div>
 
       <div id="horizontal-list" class="nav-group">
-        <div class="focusable" tabindex="0" data-l10n-id="btn_ok">OK</div>
-        <div class="focusable" tabindex="0" data-l10n-id="btn_back">Atrás</div>
+        <div class="focusable" tabindex="0">Aceptar</div>
+        <div class="focusable" tabindex="0">Atrás</div>
       </div>
     </div>
 
     <div id="softkey-bar">
       <span id="softkey-lsk"></span>
-      <span id="softkey-csk" data-l10n-id="sk_select">SELECT</span>
-      <span id="softkey-rsk" data-l10n-id="sk_exit">Salir</span>
+      <span id="softkey-csk">SELECT</span>
+      <span id="softkey-rsk">Salir</span>
     </div>
   </body>
 </html>

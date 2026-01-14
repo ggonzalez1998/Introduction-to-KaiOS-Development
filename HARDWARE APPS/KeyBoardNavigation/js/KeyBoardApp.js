@@ -7,47 +7,55 @@ window.addEventListener("DOMContentLoaded", function () {
     if (appInitialized) return;
     appInitialized = true;
 
-    const row0 = Array.from(document.querySelectorAll("#vertical-list li"));
-    const row1 = [document.getElementById("main-input")];
-    const row2 = [document.getElementById("action-btn")];
-    const row3 = Array.from(document.querySelectorAll("#horizontal-list div"));
+    // Selección de elementos enfocables
+    const verticalItems = Array.from(
+      document.querySelectorAll("#vertical-list .focusable")
+    );
+    const inputElement = document.getElementById("main-input");
+    const actionButton = document.getElementById("alert-btn");
+    const bottomButtons = Array.from(
+      document.querySelectorAll("#horizontal-list .focusable")
+    );
 
-    const navMap = [row0, row1, row2, row3];
+    // Mapa de navegación 2D: Cada elemento vertical es una "fila"
+    const navMap = [
+      ...verticalItems.map((item) => [item]), // Opciones 1, 2, 3
+      [inputElement], // Campo de texto
+      [actionButton], // Botón Enviar
+      bottomButtons, // Fila de botones Aceptar/Atrás
+    ];
+
     let currentY = 0;
     let currentX = 0;
 
     function setFocus(y, x) {
-      const oldItem = navMap[currentY][currentX];
-      if (oldItem) oldItem.classList.remove("focus");
+      // Limpiar focos previos
+      document
+        .querySelectorAll(".focusable")
+        .forEach((el) => el.classList.remove("focus"));
 
       currentY = y;
       currentX = x;
 
-      const newItem = navMap[currentY][currentX];
-      if (newItem) {
-        newItem.classList.add("focus");
-        if (newItem.tagName === "INPUT") {
-          newItem.focus();
+      const activeItem = navMap[currentY][currentX];
+      if (activeItem) {
+        activeItem.classList.add("focus");
+
+        // Manejo de foco real para el input
+        if (activeItem.tagName === "INPUT") {
+          activeItem.focus();
         } else {
-          if (document.activeElement.tagName === "INPUT")
+          if (document.activeElement.tagName === "INPUT") {
             document.activeElement.blur();
+          }
         }
 
-        newItem.scrollIntoView({ block: "center", behavior: "smooth" });
+        // Scroll suave asegurando que el elemento esté visible
+        activeItem.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     }
 
     function handleKeyDown(event) {
-      if (document.activeElement.tagName === "INPUT") {
-        if (
-          event.key !== "ArrowUp" &&
-          event.key !== "ArrowDown" &&
-          event.key !== "Enter"
-        ) {
-          return;
-        }
-      }
-
       switch (event.key) {
         case "ArrowUp":
           event.preventDefault();
@@ -60,34 +68,29 @@ window.addEventListener("DOMContentLoaded", function () {
           break;
 
         case "ArrowLeft":
-          if (navMap[currentY].length > 1) {
-            setFocus(currentY, Math.max(0, currentX - 1));
-          }
+          if (currentX > 0) setFocus(currentY, currentX - 1);
           break;
 
         case "ArrowRight":
-          if (navMap[currentY].length > 1) {
-            setFocus(
-              currentY,
-              Math.min(navMap[currentY].length - 1, currentX + 1)
-            );
-          }
+          if (currentX < navMap[currentY].length - 1)
+            setFocus(currentY, currentX + 1);
           break;
 
         case "Enter":
-          const activeEl = navMap[currentY][currentX];
-          if (activeEl.id === "action-btn") {
-            const inputVal = document.getElementById("main-input").value;
-            document.getElementById("display-area").textContent =
-              inputVal || "---";
-          } else if (activeEl.tagName === "LI") {
-            const msg =
-              (navigator.mozL10n && navigator.mozL10n.get("alert_selected")) ||
-              "Has seleccionado: ";
-            alert(msg + activeEl.textContent);
+          const selected = navMap[currentY][currentX];
+
+          // Acción específica para el botón de enviar
+          if (selected.id === "alert-btn") {
+            const val = document.getElementById("main-input").value;
+            alert("Mensaje enviado: " + (val || "Texto vacío"));
+          }
+          // Acción para el resto de elementos que no son el input
+          else if (selected.tagName !== "INPUT") {
+            alert("Seleccionado: " + selected.textContent);
           }
           break;
 
+        case "SoftRight":
         case "Backspace":
           if (document.activeElement.tagName !== "INPUT") {
             event.preventDefault();
@@ -98,20 +101,12 @@ window.addEventListener("DOMContentLoaded", function () {
     }
 
     document.addEventListener("keydown", handleKeyDown);
-    setFocus(0, 0);
-
-    const skSelect =
-      (navigator.mozL10n && navigator.mozL10n.get("sk_select")) || "SELECT";
-    const skExit =
-      (navigator.mozL10n && navigator.mozL10n.get("sk_exit")) || "Salir";
-    document.getElementById("softkey-csk").textContent = skSelect;
-    document.getElementById("softkey-rsk").textContent = skExit;
+    setFocus(0, 0); // Foco inicial
   }
 
   if (navigator.mozL10n) {
     navigator.mozL10n.once(initApp);
+  } else {
+    setTimeout(initApp, 500);
   }
-  setTimeout(function () {
-    if (!appInitialized) initApp();
-  }, 2000);
 });
