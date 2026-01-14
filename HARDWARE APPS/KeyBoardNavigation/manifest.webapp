@@ -1,30 +1,31 @@
 {
   "version": "1.0.0",
   "name": "KaiNav Guide",
-  "description": "Ejemplo de implementación de navegación D-Pad y gestión de Softkeys.",
-  "type": "privileged",
+  "description": "Guía de navegación por teclado y localización.",
   "launch_path": "/KeyBoardApp.html",
+  "type": "privileged",
   "icons": {
-    "56": "/icons/icon56.png",
-    "112": "/icons/icon112.png"
+    "56": "/img/icons/icon56.png",
+    "128": "/img/icons/icon128.png"
   },
   "developer": {
     "name": "Guillermo González Martín",
     "url": "https://github.com/ggonzalez1998/Introduction-to-KaiOS-Development"
   },
-  "fullscreen": "false",
-  "theme_color": "#6a00ff",
-  "cursor": false,
   "permissions": {
     "systemXHR": {
-      "description": "Explicar en la guía cómo saltar CORS en apps privilegiadas."
+      "description": "Requerido para ejemplos de carga de datos remotos."
     }
   },
   "locales": {
-    "es-ES": {
+    "en-US": {
+      "name": "Nav Guide",
+      "description": "D-Pad navigation and l10n guide."
+    },
+    "es": {
       "name": "Guía Navegación",
-      "description": "Demostración de foco y teclado para desarrolladores."
+      "description": "Guía de navegación D-Pad y localización."
     }
   },
-  "default_locale": "es-ES"
+  "default_locale": "es"
 }

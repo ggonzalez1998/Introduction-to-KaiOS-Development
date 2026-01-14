@@ -1,0 +1,98 @@
+/* --- Content Layout --- */
+#content {
+  justify-content: flex-start;
+  padding: 10px 0;
+  /* Forzamos el scrollbar visual */
+  scrollbar-width: thin;
+  scrollbar-color: #007bff #222;
+}
+
+/* Personalización del scroll para motores basados en Gecko/KaiOS */
+#content::-webkit-scrollbar {
+  width: 4px;
+}
+#content::-webkit-scrollbar-thumb {
+  background-color: #007bff;
+  border-radius: 10px;
+}
+
+#content p {
+  text-align: center;
+  padding: 0 10px 10px 10px;
+  font-size: 16px;
+}
+
+.nav-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* --- Vertical List --- */
+#vertical-list {
+  list-style: none;
+  width: 100%;
+}
+#vertical-list li {
+  padding: 12px 15px;
+  font-size: 18px;
+  border-bottom: 1px solid #555;
+}
+
+/* --- Input Section --- */
+#input-section {
+  padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#main-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #777;
+  background: #333;
+  color: #fff;
+  font-size: 16px;
+}
+
+#action-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #444;
+  color: #fff;
+  border: 1px solid #666;
+  font-weight: bold;
+}
+
+#result-container {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+#display-area {
+  color: #00ff00; /* Verde estilo terminal */
+  margin-left: 5px;
+}
+
+/* --- Horizontal List --- */
+#horizontal-list {
+  display: flex;
+  justify-content: space-around;
+  padding: 15px 0;
+  border-top: 1px solid #555;
+}
+
+#horizontal-list div {
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* --- Focus Style --- */
+.focusable.focus {
+  background-color: #007bff !important;
+  color: #fff !important;
+  outline: none;
+}
