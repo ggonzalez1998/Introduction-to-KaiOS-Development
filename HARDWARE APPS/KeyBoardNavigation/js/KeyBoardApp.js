@@ -7,33 +7,28 @@ window.addEventListener("DOMContentLoaded", function () {
     if (appInitialized) return;
     appInitialized = true;
 
-    // Selección de elementos enfocables
+    // Elementos de la lista vertical
     const verticalItems = Array.from(
       document.querySelectorAll("#vertical-list .focusable")
     );
+    // Elementos del bloque de texto
     const inputElement = document.getElementById("main-input");
     const actionButton = document.getElementById("alert-btn");
-    const bottomButtons = Array.from(
-      document.querySelectorAll("#horizontal-list .focusable")
-    );
 
-    // Mapa de navegación 2D: Cada elemento vertical es una "fila"
+    // Mapa de navegación: termina en el botón de acción
     const navMap = [
-      ...verticalItems.map((item) => [item]), // Opciones 1, 2, 3
-      [inputElement], // Campo de texto
-      [actionButton], // Botón Enviar
-      bottomButtons, // Fila de botones Aceptar/Atrás
+      ...verticalItems.map((item) => [item]),
+      [inputElement],
+      [actionButton],
     ];
 
     let currentY = 0;
     let currentX = 0;
 
     function setFocus(y, x) {
-      // Limpiar focos previos
       document
         .querySelectorAll(".focusable")
         .forEach((el) => el.classList.remove("focus"));
-
       currentY = y;
       currentX = x;
 
@@ -41,7 +36,6 @@ window.addEventListener("DOMContentLoaded", function () {
       if (activeItem) {
         activeItem.classList.add("focus");
 
-        // Manejo de foco real para el input
         if (activeItem.tagName === "INPUT") {
           activeItem.focus();
         } else {
@@ -50,8 +44,8 @@ window.addEventListener("DOMContentLoaded", function () {
           }
         }
 
-        // Scroll suave asegurando que el elemento esté visible
-        activeItem.scrollIntoView({ behavior: "smooth", block: "center" });
+        // Scroll instantáneo para máxima compatibilidad móvil
+        activeItem.scrollIntoView({ behavior: "auto", block: "center" });
       }
     }
 
@@ -61,35 +55,27 @@ window.addEventListener("DOMContentLoaded", function () {
           event.preventDefault();
           if (currentY > 0) setFocus(currentY - 1, 0);
           break;
-
         case "ArrowDown":
           event.preventDefault();
           if (currentY < navMap.length - 1) setFocus(currentY + 1, 0);
           break;
-
         case "ArrowLeft":
           if (currentX > 0) setFocus(currentY, currentX - 1);
           break;
-
         case "ArrowRight":
           if (currentX < navMap[currentY].length - 1)
             setFocus(currentY, currentX + 1);
           break;
-
         case "Enter":
           const selected = navMap[currentY][currentX];
-
-          // Acción específica para el botón de enviar
+          // Acción específica para el botón
           if (selected.id === "alert-btn") {
             const val = document.getElementById("main-input").value;
-            alert("Mensaje enviado: " + (val || "Texto vacío"));
-          }
-          // Acción para el resto de elementos que no son el input
-          else if (selected.tagName !== "INPUT") {
+            alert("Has escrito: " + (val || "Nada"));
+          } else if (selected.tagName !== "INPUT") {
             alert("Seleccionado: " + selected.textContent);
           }
           break;
-
         case "SoftRight":
         case "Backspace":
           if (document.activeElement.tagName !== "INPUT") {
@@ -101,7 +87,7 @@ window.addEventListener("DOMContentLoaded", function () {
     }
 
     document.addEventListener("keydown", handleKeyDown);
-    setFocus(0, 0); // Foco inicial
+    setFocus(0, 0);
   }
 
   if (navigator.mozL10n) {

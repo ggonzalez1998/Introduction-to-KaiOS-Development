@@ -1,15 +1,19 @@
-/* --- Estilos de Secciones --- */
 #content p {
-  padding: 15px;
-  color: #bbb;
+  padding: 20px 15px 10px 15px; /* Más espacio arriba para que el título se vea bien */
   text-align: center;
+  color: #fff;
+  font-size: 16px;
+  display: block;
 }
 
 .nav-group {
+  display: block;
   width: 100%;
+  padding: 0 15px;
+  margin-bottom: 15px;
 }
 
-/* --- Lista Vertical --- */
+/* Lista Vertical */
 #vertical-list {
   list-style: none;
   padding: 0;
@@ -17,64 +21,44 @@
 
 #vertical-list li {
   padding: 15px;
-  background: #2a2a2a;
-  border-bottom: 1px solid #333;
+  background: #333;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  color: #fff;
 }
 
-/* --- Bloque Input y Botón (Vertical) --- */
-#input-container {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  gap: 8px; /* Espacio entre input y botón */
-  margin-top: 10px;
-}
-
-#main-input {
+/* Bloque Input y Botón */
+#input-container input {
   width: 100%;
   padding: 12px;
   background: #000;
   color: #fff;
-  border: 1px solid #555;
+  border: 1px solid #666;
   border-radius: 4px;
+  margin-bottom: 10px; /* Espacio entre input y botón */
+  display: block;
 }
 
-#alert-btn {
+#input-container button {
   width: 100%;
-  padding: 12px;
+  padding: 15px;
   background: #444;
   color: #fff;
-  border: 1px solid #666;
+  border: 1px solid #777;
   font-weight: bold;
-  text-align: center;
-}
-
-/* --- Botones Inferiores --- */
-#horizontal-list {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 15px 10px;
-}
-
-#horizontal-list div {
-  flex: 1;
-  padding: 10px;
-  background: #333;
-  text-align: center;
   border-radius: 4px;
+  display: block;
 }
 
-/* --- Estados de Foco --- */
+/* FOCO */
 .focusable.focus {
   background-color: #007bff !important;
-  color: #fff !important;
+  color: white !important;
   outline: 2px solid white;
 }
 
-/* --- Solución al Solapamiento --- */
-#content {
-  /* Creamos un espacio al final para que los elementos 
-       puedan desplazarse hacia arriba de la barra de softkeys */
-  padding-bottom: 60px !important;
+/* MARGEN DE SEGURIDAD FINAL */
+/* Esto garantiza que puedas bajar lo suficiente para ver el botón */
+#input-container {
+  padding-bottom: 100px;
 }
