@@ -3,24 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no" />
-    <title>Linterna Pro</title>
+    <title>Flashlight Pro</title>
     <link rel="stylesheet" href="css/Template.css" />
     <link rel="stylesheet" href="css/FlashlightApp.css" />
     <script src="js/libs/l10n.js" defer></script>
     <script src="js/FlashlightApp.js" defer></script>
   </head>
-  <body>
+  <body id="app-body">
     <div id="header" data-l10n-id="app_title">Linterna Pro</div>
 
     <div id="content">
       <div id="main-container">
-        <div id="flashlight-btn" class="focusable" tabindex="0">
-          <div class="icon-light"></div>
-          <span id="status-text" data-l10n-id="status_off">APAGADO</span>
-        </div>
-        <p id="hint-text" data-l10n-id="instructions">
-          Pulsa ENTER para alternar
-        </p>
+        <button id="flashlight-btn" class="focusable" tabindex="0">
+          <span data-l10n-id="btn_text">Pulsar</span>
+        </button>
       </div>
     </div>
 

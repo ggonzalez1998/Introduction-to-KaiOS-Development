@@ -1,30 +1,20 @@
 {
   "version": "1.0.0",
-  "name": "Linterna Pro",
-  "description": "Control de linterna con vibración y sincronización física.",
-  "launch_path": "/index.html",
-  "type": "privileged",
-  "icons": {
-    "56": "/img/icons/icon56.png",
-    "128": "/img/icons/icon128.png"
-  },
+  "name": "Flashlight Pro",
+  "description": "Control de linterna certificada para Blackview.",
+  "launch_path": "/FlashlightApp.html",
+  "type": "certified",
   "developer": {
     "name": "Guillermo González Martín",
-    "url": "https://github.com/ggonzalez1998"
+    "url": "https://github.com/ggonzalez1998/Introduction-to-KaiOS-Development"
   },
   "permissions": {
-    "camera": { "description": "Requerido para controlar la linterna física." },
-    "vibrate": { "description": "Proporcionar feedback táctil al pulsar." }
+    "flashlight": {},
+    "vibrate": {}
   },
   "locales": {
-    "en-US": {
-      "name": "Flashlight Pro",
-      "description": "Flashlight with vibration and sync."
-    },
-    "es": {
-      "name": "Linterna Pro",
-      "description": "Linterna con vibración y sincronización."
-    }
+    "en-US": { "name": "Flashlight Pro" },
+    "es": { "name": "Linterna Pro" }
   },
   "default_locale": "es"
 }
