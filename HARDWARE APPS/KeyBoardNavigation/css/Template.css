@@ -1,4 +1,3 @@
-/* --- Reset Básico --- */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,65 +8,59 @@ html,
 body {
   width: 100%;
   height: 100%;
-  font-family: Arial, sans-serif;
-  overflow: hidden; /* Evita el scroll nativo */
+  overflow: hidden; /* Evita que rebote la pantalla completa */
+  font-family: sans-serif;
+  background-color: #222;
 }
 
 body {
-  background-color: #222;
-  color: #fff;
   display: flex;
   flex-direction: column;
 }
 
-/* --- Estructura de la App --- */
-
-/* 1. Encabezado */
 #header {
-  padding: 10px;
+  height: 40px;
+  line-height: 40px;
   background-color: #444;
   text-align: center;
-  font-size: 18px;
   font-weight: bold;
-  /* Ocupa el espacio que necesita */
+  color: white;
   flex-shrink: 0;
 }
 
-/* 2. Contenido Principal */
 #content {
-  padding: 15px;
-  /* Ocupa todo el espacio restante */
-  flex-grow: 1;
-  overflow-y: auto; /* Permite scroll si es necesario */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* Altura exacta: 100% menos header y softkeys */
+  height: calc(100vh - 75px);
+  overflow-y: scroll; /* Forzamos el scroll vertical */
+  overflow-x: hidden;
+  width: 100%;
+  background-color: #222;
+  display: block; /* IMPORTANTE: Cambiado de flex a block para evitar bloqueos */
 }
 
-/* 3. Barra de Softkeys */
 #softkey-bar {
+  height: 35px;
+  background-color: #111;
   display: flex;
   justify-content: space-between;
-  background-color: #111;
-  padding: 8px 10px;
-  font-size: 16px;
-  font-weight: bold;
-  /* Ocupa el espacio que necesita */
+  align-items: center;
+  padding: 0 10px;
+  border-top: 1px solid #444;
   flex-shrink: 0;
 }
 
 #softkey-lsk,
 #softkey-rsk {
-  /* Limita el ancho de las teclas laterales */
-  width: 40%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  width: 35%;
+  color: white;
+  font-size: 14px;
 }
-
 #softkey-csk {
+  width: 30%;
   text-align: center;
+  font-weight: bold;
+  color: white;
+  font-size: 14px;
 }
 #softkey-rsk {
   text-align: right;
