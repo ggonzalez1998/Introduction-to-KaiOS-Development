@@ -1,0 +1,64 @@
+#main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding-top: 20px;
+}
+
+#flashlight-btn {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #333;
+  border: 5px solid #555;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.icon-light {
+  width: 40px;
+  height: 40px;
+  background: #666;
+  mask: url(../img/flashlight-icon.svg) no-repeat center; /* Si tienes un SVG */
+  -webkit-mask: url(../img/flashlight-icon.svg) no-repeat center;
+  background-color: #eee;
+  margin-bottom: 5px;
+}
+
+#status-text {
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Estado Encendido */
+#flashlight-btn.on {
+  background: #f1c40f;
+  border-color: #fff;
+  box-shadow: 0 0 20px #f1c40f;
+}
+
+#flashlight-btn.on #status-text {
+  color: #000;
+}
+
+#flashlight-btn.on .icon-light {
+  background-color: #000;
+}
+
+/* FOCO de navegación D-Pad */
+#flashlight-btn.focus {
+  outline: 3px solid #007bff;
+  transform: scale(1.05);
+}
+
+#hint-text {
+  margin-top: 20px;
+  color: #aaa;
+  font-size: 12px;
+}
