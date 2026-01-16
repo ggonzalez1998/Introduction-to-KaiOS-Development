@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0",
+  "name": "TrackingGPS",
+  "description": "Control de GPS",
+  "launch_path": "/TrackingGPS.html",
+  "type": "certified",
+  "developer": {
+    "name": "Guillermo González Martín",
+    "url": "https://github.com/ggonzalez1998/Introduction-to-KaiOS-Development"
+  },
+  "permissions": {},
+  "locales": {
+    "en-US": {},
+    "es": {}
+  },
+  "default_locale": "es"
+}
