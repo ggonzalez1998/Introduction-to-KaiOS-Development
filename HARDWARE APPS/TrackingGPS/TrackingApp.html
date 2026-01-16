@@ -3,11 +3,43 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no" />
-    <title>Tracking GPS</title>
+    <title data-l10n-id="app_title">Tracking App</title>
     <link rel="stylesheet" href="css/Template.css" />
     <link rel="stylesheet" href="css/TrackingApp.css" />
     <script src="js/libs/l10n.js" defer></script>
     <script src="js/TrackingApp.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <div id="header" data-l10n-id="app_title">RASTREO GPS</div>
+
+    <div id="content">
+      <div class="info-card">
+        <p class="label" data-l10n-id="status_label">Estado:</p>
+        <p id="status-text" data-l10n-id="status_idle">Esperando...</p>
+      </div>
+
+      <div class="geo-data">
+        <div class="data-item">
+          <span class="label" data-l10n-id="lat_label">Latitud:</span>
+          <span id="lat-val">-</span>
+        </div>
+        <div class="data-item">
+          <span class="label" data-l10n-id="lon_label">Longitud:</span>
+          <span id="lon-val">-</span>
+        </div>
+      </div>
+
+      <div id="action-container" class="nav-group">
+        <button id="get-pos-btn" class="focusable" data-l10n-id="btn_get_pos">
+          OBTENER UBICACIÓN
+        </button>
+      </div>
+    </div>
+
+    <div id="softkey-bar">
+      <span id="softkey-lsk"></span>
+      <span id="softkey-csk" data-l10n-id="sk_select">SELECT</span>
+      <span id="softkey-rsk" data-l10n-id="sk_exit">SALIR</span>
+    </div>
+  </body>
 </html>

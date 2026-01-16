@@ -1,0 +1,54 @@
+.info-card {
+  background: #333;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  border-left: 4px solid #007bff;
+}
+
+.label {
+  font-size: 12px;
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+#status-text {
+  font-weight: bold;
+  color: #fff;
+  margin-top: 4px;
+}
+
+.geo-data {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background: #111;
+  margin: 10px;
+  border-radius: 4px;
+}
+
+.data-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #222;
+}
+
+.data-item span {
+  display: block;
+  color: #fff;
+  font-size: 18px;
+}
+
+#get-pos-btn {
+  width: 100%;
+  padding: 12px;
+  background: #444;
+  color: white;
+  border: none;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.focusable.focus {
+  background-color: #007bff !important;
+  outline: 2px solid white;
+}

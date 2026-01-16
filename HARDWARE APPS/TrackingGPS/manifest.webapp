@@ -1,17 +1,34 @@
 {
   "version": "1.0.0",
-  "name": "TrackingGPS",
-  "description": "Control de GPS",
-  "launch_path": "/TrackingGPS.html",
-  "type": "certified",
+  "name": "KaiTracking",
+  "description": "Aplicación de geolocalización en tiempo real.",
+  "launch_path": "/TrackingApp.html",
+  "type": "privileged",
+  "icons": {
+    "56": "/img/icons/icon56.png",
+    "128": "/img/icons/icon128.png"
+  },
   "developer": {
     "name": "Guillermo González Martín",
-    "url": "https://github.com/ggonzalez1998/Introduction-to-KaiOS-Development"
+    "url": "https://github.com/ggonzalez1998"
   },
-  "permissions": {},
+  "permissions": {
+    "geolocation": {
+      "description": "Requerido para obtener la ubicación del dispositivo."
+    },
+    "systemXHR": {
+      "description": "Requerido para reverse geocoding (convertir coordenadas a direcciones)."
+    }
+  },
   "locales": {
-    "en-US": {},
-    "es": {}
+    "en-US": {
+      "name": "KaiTracking",
+      "description": "Real-time geolocation app."
+    },
+    "es": {
+      "name": "Rastreo Kai",
+      "description": "App de geolocalización en tiempo real."
+    }
   },
   "default_locale": "es"
 }
