@@ -1,81 +1,134 @@
 window.addEventListener("DOMContentLoaded", function () {
   "use strict";
 
-  let appInitialized = false;
+  console.log("DOM Cargado - Iniciando script...");
+
+  var appInitialized = false;
+  var watchId = null;
 
   function initApp() {
     if (appInitialized) return;
 
-    // 1. Verificamos que los elementos existen antes de hacer nada
-    const getPosBtn = document.getElementById("get-pos-btn");
+    var getPosBtn = document.getElementById("get-pos-btn");
+
     if (!getPosBtn) {
-      console.error("No se encontró el botón de posición. Reintentando...");
+      console.error("Botón no encontrado, reintentando...");
       setTimeout(initApp, 100);
       return;
     }
 
     appInitialized = true;
-    console.log("App Initialized correctamente");
+    console.log("App inicializada correctamente.");
 
-    const navMap = [[getPosBtn]];
-    let currentY = 0;
-    let currentX = 0;
+    var navMap = [[getPosBtn]];
+    var currentY = 0;
+    var currentX = 0;
 
     function setFocus(y, x) {
-      const items = document.querySelectorAll(".focusable");
-      if (items.length === 0) return;
+      var items = document.querySelectorAll(".focusable");
+      for (var i = 0; i < items.length; i++) {
+        items[i].classList.remove("focus");
+      }
 
-      items.forEach((el) => el.classList.remove("focus"));
-
-      const activeItem = navMap[y][x];
+      var activeItem = navMap[y][x];
       if (activeItem) {
         activeItem.classList.add("focus");
-        activeItem.focus(); // Forzamos el foco del sistema
-        activeItem.scrollIntoView({ behavior: "auto", block: "center" });
+        activeItem.focus();
+        if (typeof activeItem.scrollIntoView === "function") {
+          activeItem.scrollIntoView({ behavior: "auto", block: "center" });
+        }
       }
     }
 
+    // Función para convertir coordenadas en dirección física
+    function getAddress(lat, lon) {
+      var addressText = document.getElementById("address-val");
+      addressText.textContent = "Buscando calle...";
+
+      var url =
+        "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=" +
+        lat +
+        "&lon=" +
+        lon;
+
+      // mozSystem: true permite usar el permiso systemXHR del manifest
+      var xhr = new XMLHttpRequest({ mozSystem: true });
+      xhr.open("GET", url, true);
+
+      // La API de Nominatim requiere un User-Agent identificativo
+      xhr.setRequestHeader("User-Agent", "KaiTrackingApp-TFG");
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            try {
+              var response = JSON.parse(xhr.responseText);
+              var fullAddress =
+                response.display_name || "Dirección no encontrada";
+              addressText.textContent = fullAddress;
+              console.log("Dirección obtenida: " + fullAddress);
+            } catch (e) {
+              addressText.textContent = "Error al procesar dirección";
+            }
+          } else {
+            addressText.textContent = "Error de conexión (API)";
+          }
+        }
+      };
+      xhr.send();
+    }
+
     function updateLocation() {
-      const statusText = document.getElementById("status-text");
-      const latText = document.getElementById("lat-val");
-      const lonText = document.getElementById("lon-val");
+      var statusText = document.getElementById("status-text");
+      var latText = document.getElementById("lat-val");
+      var lonText = document.getElementById("lon-val");
+      var addressText = document.getElementById("address-val");
 
-      statusText.textContent = "Iniciando GPS...";
+      latText.textContent = "-";
+      lonText.textContent = "-";
+      addressText.textContent = "-";
 
-      // CONFIGURACIÓN CLAVE:
-      // 1. enableHighAccuracy: false (Permite usar antenas de telefonía/WiFi si el GPS falla)
-      // 2. timeout: 30000 (Damos 30 segundos, el GPS de KaiOS es lento)
-      // 3. maximumAge: Infinity (Si tiene una posición reciente, que la use para no bloquearse)
-      const options = {
-        enableHighAccuracy: false,
-        timeout: 30000,
-        maximumAge: Infinity,
+      if (watchId !== null) {
+        navigator.geolocation.clearWatch(watchId);
+      }
+
+      statusText.textContent = "Buscando satélites (Máx. 2 min)...";
+
+      var options = {
+        enableHighAccuracy: true,
+        timeout: 120000,
+        maximumAge: 0,
       };
 
-      console.log("Solicitando ubicación...");
+      watchId = navigator.geolocation.watchPosition(
+        function (pos) {
+          console.log("Ubicación encontrada.");
+          statusText.textContent = "Ubicación fijada";
 
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          console.log("¡Ubicación recibida!", pos);
-          statusText.textContent = "Ubicación encontrada";
-          latText.textContent = pos.coords.latitude.toFixed(6);
-          lonText.textContent = pos.coords.longitude.toFixed(6);
+          var lat = pos.coords.latitude.toFixed(6);
+          var lon = pos.coords.longitude.toFixed(6);
+
+          latText.textContent = lat;
+          lonText.textContent = lon;
+
+          // Llamamos a la API de dirección
+          getAddress(lat, lon);
+
+          navigator.geolocation.clearWatch(watchId);
+          watchId = null;
         },
-        (err) => {
-          console.error("Error detallado:", err);
-          // Si falla con HighAccuracy false, el problema suele ser global del sistema
-          switch (err.code) {
-            case 1:
-              statusText.textContent = "Error: Permiso denegado por sistema";
-              break;
-            case 2:
-              statusText.textContent =
-                "Error: Buscando señal (Sal al exterior)";
-              break;
-            case 3:
-              statusText.textContent = "Error: Tiempo agotado (30s)";
-              break;
-          }
+        function (err) {
+          console.error("Error GPS:", err);
+          if (err.code === 1)
+            statusText.textContent = "Error: Permiso denegado";
+          else if (err.code === 2)
+            statusText.textContent = "Error: Sin señal (Sal fuera)";
+          else if (err.code === 3)
+            statusText.textContent = "Error: Tiempo agotado";
+          else statusText.textContent = "Error desconocido";
+
+          navigator.geolocation.clearWatch(watchId);
+          watchId = null;
         },
         options
       );
@@ -84,13 +137,18 @@ window.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("keydown", function (event) {
       switch (event.key) {
         case "Enter":
-          if (navMap[currentY][currentX].id === "get-pos-btn") {
-            updateLocation();
-          }
+          updateLocation();
+          break;
+        case "ArrowUp":
+        case "ArrowDown":
+          event.preventDefault();
           break;
         case "SoftRight":
         case "Backspace":
           event.preventDefault();
+          if (watchId !== null) {
+            navigator.geolocation.clearWatch(watchId);
+          }
           window.close();
           break;
       }
@@ -99,7 +157,6 @@ window.addEventListener("DOMContentLoaded", function () {
     setFocus(0, 0);
   }
 
-  // Inicialización segura
   if (navigator.mozL10n) {
     navigator.mozL10n.once(initApp);
   } else {
