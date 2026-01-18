@@ -13,6 +13,12 @@
     <div id="header" data-l10n-id="app_title">RASTREO GPS</div>
 
     <div id="content">
+      <div class="nav-group">
+        <button id="get-pos-btn" class="focusable" data-l10n-id="btn_get_pos">
+          ACTUALIZAR POSICIÓN
+        </button>
+      </div>
+
       <div class="info-card">
         <p class="label" data-l10n-id="status_label">Estado:</p>
         <p id="status-text" data-l10n-id="status_idle">Esperando...</p>
@@ -33,11 +39,13 @@
         </div>
       </div>
 
-      <div id="action-container" class="nav-group">
-        <button id="get-pos-btn" class="focusable" data-l10n-id="btn_get_pos">
-          OBTENER UBICACIÓN
+      <div class="nav-group">
+        <button id="send-sms-btn" class="focusable" data-l10n-id="btn_send_sms">
+          ENVIAR UBICACIÓN (SMS)
         </button>
       </div>
+
+      <div class="bottom-spacer"></div>
     </div>
 
     <div id="softkey-bar">
