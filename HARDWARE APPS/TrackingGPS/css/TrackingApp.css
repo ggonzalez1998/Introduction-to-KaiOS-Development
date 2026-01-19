@@ -1,0 +1,90 @@
+#content {
+  height: calc(100vh - 75px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: block;
+}
+
+.nav-group {
+  padding: 10px 15px;
+}
+
+/* Estilos base de botones */
+.focusable {
+  width: 100%;
+  padding: 12px;
+  font-weight: bold;
+  border-radius: 4px;
+  display: block;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+/* ACTUALIZAR (Outline Primary) */
+#get-pos-btn {
+  color: #007bff;
+  border: 2px solid #007bff;
+  margin-top: 5px;
+}
+
+#get-pos-btn.focus {
+  background-color: #007bff !important;
+  color: #ffffff !important;
+  outline: 2px solid white;
+}
+
+/* ENVIAR SMS (Outline Success) */
+#send-sms-btn {
+  color: #28a745;
+  border: 2px solid #28a745;
+}
+
+#send-sms-btn.focus {
+  background-color: #28a745 !important;
+  color: #ffffff !important;
+  outline: 2px solid white;
+}
+
+/* Información */
+.info-card {
+  background: #333;
+  margin: 0 15px 15px 15px;
+  padding: 10px;
+  border-radius: 4px;
+  border-left: 4px solid #007bff;
+}
+
+.geo-data {
+  background: #111;
+  margin: 0 15px 15px 15px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.data-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #222;
+}
+
+.label {
+  font-size: 11px;
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+.geo-data span:not(.label) {
+  display: block;
+  color: #fff;
+  font-size: 16px;
+  margin-top: 2px;
+}
+
+#address-val {
+  font-size: 13px !important;
+  line-height: 1.4;
+  color: #007bff !important;
+}
+
+.bottom-spacer {
+  height: 50px; /* Suficiente para que el botón suba al enfocarse */
+}
