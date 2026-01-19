@@ -9,25 +9,27 @@
     <script src="js/SystemApp.js" defer></script>
   </head>
   <body>
-    <div id="header">SISTEMA: BLOQUE 2</div>
+    <div id="header">DIAGNÓSTICO MANUAL</div>
 
     <div id="content">
-      <div class="info-card focusable" id="card-battery">
+      <div class="info-card focusable">
         <p class="label">BATERÍA</p>
-        <p class="value">
-          <span id="batt-level">-</span>% (<span id="batt-status">...</span>)
-        </p>
+        <p class="value" id="val-0">---</p>
+        <p class="hint">SELECT para leer</p>
       </div>
 
       <div class="info-card focusable">
-        <p class="label">PRUEBA 2</p>
-        <p class="value">Navegación OK</p>
+        <p class="label">RED</p>
+        <p class="value" id="val-1">---</p>
+        <p class="hint">SELECT para leer</p>
       </div>
 
       <div class="info-card focusable">
-        <p class="label">PRUEBA 3</p>
-        <p class="value">API Red/SD (Próximo paso)</p>
+        <p class="label">ALMACENAMIENTO SD</p>
+        <p class="value" id="val-2">---</p>
+        <p class="hint">SELECT para leer</p>
       </div>
+
       <div class="bottom-spacer"></div>
     </div>
 

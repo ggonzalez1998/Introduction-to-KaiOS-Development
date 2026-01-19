@@ -2,38 +2,74 @@ window.addEventListener("DOMContentLoaded", function () {
   "use strict";
 
   var cards = document.querySelectorAll(".focusable");
+  var content = document.getElementById("content");
   var currentY = 0;
 
   function setFocus(y) {
+    // 1. Quitar focos previos
     for (var i = 0; i < cards.length; i++) {
       cards[i].classList.remove("focus");
     }
+
+    // 2. Aplicar nuevo foco
     currentY = y;
-    if (cards[currentY]) {
-      cards[currentY].classList.add("focus");
-      cards[currentY].focus();
-      if (cards[currentY].scrollIntoView) {
-        cards[currentY].scrollIntoView({ behavior: "auto", block: "center" });
-      }
+    var activeItem = cards[currentY];
+    if (activeItem) {
+      activeItem.classList.add("focus");
+      activeItem.focus();
+
+      // 3. SCROLL MATEMÁTICO (La solución definitiva)
+      // Calculamos la posición del elemento respecto al contenedor
+      var itemTop = activeItem.offsetTop;
+      var itemHeight = activeItem.offsetHeight;
+      var contentHeight = content.offsetHeight;
+
+      // Esta fórmula centra el elemento en el visor de 2.4 pulgadas
+      var scrollPos = itemTop - contentHeight / 2 + itemHeight / 2;
+
+      content.scrollTop = scrollPos;
     }
   }
 
-  // --- NUEVA LÓGICA: BATERÍA ---
-  function updateBattery() {
-    // navigator.battery es el estándar, navigator.mozBattery es para KaiOS 2.5
-    var battery =
-      navigator.battery || navigator.mozBattery || navigator.webkitBattery;
-
-    if (battery) {
-      var level = Math.round(battery.level * 100);
-      var status = battery.charging ? "Cargando" : "Descargando";
-
-      document.getElementById("batt-level").textContent = level;
-      document.getElementById("batt-status").textContent = status;
-      console.log("Batería actualizada: " + level + "%");
+  function getBatteryData() {
+    var b = navigator.battery || navigator.mozBattery;
+    var el = document.getElementById("val-0");
+    if (b) {
+      el.textContent =
+        Math.round(b.level * 100) +
+        "% (" +
+        (b.charging ? "Cargando" : "OK") +
+        ")";
     } else {
-      document.getElementById("batt-status").textContent = "No detectada";
+      el.textContent = "Error API";
     }
+  }
+
+  function getNetworkData() {
+    var c = navigator.connection || navigator.mozConnection;
+    var el = document.getElementById("val-1");
+    if (c) {
+      el.textContent = (c.type || "Conectado").toUpperCase();
+    } else {
+      el.textContent = navigator.onLine ? "ONLINE" : "OFFLINE";
+    }
+  }
+
+  function getStorageData() {
+    var el = document.getElementById("val-2");
+    if (!navigator.getDeviceStorage) {
+      el.textContent = "No soportado";
+      return;
+    }
+    var s = navigator.getDeviceStorage("sdcard");
+    var req = s.freeSpace();
+    el.textContent = "Calculando...";
+    req.onsuccess = function () {
+      el.textContent = (this.result / (1024 * 1024)).toFixed(2) + " MB Libres";
+    };
+    req.onerror = function () {
+      el.textContent = "SD No Lista";
+    };
   }
 
   document.addEventListener("keydown", function (event) {
@@ -47,9 +83,10 @@ window.addEventListener("DOMContentLoaded", function () {
         if (currentY < cards.length - 1) setFocus(currentY + 1);
         break;
       case "Enter":
-        // Al pulsar Enter refrescamos la batería
-        updateBattery();
-        if (navigator.vibrate) navigator.vibrate(50);
+        if (navigator.vibrate) navigator.vibrate(40);
+        if (currentY === 0) getBatteryData();
+        else if (currentY === 1) getNetworkData();
+        else if (currentY === 2) getStorageData();
         break;
       case "SoftRight":
       case "Backspace":
@@ -59,7 +96,6 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Ejecución inicial
+  // Inicio limpio
   setFocus(0);
-  updateBattery();
 });
