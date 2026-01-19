@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0",
+  "name": "KaiSystem",
+  "description": "Debug Bloque 1",
+  "launch_path": "/SystemApp.html",
+  "type": "privileged",
+  "icons": {
+    "56": "/img/icons/icon56.png"
+  },
+  "developer": { "name": "Guillermo" },
+  "locales": { "es": { "name": "Sistema Kai" } },
+  "default_locale": "es"
+}

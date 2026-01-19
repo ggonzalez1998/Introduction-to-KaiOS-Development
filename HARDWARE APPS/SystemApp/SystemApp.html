@@ -3,11 +3,38 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no" />
-    <title data-l10n-id="app_title">Tracking App</title>
+    <title>System App</title>
     <link rel="stylesheet" href="css/Template.css" />
-    <link rel="stylesheet" href="css/.css" />
-    <script src="js/libs/l10n.js" defer></script>
-    <script src="js/.js" defer></script>
+    <link rel="stylesheet" href="css/SystemApp.css" />
+    <script src="js/SystemApp.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <div id="header">SISTEMA: BLOQUE 2</div>
+
+    <div id="content">
+      <div class="info-card focusable" id="card-battery">
+        <p class="label">BATERÍA</p>
+        <p class="value">
+          <span id="batt-level">-</span>% (<span id="batt-status">...</span>)
+        </p>
+      </div>
+
+      <div class="info-card focusable">
+        <p class="label">PRUEBA 2</p>
+        <p class="value">Navegación OK</p>
+      </div>
+
+      <div class="info-card focusable">
+        <p class="label">PRUEBA 3</p>
+        <p class="value">API Red/SD (Próximo paso)</p>
+      </div>
+      <div class="bottom-spacer"></div>
+    </div>
+
+    <div id="softkey-bar">
+      <span id="softkey-lsk"></span>
+      <span id="softkey-csk">SELECT</span>
+      <span id="softkey-rsk">SALIR</span>
+    </div>
+  </body>
 </html>
