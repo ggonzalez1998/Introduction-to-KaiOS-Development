@@ -1,0 +1,31 @@
+{
+  "version": "1.0.0",
+  "name": "KaiVoice",
+  "description": "Grabadora de voz sencilla para KaiOS.",
+  "launch_path": "/AudioApp.html",
+  "type": "privileged",
+  "icons": {
+    "56": "/img/icons/icon56.png",
+    "128": "/img/icons/icon128.png"
+  },
+  "developer": {
+    "name": "Guillermo González Martín",
+    "url": "https://github.com/ggonzalez1998"
+  },
+  "permissions": {
+    "audio-capture": {
+      "description": "Requerido para grabar notas de voz usando el micrófono."
+    }
+  },
+  "locales": {
+    "en-US": {
+      "name": "KaiVoice",
+      "description": "Simple voice recorder for KaiOS."
+    },
+    "es": {
+      "name": "Voz Kai",
+      "description": "Grabadora de voz sencilla para KaiOS."
+    }
+  },
+  "default_locale": "es"
+}

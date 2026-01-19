@@ -1,0 +1,70 @@
+#content {
+  height: calc(100vh - 75px);
+  overflow-y: scroll; /* Forzamos el scrollbar */
+  display: block;
+  padding-bottom: 20px;
+  background-color: #222;
+}
+
+.nav-group {
+  padding: 10px 15px;
+}
+
+.focusable {
+  width: 100%;
+  padding: 15px;
+  font-weight: bold;
+  border-radius: 4px;
+  display: block;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+#record-btn {
+  color: #dc3545;
+  border: 2px solid #dc3545;
+  margin-top: 10px;
+}
+
+#record-btn.focus {
+  background-color: #dc3545 !important;
+  color: #fff !important;
+  outline: 2px solid white;
+}
+
+#play-btn {
+  color: #007bff;
+  border: 2px solid #007bff;
+}
+
+#play-btn.focus {
+  background-color: #007bff !important;
+  color: #fff !important;
+  outline: 2px solid white;
+}
+
+.info-card {
+  background: #333;
+  margin: 10px 15px;
+  padding: 15px;
+  border-radius: 4px;
+  border-left: 4px solid #dc3545;
+  text-align: center;
+}
+
+.label {
+  font-size: 11px;
+  color: #aaa;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+#status-text {
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.bottom-spacer {
+  height: 80px; /* Aumentado para facilitar el scroll del último botón */
+}
