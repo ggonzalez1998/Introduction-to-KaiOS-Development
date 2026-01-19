@@ -1,7 +1,7 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "name": "KaiVoice",
-  "description": "Grabadora de voz sencilla para KaiOS.",
+  "description": "Grabadora de voz con guardado permanente.",
   "launch_path": "/AudioApp.html",
   "type": "privileged",
   "icons": {
@@ -14,18 +14,16 @@
   },
   "permissions": {
     "audio-capture": {
-      "description": "Requerido para grabar notas de voz usando el micrófono."
+      "description": "Requerido para usar el micrófono."
+    },
+    "device-storage:music": {
+      "access": "readwrite",
+      "description": "Requerido para guardar audios en la memoria del teléfono."
     }
   },
   "locales": {
-    "en-US": {
-      "name": "KaiVoice",
-      "description": "Simple voice recorder for KaiOS."
-    },
-    "es": {
-      "name": "Voz Kai",
-      "description": "Grabadora de voz sencilla para KaiOS."
-    }
+    "en-US": { "name": "KaiVoice" },
+    "es": { "name": "Voz Kai" }
   },
   "default_locale": "es"
 }

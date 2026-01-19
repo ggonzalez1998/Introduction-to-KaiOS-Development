@@ -1,8 +1,6 @@
 window.addEventListener("DOMContentLoaded", function () {
   "use strict";
 
-  console.log("AudioApp: DOM cargado");
-
   var appInitialized = false;
   var mediaRecorder = null;
   var audioChunks = [];
@@ -14,19 +12,19 @@ window.addEventListener("DOMContentLoaded", function () {
 
     var recordBtn = document.getElementById("record-btn");
     var playBtn = document.getElementById("play-btn");
+    var saveBtn = document.getElementById("save-btn");
     var audioPlayer = document.getElementById("audio-player");
     var statusText = document.getElementById("status-text");
 
-    if (!recordBtn || !playBtn) {
-      console.error("AudioApp: Elementos no encontrados");
+    if (!recordBtn || !playBtn || !saveBtn) {
       setTimeout(initApp, 100);
       return;
     }
 
     appInitialized = true;
-    console.log("AudioApp: Inicializada");
 
-    var navMap = [[recordBtn], [playBtn]];
+    // Mapa de navegación con los 3 botones
+    var navMap = [[recordBtn], [playBtn], [saveBtn]];
     var currentY = 0;
 
     function setFocus(y) {
@@ -39,50 +37,72 @@ window.addEventListener("DOMContentLoaded", function () {
       if (activeItem) {
         activeItem.classList.add("focus");
         activeItem.focus();
-        // block: "center" es clave para que el scroll se active antes de llegar al borde
         if (activeItem.scrollIntoView) {
           activeItem.scrollIntoView({ behavior: "auto", block: "center" });
         }
       }
     }
 
+    function saveAudioToDisk() {
+      if (!audioBlob) {
+        statusText.textContent =
+          navigator.mozL10n.get("status_no_audio") || "Nada que guardar";
+        return;
+      }
+
+      // Acceso al almacenamiento de música
+      if (!navigator.getDeviceStorage) {
+        alert("DeviceStorage no soportado");
+        return;
+      }
+
+      var storage = navigator.getDeviceStorage("music");
+      var fileName = "KaiOS_Rec_" + Date.now() + ".ogg";
+
+      statusText.textContent = "Guardando...";
+
+      var request = storage.addNamed(audioBlob, fileName);
+
+      request.onsuccess = function () {
+        statusText.textContent = "Guardado en Música";
+        if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
+        alert("Archivo guardado: " + fileName);
+      };
+
+      request.onerror = function () {
+        console.error("Error al guardar:", this.error);
+        statusText.textContent = "Error al guardar";
+        // Error común: El almacenamiento está ocupado por el USB
+        if (this.error.name === "SecurityError") {
+          alert("Error: Desconecta el USB o verifica permisos.");
+        }
+      };
+    }
+
     function toggleRecording() {
       if (!isRecording) {
-        // Compatibilidad para KaiOS 2.5 (Gecko 48)
         var constraints = { audio: true };
         var onSuccess = function (stream) {
           mediaRecorder = new MediaRecorder(stream);
           audioChunks = [];
-
-          mediaRecorder.ondataavailable = function (event) {
-            audioChunks.push(event.data);
+          mediaRecorder.ondataavailable = function (e) {
+            audioChunks.push(e.data);
           };
-
           mediaRecorder.onstop = function () {
-            audioBlob = new Blob(audioChunks, {
-              type: "audio/ogg; codecs=opus",
-            });
-            var audioUrl = URL.createObjectURL(audioBlob);
-            audioPlayer.src = audioUrl;
-            statusText.textContent =
-              navigator.mozL10n.get("status_saved") || "Audio listo";
+            audioBlob = new Blob(audioChunks, { type: "audio/ogg" });
+            audioPlayer.src = URL.createObjectURL(audioBlob);
+            statusText.textContent = "Grabación finalizada";
           };
-
           mediaRecorder.start();
           isRecording = true;
-          recordBtn.textContent =
-            navigator.mozL10n.get("btn_stop") || "DETENER";
-          statusText.textContent =
-            navigator.mozL10n.get("status_recording") || "GRABANDO...";
+          recordBtn.textContent = "DETENER";
+          statusText.textContent = "GRABANDO...";
           if (navigator.vibrate) navigator.vibrate(100);
         };
-
         var onError = function (err) {
-          console.error("Error getUserMedia:", err);
-          statusText.textContent = "Error micro: " + err.name;
+          statusText.textContent = "Error: " + err.name;
         };
 
-        // Intentar versión moderna y caer en la prefijada si falla
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
           navigator.mediaDevices
             .getUserMedia(constraints)
@@ -91,42 +111,13 @@ window.addEventListener("DOMContentLoaded", function () {
         } else {
           var getUserMedia =
             navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
-          if (getUserMedia) {
-            getUserMedia.call(navigator, constraints, onSuccess, onError);
-          } else {
-            statusText.textContent = "API no soportada";
-          }
+          getUserMedia.call(navigator, constraints, onSuccess, onError);
         }
       } else {
-        if (mediaRecorder && mediaRecorder.state !== "inactive") {
-          mediaRecorder.stop();
-          // Detener tracks para apagar el hardware del micro
-          if (mediaRecorder.stream) {
-            var tracks = mediaRecorder.stream.getTracks();
-            for (var i = 0; i < tracks.length; i++) {
-              tracks[i].stop();
-            }
-          }
-        }
+        if (mediaRecorder) mediaRecorder.stop();
         isRecording = false;
-        recordBtn.textContent = navigator.mozL10n.get("btn_record") || "GRABAR";
-        if (navigator.vibrate) navigator.vibrate([50, 50, 50]);
+        recordBtn.textContent = "GRABAR";
       }
-    }
-
-    function playAudio() {
-      if (!audioBlob) {
-        statusText.textContent =
-          navigator.mozL10n.get("status_no_audio") || "Sin grabación";
-        return;
-      }
-      statusText.textContent =
-        navigator.mozL10n.get("status_playing") || "Reproduciendo...";
-      audioPlayer.play();
-      audioPlayer.onended = function () {
-        statusText.textContent =
-          navigator.mozL10n.get("status_saved") || "Audio listo";
-      };
     }
 
     document.addEventListener("keydown", function (event) {
@@ -141,7 +132,8 @@ window.addEventListener("DOMContentLoaded", function () {
           break;
         case "Enter":
           if (currentY === 0) toggleRecording();
-          else if (currentY === 1) playAudio();
+          else if (currentY === 1) audioPlayer.play();
+          else if (currentY === 2) saveAudioToDisk();
           break;
         case "SoftRight":
         case "Backspace":
@@ -154,10 +146,6 @@ window.addEventListener("DOMContentLoaded", function () {
     setFocus(0);
   }
 
-  // Lanzamiento seguro
-  if (navigator.mozL10n) {
-    navigator.mozL10n.once(initApp);
-  } else {
-    initApp();
-  }
+  if (navigator.mozL10n) navigator.mozL10n.once(initApp);
+  else initApp();
 });
