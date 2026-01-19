@@ -1,0 +1,29 @@
+{
+  "version": "1.1.0",
+  "name": "KaiVoice",
+  "description": "Grabadora de voz con guardado permanente.",
+  "launch_path": "/AudioApp.html",
+  "type": "privileged",
+  "icons": {
+    "56": "/img/icons/icon56.png",
+    "128": "/img/icons/icon128.png"
+  },
+  "developer": {
+    "name": "Guillermo González Martín",
+    "url": "https://github.com/ggonzalez1998"
+  },
+  "permissions": {
+    "audio-capture": {
+      "description": "Requerido para usar el micrófono."
+    },
+    "device-storage:music": {
+      "access": "readwrite",
+      "description": "Requerido para guardar audios en la memoria del teléfono."
+    }
+  },
+  "locales": {
+    "en-US": { "name": "KaiVoice" },
+    "es": { "name": "Voz Kai" }
+  },
+  "default_locale": "es"
+}

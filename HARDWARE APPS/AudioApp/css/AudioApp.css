@@ -1,0 +1,60 @@
+#content {
+  height: calc(100vh - 75px);
+  overflow-y: scroll;
+  display: block;
+  padding-bottom: 20px;
+}
+
+.nav-group {
+  padding: 5px 15px;
+}
+
+.focusable {
+  width: 100%;
+  padding: 12px;
+  font-weight: bold;
+  border-radius: 4px;
+  display: block;
+  background: transparent;
+  margin-bottom: 5px;
+}
+
+#record-btn {
+  color: #dc3545;
+  border: 2px solid #dc3545;
+}
+#record-btn.focus {
+  background: #dc3545 !important;
+  color: #fff !important;
+}
+
+#play-btn {
+  color: #007bff;
+  border: 2px solid #007bff;
+}
+#play-btn.focus {
+  background: #007bff !important;
+  color: #fff !important;
+}
+
+#save-btn {
+  color: #28a745;
+  border: 2px solid #28a745;
+}
+#save-btn.focus {
+  background: #28a745 !important;
+  color: #fff !important;
+}
+
+.info-card {
+  background: #333;
+  margin: 10px 15px;
+  padding: 10px;
+  border-radius: 4px;
+  border-left: 4px solid #dc3545;
+  text-align: center;
+}
+
+.bottom-spacer {
+  height: 100px;
+}
