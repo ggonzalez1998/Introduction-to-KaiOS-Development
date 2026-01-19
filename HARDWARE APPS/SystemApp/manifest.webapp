@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "name": "KaiSystem",
+  "description": "Herramienta de diagnóstico manual.",
+  "launch_path": "/SystemApp.html",
+  "type": "privileged",
+  "icons": {
+    "56": "/img/icons/icon56.png",
+    "128": "/img/icons/icon128.png"
+  },
+  "developer": {
+    "name": "Guillermo González Martín",
+    "url": "https://github.com/ggonzalez1998"
+  },
+  "permissions": {
+    "device-storage:sdcard": {
+      "access": "readonly",
+      "description": "Requerido para consultar el espacio libre en el dispositivo."
+    }
+  },
+  "locales": {
+    "en-US": { "name": "KaiSystem" },
+    "es": { "name": "Sistema Kai" }
+  },
+  "default_locale": "es"
+}
