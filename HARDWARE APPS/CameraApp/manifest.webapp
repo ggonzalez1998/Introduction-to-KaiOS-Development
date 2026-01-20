@@ -1,0 +1,23 @@
+{
+  "version": "1.0.2",
+  "name": "KaiCam",
+  "description": "Cámara con modo de seguridad.",
+  "launch_path": "/CameraApp.html",
+  "type": "privileged",
+  "icons": {
+    "56": "/img/icons/icon56.png",
+    "128": "/img/icons/icon128.png"
+  },
+  "developer": { "name": "Guillermo" },
+  "permissions": {
+    "camera": { "description": "Captura de fotos" },
+    "video-capture": { "description": "Visor en vivo" },
+    "audio-capture": { "description": "Necesario para el bus multimedia" },
+    "device-storage:pictures": {
+      "access": "readwrite",
+      "description": "Guardar fotos"
+    }
+  },
+  "locales": { "es": { "name": "Cámara Kai" } },
+  "default_locale": "es"
+}

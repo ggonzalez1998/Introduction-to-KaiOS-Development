@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <title>Cámara Kai</title>
+    <link rel="stylesheet" href="css/Template.css" />
+    <link rel="stylesheet" href="css/CameraApp.css" />
+    <script src="js/CameraApp.js" defer></script>
+  </head>
+  <body>
+    <div id="header">CÁMARA KAI</div>
+
+    <div id="content">
+      <div class="nav-group">
+        <button id="btn-0" class="focusable">INICIAR CÁMARA</button>
+      </div>
+
+      <div id="media-box" class="media-container">
+        <video
+          id="viewfinder"
+          autoplay
+          playsinline
+          style="display: none; width: 100%; height: 100%; background: #000"
+        ></video>
+        <img
+          id="photo-preview"
+          style="display: none; width: 100%; height: 100%"
+        />
+        <div id="status-label">APAGADA</div>
+      </div>
+
+      <div class="nav-group">
+        <button id="btn-1" class="focusable">GUARDAR EN DISCO</button>
+      </div>
+
+      <div class="bottom-spacer"></div>
+    </div>
+
+    <canvas
+      id="hidden-canvas"
+      width="320"
+      height="240"
+      style="display: none"
+    ></canvas>
+
+    <div id="softkey-bar">
+      <span id="softkey-lsk"></span>
+      <span id="softkey-csk">SELECT</span>
+      <span id="softkey-rsk">SALIR</span>
+    </div>
+  </body>
+</html>
