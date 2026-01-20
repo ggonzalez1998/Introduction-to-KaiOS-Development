@@ -10,55 +10,63 @@ window.addEventListener("DOMContentLoaded", function () {
   function initApp() {
     if (appInitialized) return;
 
+    var content = document.getElementById("content");
     var recordBtn = document.getElementById("record-btn");
     var playBtn = document.getElementById("play-btn");
     var saveBtn = document.getElementById("save-btn");
     var audioPlayer = document.getElementById("audio-player");
     var statusText = document.getElementById("status-text");
 
-    if (!recordBtn || !playBtn || !saveBtn) {
+    // Verificación de elementos críticos
+    if (!recordBtn || !playBtn || !saveBtn || !content) {
       setTimeout(initApp, 100);
       return;
     }
 
     appInitialized = true;
 
-    // Mapa de navegación con los 3 botones
+    // Mapa de navegación
     var navMap = [[recordBtn], [playBtn], [saveBtn]];
     var currentY = 0;
 
     function setFocus(y) {
       var items = document.querySelectorAll(".focusable");
+      // Bucle tradicional para máxima compatibilidad
       for (var i = 0; i < items.length; i++) {
         items[i].classList.remove("focus");
       }
+
       currentY = y;
       var activeItem = navMap[currentY][0];
+
       if (activeItem) {
         activeItem.classList.add("focus");
         activeItem.focus();
-        if (activeItem.scrollIntoView) {
-          activeItem.scrollIntoView({ behavior: "auto", block: "center" });
-        }
+
+        // --- SCROLL MATEMÁTICO ---
+        var itemTop = activeItem.offsetTop;
+        var itemHeight = activeItem.offsetHeight;
+        var contentHeight = content.offsetHeight;
+
+        // Calculamos la posición para que el botón quede centrado
+        var scrollPos = itemTop - contentHeight / 2 + itemHeight / 2;
+        content.scrollTop = scrollPos;
       }
     }
 
     function saveAudioToDisk() {
       if (!audioBlob) {
-        statusText.textContent =
-          navigator.mozL10n.get("status_no_audio") || "Nada que guardar";
+        statusText.textContent = "Nada que guardar";
         return;
       }
 
-      // Acceso al almacenamiento de música
       if (!navigator.getDeviceStorage) {
-        alert("DeviceStorage no soportado");
+        alert("Storage no soportado");
         return;
       }
 
       var storage = navigator.getDeviceStorage("music");
-      var fileName = "KaiOS_Rec_" + Date.now() + ".ogg";
-
+      var fileName = "Rec_" + Date.now() + ".ogg";
       statusText.textContent = "Guardando...";
 
       var request = storage.addNamed(audioBlob, fileName);
@@ -66,15 +74,13 @@ window.addEventListener("DOMContentLoaded", function () {
       request.onsuccess = function () {
         statusText.textContent = "Guardado en Música";
         if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
-        alert("Archivo guardado: " + fileName);
+        alert("Guardado: " + fileName);
       };
 
       request.onerror = function () {
-        console.error("Error al guardar:", this.error);
         statusText.textContent = "Error al guardar";
-        // Error común: El almacenamiento está ocupado por el USB
         if (this.error.name === "SecurityError") {
-          alert("Error: Desconecta el USB o verifica permisos.");
+          alert("Error: Desconecta USB o revisa permisos");
         }
       };
     }
@@ -91,7 +97,7 @@ window.addEventListener("DOMContentLoaded", function () {
           mediaRecorder.onstop = function () {
             audioBlob = new Blob(audioChunks, { type: "audio/ogg" });
             audioPlayer.src = URL.createObjectURL(audioBlob);
-            statusText.textContent = "Grabación finalizada";
+            statusText.textContent = "Grabación lista";
           };
           mediaRecorder.start();
           isRecording = true;
@@ -99,6 +105,7 @@ window.addEventListener("DOMContentLoaded", function () {
           statusText.textContent = "GRABANDO...";
           if (navigator.vibrate) navigator.vibrate(100);
         };
+
         var onError = function (err) {
           statusText.textContent = "Error: " + err.name;
         };
@@ -109,9 +116,8 @@ window.addEventListener("DOMContentLoaded", function () {
             .then(onSuccess)
             .catch(onError);
         } else {
-          var getUserMedia =
-            navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
-          getUserMedia.call(navigator, constraints, onSuccess, onError);
+          var gum = navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
+          gum.call(navigator, constraints, onSuccess, onError);
         }
       } else {
         if (mediaRecorder) mediaRecorder.stop();
@@ -146,6 +152,9 @@ window.addEventListener("DOMContentLoaded", function () {
     setFocus(0);
   }
 
-  if (navigator.mozL10n) navigator.mozL10n.once(initApp);
-  else initApp();
+  // Inicio con seguridad
+  if (navigator.mozL10n) {
+    navigator.mozL10n.once(initApp);
+  }
+  setTimeout(initApp, 1000);
 });
