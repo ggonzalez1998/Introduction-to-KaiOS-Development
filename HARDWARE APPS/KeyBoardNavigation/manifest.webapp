@@ -1,7 +1,7 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "KaiNav Guide",
-  "description": "Guía de navegación por teclado y localización.",
+  "description": "Guía de navegación por teclado con scroll robusto.",
   "launch_path": "/KeyBoardApp.html",
   "type": "privileged",
   "icons": {
@@ -14,18 +14,12 @@
   },
   "permissions": {
     "systemXHR": {
-      "description": "Requerido para ejemplos de carga de datos remotos."
+      "description": "Ejemplos de carga de datos remotos."
     }
   },
   "locales": {
-    "en-US": {
-      "name": "Nav Guide",
-      "description": "D-Pad navigation and l10n guide."
-    },
-    "es": {
-      "name": "Guía Navegación",
-      "description": "Guía de navegación D-Pad y localización."
-    }
+    "en-US": { "name": "Nav Guide" },
+    "es": { "name": "Guía Navegación" }
   },
   "default_locale": "es"
 }

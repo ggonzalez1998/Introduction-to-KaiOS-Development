@@ -1,33 +1,40 @@
-#content p {
-  padding: 20px 15px 10px 15px; /* Más espacio arriba para que el título se vea bien */
+#content {
+  height: calc(100vh - 75px);
+  overflow-y: auto;
+  position: relative;
+  background-color: #1a1a1a;
+  padding-bottom: 20px;
+}
+
+#content::-webkit-scrollbar {
+  display: none;
+}
+
+#main-title {
+  padding: 15px;
   text-align: center;
   color: #fff;
-  font-size: 16px;
-  display: block;
+  font-size: 14px;
 }
 
-.nav-group {
-  display: block;
-  width: 100%;
-  padding: 0 15px;
-  margin-bottom: 15px;
-}
-
-/* Lista Vertical */
 #vertical-list {
   list-style: none;
-  padding: 0;
+  padding: 0 15px;
+  margin: 0;
 }
 
 #vertical-list li {
-  padding: 15px;
+  padding: 12px;
   background: #333;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   border-radius: 4px;
   color: #fff;
 }
 
-/* Bloque Input y Botón */
+#input-container {
+  padding: 0 15px;
+}
+
 #input-container input {
   width: 100%;
   padding: 12px;
@@ -35,30 +42,35 @@
   color: #fff;
   border: 1px solid #666;
   border-radius: 4px;
-  margin-bottom: 10px; /* Espacio entre input y botón */
-  display: block;
+  margin-bottom: 10px;
 }
 
 #input-container button {
   width: 100%;
-  padding: 15px;
+  padding: 12px;
   background: #444;
   color: #fff;
   border: 1px solid #777;
   font-weight: bold;
   border-radius: 4px;
-  display: block;
 }
 
-/* FOCO */
 .focusable.focus {
   background-color: #007bff !important;
   color: white !important;
   outline: 2px solid white;
 }
 
-/* MARGEN DE SEGURIDAD FINAL */
-/* Esto garantiza que puedas bajar lo suficiente para ver el botón */
-#input-container {
-  padding-bottom: 100px;
+.bottom-spacer {
+  height: 120px;
+}
+
+#softkey-bar {
+  height: 35px;
+  background-color: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  color: white;
 }
