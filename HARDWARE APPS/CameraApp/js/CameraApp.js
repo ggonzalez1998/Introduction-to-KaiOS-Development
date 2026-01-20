@@ -1,8 +1,6 @@
 "use strict";
 
 window.onload = function () {
-  console.log("App iniciada");
-
   var cards = document.querySelectorAll(".focusable");
   var content = document.getElementById("content");
   var video = document.getElementById("viewfinder");
@@ -15,34 +13,21 @@ window.onload = function () {
   var capturedBlob = null;
   var isStreaming = false;
 
-  // --- NAVEGACIÓN SEGURA ---
   function setFocus(y) {
     if (!cards[y]) return;
-    for (var i = 0; i < cards.length; i++) {
-      cards[i].classList.remove("focus");
-    }
+    for (var i = 0; i < cards.length; i++) cards[i].classList.remove("focus");
+
     currentY = y;
     var activeItem = cards[currentY];
     activeItem.classList.add("focus");
     activeItem.focus();
 
-    // Scroll Matemático Manual
+    // Scroll Matemático: Centra perfectamente el elemento activo
     var scrollPos =
       activeItem.offsetTop -
       content.offsetHeight / 2 +
       activeItem.offsetHeight / 2;
     content.scrollTop = scrollPos;
-  }
-
-  // --- CONTROL DE CÁMARA ---
-  function stopStream() {
-    if (streamInstance) {
-      var tracks = streamInstance.getTracks();
-      for (var i = 0; i < tracks.length; i++) {
-        tracks[i].stop();
-      }
-      streamInstance = null;
-    }
   }
 
   function startCamera() {
@@ -51,14 +36,8 @@ window.onload = function () {
 
     var onSuccess = function (stream) {
       streamInstance = stream;
-      // Triple comprobación de compatibilidad para el visor
-      if ("srcObject" in video) {
-        video.srcObject = stream;
-      } else if (video.mozSrcObject !== undefined) {
-        video.mozSrcObject = stream;
-      } else {
-        video.src = window.URL.createObjectURL(stream);
-      }
+      if ("srcObject" in video) video.srcObject = stream;
+      else video.mozSrcObject = stream;
 
       video.style.display = "block";
       img.style.display = "none";
@@ -66,30 +45,22 @@ window.onload = function () {
       isStreaming = true;
       btnCam.textContent = "CAPTURAR FOTO";
       status.textContent = "EN VIVO";
+
+      // Auto-foco en el visor para que el scroll lo centre
+      setFocus(1);
     };
 
     var onError = function (err) {
       status.textContent = "Error: " + err.name;
-      alert("Error cámara: " + err.name);
     };
 
-    // Navigator getUserMedia con prefijos para KaiOS 2.5
-    var gum =
-      navigator.mozGetUserMedia ||
-      navigator.webkitGetUserMedia ||
-      (navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
-
-    try {
-      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices
-          .getUserMedia(constraints)
-          .then(onSuccess)
-          .catch(onError);
-      } else {
-        navigator.mozGetUserMedia(constraints, onSuccess, onError);
-      }
-    } catch (e) {
-      status.textContent = "Error API";
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices
+        .getUserMedia(constraints)
+        .then(onSuccess)
+        .catch(onError);
+    } else {
+      navigator.mozGetUserMedia(constraints, onSuccess, onError);
     }
   }
 
@@ -103,14 +74,25 @@ window.onload = function () {
       img.src = window.URL.createObjectURL(blob);
       img.style.display = "block";
       video.style.display = "none";
-      stopStream();
+
+      // Detener stream
+      if (streamInstance) {
+        streamInstance.getTracks().forEach(function (t) {
+          t.stop();
+        });
+        streamInstance = null;
+      }
+
       isStreaming = false;
       btnCam.textContent = "REPETIR FOTO";
       status.textContent = "VISTA PREVIA";
+
+      // Salto automático al botón de GUARDAR
+      setFocus(2);
+      if (navigator.vibrate) navigator.vibrate(60);
     }, "image/jpeg");
   }
 
-  // --- EVENTOS ---
   document.addEventListener("keydown", function (e) {
     switch (e.key) {
       case "ArrowUp":
@@ -123,37 +105,44 @@ window.onload = function () {
         break;
       case "Enter":
         if (currentY === 0) {
+          // Botón Cámara
           if (!isStreaming) startCamera();
           else capture();
         } else if (currentY === 1) {
-          if (!capturedBlob) {
-            alert("Haz una foto primero");
-          } else {
-            savePhoto();
-          }
+          // Click en el visor directamente
+          if (isStreaming) capture();
+        } else if (currentY === 2) {
+          // Botón Guardar
+          savePhoto();
         }
         break;
       case "Backspace":
       case "SoftRight":
         e.preventDefault();
-        stopStream();
+        if (streamInstance)
+          streamInstance.getTracks().forEach(function (t) {
+            t.stop();
+          });
         window.close();
         break;
     }
   });
 
   function savePhoto() {
+    if (!capturedBlob) {
+      alert("Haz una foto primero");
+      return;
+    }
     var storage = navigator.getDeviceStorage("pictures");
     var filename = "IMG_" + Date.now() + ".jpg";
     var req = storage.addNamed(capturedBlob, filename);
     req.onsuccess = function () {
-      alert("Guardada!");
+      alert("¡Guardada!");
     };
     req.onerror = function () {
       alert("Error disco");
     };
   }
 
-  // Foco inicial
   setFocus(0);
 };
