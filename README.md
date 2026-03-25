@@ -4,7 +4,7 @@ A beginner-friendly guide and code examples for developing applications for KaiO
 ![KaiOS Compatibility](https://img.shields.io/badge/KaiOS-2.5%20%7C%203.0-6F02B5?style=for-the-badge&logo=kaios)
 ![Build Size](https://img.shields.io/badge/Build_Size-<20MB-brightgreen?style=for-the-badge)
 ![Monetization](https://img.shields.io/badge/Monetization-KaiAds_SDK-orange?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-PFG_Project-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-FYP_Project-blue?style=for-the-badge)
 
 Aquí encontrarás desde cómo saltarse las restricciones del fabricante (OEM) para activar el modo desarrollador, hasta proyectos prácticos open-source interactuando con el hardware del móvil.
 
