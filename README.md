@@ -1,26 +1,42 @@
 # Introduction-to-KaiOS-Development
-A beginner-friendly guide and code examples for developing applications for KaiOS, the OS powering smart feature phones.
+
+---
 
 ![KaiOS Compatibility](https://img.shields.io/badge/KaiOS-2.5%20%7C%203.0-6F02B5?style=for-the-badge&logo=kaios)
 ![Build Size](https://img.shields.io/badge/Build_Size-<20MB-brightgreen?style=for-the-badge)
 ![Monetization](https://img.shields.io/badge/Monetization-KaiAds_SDK-orange?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-FY_Project-blue?style=for-the-badge)
 
+A beginner-friendly guide and code examples for developing applications for KaiOS, the OS powering smart feature phones.
 Here you will find everything from bypassing Original Equipment Manufacturer (OEM) restrictions to activate developer mode, to practical open-source projects interacting with the device's physical hardware.
-
-## 📑 Table of Contents
-1. [Introduction to the KaiOS Ecosystem](#1-introduction-to-the-kaios-ecosystem)
-2. [Development Environment & Debugging](#2-development-environment--debugging)
-3. [Architectural Differences: KaiOS 2.5 vs 3.0](#3-architectural-differences-kaios-25-vs-30)
-4. [Best Practices, UI & UX (D-Pad Navigation)](#4-best-practices-ui--ux-d-pad-navigation)
-5. [Hardware Projects (Example Apps)](#5-hardware-projects-example-apps)
-6. [Publishing & Monetization](#6-publishing--monetization)
-7. [Ideas for Future Applications](#7-ideas-for-future-applications)
-8. [Credits & References](#8-credits--references)
 
 ---
 
-## 1. Introduction to the KaiOS Ecosystem
+**:computer: Built With:**
+
+- HTML5, CSS3, Vanilla JavaScript
+
+- WebAPIs & Mozilla Device APIs
+
+- KaiOS 2.5 / 3.0 Ecosystem
+
+---
+
+## :bookmark_tabs: Table of Contents
+1. [:globe_with_meridians: Introduction to the KaiOS Ecosystem](#1-introduction-to-the-kaios-ecosystem)
+2. [:hammer: Development Environment & Debugging](#2-development-environment--debugging)
+3. [:building_construction: Architectural Differences: KaiOS 2.5 vs 3.0](#3-architectural-differences-kaios-25-vs-30)
+4. [:art: Best Practices, UI & UX (D-Pad Navigation)](#4-best-practices-ui--ux-d-pad-navigation)
+5. [:iphone: Hardware Projects (Example Apps)](#5-hardware-projects-example-apps)
+6. [:moneybag: Publishing & Monetization](#6-publishing--monetization)
+7. [:rocket: Ideas for Future Applications](#7-ideas-for-future-applications)
+8. [:handshake: Contributing](#8-contributing)
+9. [:books: Credits & References](#8-credits--references)
+10. [:page_facing_up: License](#10-license)
+
+---
+
+##:globe_with_meridians: 1. Introduction to the KaiOS Ecosystem
 
 KaiOS is a web-based mobile operating system designed for phones with physical keyboards (T9) and directional pads (D-pads), operating on highly constrained hardware (256MB - 512MB RAM). Developing for this platform requires mastering modern web technologies (HTML5, CSS, JS) under extreme performance optimization constraints.
 
@@ -30,7 +46,7 @@ There are two main approaches to development:
 
 ---
 
-## 2. Development Environment & Debugging
+##:hammer: 2. Development Environment & Debugging
 
 The biggest hurdle in KaiOS development is accessing the hidden developer menu. The method depends heavily on your phone's chipset:
 
@@ -39,7 +55,7 @@ The biggest hurdle in KaiOS development is accessing the hidden developer menu. 
 - **Mediatek-based (e.g. Blackview N1000 with MT6739):** Requires an advanced method known as **Cache Injection**.
 
 <details>
-<summary><b>🛠️ View Step-by-Step Tutorial: Cache Injection on MediaTek (Blackview N1000)</b></summary>
+<summary><b>:hammer_and_wrench: View Step-by-Step Tutorial: Cache Injection on MediaTek (Blackview N1000)</b></summary>
 
 *Cache Injection* bypasses the factory lock by injecting modified files into the system partitions using `Fastboot`.
 
@@ -52,23 +68,24 @@ Install the dependencies and Pyenv (Python 3.10+ recommended). Ensure you config
 
 **2. Unlocking and Flashing with MTKClient:**
 
--Open the MTKClient app, go to the "Flash Tool" tab, and click "Unlock" to free the Fastboot.
--Go to "Write partition(s)" and select the modified `.bin` images (obtained from development forums) for the `cache` and `boot` partitions.
+- Open the MTKClient app, go to the *Flash Tool* tab, and click *Unlock* to free the Fastboot.
+- Go to *Write partition(s)* and select the modified `.bin` images (obtained from development forums) for the `cache` and `boot` partitions.
 
 **Reboot and Use:**
 After writing the partitions, reboot the device. The system will read the injected cache and permanently enable the "Developer" menu in Settings, allowing ADB access.
+</details>
 
-**-Connection via Waterfox Classic and WebIDE**
+**Connection via Waterfox Classic and WebIDE**
+*(Applies to all chipsets once Developer Mode is active)*
 To install applications, we use Waterfox Classic, as modern Firefox versions removed the WebIDE component. Run the following command in your terminal to forward the debugging ports:
 ```bash
 adb forward tcp:6000 localfilesystem:/data/local/debugger-socket
 ```
 In Waterfox Classic, open WebIDE, select "Remote Runtime", connect to `localhost:6000`, and you will be able to live-debug and install your ZIP packages directly to the phone.
-</details>
 
 ---
 
-## 3. Architectural Differences: KaiOS 2.5 vs 3.0
+##:building_construction: 3. Architectural Differences: KaiOS 2.5 vs 3.0
 
 It is vital to know which version you are targeting, as the underlying engines differ completely:
 
@@ -81,149 +98,167 @@ It is vital to know which version you are targeting, as the underlying engines d
 
 ---
 
-## 4. Best Practices, UI & UX (D-Pad Navigation)
+##:art: 4. Best Practices, UI & UX (D-Pad Navigation)
 
 KaiOS does not have touch screens. Everything relies on DOM Focus management and mathematical scroll manipulation.
 
-**✅ DOs:**
+**:white_check_mark: DOs:**
 
-**-Keep Apps Small:** Under 4MB is ideal. Minify your JS/CSS aggressively.
+**- Keep Apps Small:** Under 4MB is ideal. Minify your JS/CSS aggressively.
 
-**-Clear Focus States:** Use CSS (`:focus`) to highlight elements strongly (e.g., color inversion, thick borders).
+**- Clear Focus States:** Use CSS (`:focus`) to highlight elements strongly (e.g., color inversion, thick borders).
 
-**-D-Pad Management:** Capture `ArrowUp`, `ArrowDown`, `SoftLeft`, `SoftRight` events and interact using `document.activeElement`.
+**- D-Pad Management:** Capture `ArrowUp`, `ArrowDown`, `SoftLeft`, `SoftRight` events and interact using `document.activeElement`.
 
-**-Theme Color:** use `<meta name="theme-color" content="rgb(255, 255, 255)" />` (make sure to include spaces after commas) so the system Status Bar intelligently adapts its contrast.
+** -Theme Color:** use `<meta name="theme-color" content="rgb(255, 255, 255)" />` (make sure to include spaces after commas) so the system Status Bar intelligently adapts its contrast.
 
-**❌ DON'Ts:**
+**:x: DON'Ts:**
 
-**-Animate complex properties:** Stick to `transform` and `opacity` o avoid layout thrashing and out-of-memory (OOM) crashes.
+**- Animate complex properties:** Stick to `transform` and `opacity` to avoid layout thrashing and out-of-memory (OOM) crashes.
 
-**-Exceed storage limits:** The `localStorage` API has a hard 5MB quota.
+**- Exceed storage limits:** The `localStorage` API has a hard 5MB quota.
 
-**-Use heavy frameworks:** Avoid React or Angular. Prefer Vanilla JS, Svelte, or Preact.
+**- Use heavy frameworks:** Avoid React or Angular. Prefer Vanilla JS, Svelte, or Preact.
 
-**-Rely on emulated cursors:** Setting `"cursor": true` in the manifest creates a slow, frustrating mouse-like experience. Build native D-pad navigation instead.
+**- Rely on emulated cursors:** Setting `"cursor": true` in the manifest creates a slow, frustrating mouse-like experience. Build native D-pad navigation instead.
 
 ---
 
-## 5. Hardware Projects (Example Apps)
+##:iphone: 5. Hardware Projects (Example Apps)
 
 Inside the `HARDWARE APPS` directory, I have developed 6 practical applications demonstrating how to interact with the phone's sensors and hardware.
 
 <details>
   
-<summary><b>🧠 The "Mathematical Scroll" Concept:</b></summary>
+<summary><b>:brain: The "Mathematical Scroll" Concept:</b></summary>
 
 Since older Gecko engines struggle with modern CSS `scroll-snap`, all these apps implement a custom JavaScript formula (`offsetTop - contentHeight / 2 + itemHeight / 2`) to ensure the focused element is always perfectly centered on the small 2.4" screen.
 
 </details>
 
-🎙️ [**1. AudioApp (KaiVoice)**](HARDWARE%20APPS/AudioApp)
+:microphone: **[1. AudioApp (KaiVoice)](HARDWARE%20APPS/AudioApp)**
 
 Voice recording app with persistent storage.
 
-**-Permissions:** `audio-capture`, `device-storage:music`.
+**- Permissions:** `audio-capture`, `device-storage:music`.
 
-**-Functionality:** Captures the microphone using `MediaRecorder`, generates an OGG Blob, and saves it directly to the SD card or internal memory using `navigator.getDeviceStorage`.
+**- Functionality:** Captures the microphone using `MediaRecorder`, generates an OGG Blob, and saves it directly to the SD card or internal memory using `navigator.getDeviceStorage`.
 
-🎥 View Demo (Comming Soon).
+:movie_camera: View Demo (Coming Soon).
 
-📸 [**2. CameraApp (KaiCam)**](HARDWARE%20APPS/CameraApp)
+:camera: **[2. CameraApp (KaiCam)](HARDWARE%20APPS/CameraApp)**
 
 Live camera viewfinder and photo capture.
 
-**-Permissions:** `camera`, `video-capture`, `device-storage:pictures`.
+**- Permissions:** `camera`, `video-capture`, `device-storage:pictures`.
 
-**-Functionality:** Renders `getUserMedia` into a `<video>` tag, draws the exact frame onto a hidden `canvas`, and exports it as a JPEG directly to the user's gallery.
+**- Functionality:** Renders `getUserMedia` into a `<video>` tag, draws the exact frame onto a hidden `canvas`, and exports it as a JPEG directly to the user's gallery.
 
-🎥 View Demo (Comming Soon).
+:movie_camera: View Demo (Coming Soon).
 
-**🔦 [3. FlashlightApp (Flashlight Pro)**](HARDWARE%20APPS/FlashlightAndVibration)
+:flashlight: **[3. FlashlightApp (Flashlight Pro)](HARDWARE%20APPS/FlashlightAndVibration)**
 
 Robust LED flash controller.
 
-**-Permissions:** `certified` privilege required, `flashlight`, `vibrate`.
+**- Permissions:** `certified` privilege required, `flashlight`, `vibrate`.
 
-**-Functionality:** Implements dual control methods (using `navigator.mozFlashlight` or `setTorch`). Maintains visual synchronization with the actual hardware state and includes haptic feedback.
+**- Functionality:** Implements dual control methods (using `navigator.mozFlashlight` or `setTorch`). Maintains visual synchronization with the actual hardware state and includes haptic feedback.
 
-🎥 View Demo (Comming Soon).
+:movie_camera: View Demo (Coming Soon).
 
-**🧭 [4. KeyBoardApp (KaiNav Guide)**](HARDWARE%20APPS/KeyBoardNavigation)
+:keyboard: **[4. KeyBoardApp (KaiNav Guide)](HARDWARE%20APPS/KeyBoardNavigation)**
 
 The ultimate keyboard navigation guide for complex interfaces.
 
-**-Functionality:** Demonstrates advanced use of 2D matrices (NavMaps) to navigate UI grids with the D-pad without getting the focus stuck.
+**- Functionality:** Demonstrates advanced use of 2D matrices (NavMaps) to navigate UI grids with the D-pad without getting the focus stuck.
 
-🎥 View Demo (Comming Soon).
+:movie_camera: View Demo (Coming Soon).
 
-**⚙️ [5. SystemApp (KaiSystem)**](HARDWARE%20APPS/SystemApp)
+:gear: **[5. SystemApp (KaiSystem)](HARDWARE%20APPS/SystemApp)**
 
 Diagnostic tool for reading system sensors.
 
-**-Permissions:** `device-storage:sdcard`.
+**- Permissions:** `device-storage:sdcard`.
 
-**-Functionality:** Extracts and displays real-time data from the Battery API (`mozBattery`), Network connection types, and calculates free storage space using asynchronous SD card requests.
+**- Functionality:** Extracts and displays real-time data from the Battery API (`mozBattery`), Network connection types, and calculates free storage space using asynchronous SD card requests.
 
-🎥 View Demo (Comming Soon).
+:movie_camera: View Demo (Coming Soon).
 
-**📍 [6. TrackingApp (KaiTracking)**](HARDWARE%20APPS/TrackingGPS)
+:compass: **[6. TrackingApp (KaiTracking)](HARDWARE%20APPS/TrackingGPS)**
 
 Real-time GPS tracker with Reverse Geocoding and SMS sharing.
 
-**-Permissions:** `geolocation`, `systemXHR`.
+**- Permissions:** `geolocation`, `systemXHR`.
 
-**-Functionality:** Activates GPS via `watchPosition`.  Makes secure Cross-Origin requests (`systemXHR`) o Nominatim (OpenStreetMap) to convert coordinates into street names. Uses `MozActivity` to open the native SMS app and share the location link.
+**- Functionality:** Activates GPS via `watchPosition`.  Makes secure Cross-Origin requests (`systemXHR`) to Nominatim (OpenStreetMap) to convert coordinates into street names. Uses `MozActivity` to open the native SMS app and share the location link.
 
-🎥 View Demo (Comming Soon).
+:movie_camera: View Demo (Coming Soon).
 
 ---
 
-## 6. Publishing & Monetization
+##:moneybag: 6. Publishing & Monetization
 
 Publishing on the KaiStore or JioStore requires strict adherence to design guidelines:
 
-**-Icons:** Mandatory 56x56 and 112x112 px sizes (drop shadows recommended to stand out against system backgrounds).
+**- Icons:** Mandatory 56x56 and 112x112 px sizes (drop shadows recommended to stand out against system backgrounds).
 
-**-Marketing Banner:** 240x130 px (Non-transparent JPG).
+**- Marketing Banner:** 240x130 px (Non-transparent JPG).
 
-**-Screenshots:** Up to 5 images (240x320 px) completely free of debug icons in the top status bar.
+**- Screenshots:** Up to 5 images (240x320 px) completely free of debug icons in the top status bar.
 
-**-Monetization:** If publishing on the KaiStore, integrating the **KaiAds SDK** is mandatory. (Revenue split is 30% dev / 70% Kai, with a minimum payout threshold of $500).
+**- Monetization:** If publishing on the KaiStore, integrating the **KaiAds SDK** is mandatory. (Revenue split is 30% dev / 70% Kai, with a minimum payout threshold of $500).
 
-**💡Note on Web Activities (Intents):** You can leverage `MozActivity` (KaiOS 2.5) or `WebActivity` (KaiOS 3.0) to open links, adjust network settings, or share files, enriching the user experience without reinventing the wheel.
+**:bulb: Note on Web Activities (Intents):** You can leverage `MozActivity` (KaiOS 2.5) or `WebActivity` (KaiOS 3.0) to open links, adjust network settings, or share files, enriching the user experience without reinventing the wheel.
 
 ---
 
-## 7. Ideas para Futuras Aplicaciones
+##:rocket: 7. Ideas for Future Applications
 
 Based on *Tom Barrasso* analysis of empty niches in the KaiStore:
 
-**-Robocall Blocker:** A `certified` app using telephony APIs to block SPAM calls.
+**- Robocall Blocker:** A `certified` app using telephony APIs to block SPAM calls.
 
-**-File Sync (FTP/WebDAV):** Transfer data over Wi-Fi without needing to physically extract the SD card from behind the battery.
+**- File Sync (FTP/WebDAV):** Transfer data over Wi-Fi without needing to physically extract the SD card from behind the battery.
 
-**-Live Weather Radar:** Using canvas or Leaflet.js to show precipitation maps (currently almost non-existent on the platform).
+**- Live Weather Radar:** Using canvas or Leaflet.js to show precipitation maps (currently almost non-existent on the platform).
 
-**-Advanced Clipboard (Stash):** Since KaiOS lacks a global *Copy & Paste*, a centralized clipping app where users can send text via Web Activities would be highly useful.
+**- Advanced Clipboard (Stash):** Since KaiOS lacks a global *Copy & Paste*, a centralized clipping app where users can send text via Web Activities would be highly useful.
 
 ---
 
-## 8. Credits & References
+##:handshake: 8. Contributing
+
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/NameFeature`)
+3. Commit your Changes (`git commit -m 'Explain changes of the new Feature'`)
+4. Push to the Branch (`git push origin feature/NameFeature`)
+5. Open a Pull Request
+
+---
+
+##:books: 9. Credits & References
 
 
 Much of the knowledge compiled in this guide was extracted and inspired by the incredible KaiOS community and the following pioneers:
 
--[Tom Barrasso (KaiOS.dev)](https://kaios.dev/) - DevRel leadership and incredibly detailed technical information regarding APIs.
+- [Tom Barrasso (KaiOS.dev)](https://kaios.dev/) - DevRel leadership and incredibly detailed technical information regarding APIs.
 
--[BananaHackers Community](https://sites.google.com/view/bananahackers) - Jailbreak procedures, OmniSD, and device Wiki.
+- [BananaHackers Community](https://sites.google.com/view/bananahackers) - Jailbreak procedures, OmniSD, and device Wiki.
 
--Forum user at [4PDA](https://4pda.to/forum/index.php?showtopic=1091871&st=160#entry134653032) for the Cache Injection images for the Blackview N1000.
+- Forum user at [4PDA](https://4pda.to/forum/index.php?showtopic=1091871&st=160#entry134653032) for the Cache Injection images for the Blackview N1000.
 
--[MTKClient (Bkerler)](https://github.com/bkerler/mtkclient) for the MediaTek flashing utility.
+- [MTKClient (Bkerler)](https://github.com/bkerler/mtkclient) for the MediaTek flashing utility.
 
--[Waterfox Classic](https://classic.waterfox.net/) browser download.
+- [Waterfox Classic](https://classic.waterfox.net/) browser download.
 
+---
 
+##:page_facing_up: 10. License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
 
 **Project created by [Guillermo González Martín (@ggonzalez1998)](https://github.com/ggonzalez1998) for his Final Year Project (Trabajo de Fin de Grado).**
