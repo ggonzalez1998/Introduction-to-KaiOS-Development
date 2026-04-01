@@ -250,6 +250,10 @@ Much of the knowledge compiled in this guide was extracted and inspired by the i
 
 - [Waterfox Classic](https://classic.waterfox.net/) browser download.
 
+- [Alura Cursos - Cómo escribir un README increíble](https://www.aluracursos.com/blog/como-escribir-un-readme-increible-en-tu-github) - For the structure, organization, and best practices applied to this README.
+
+- [GitHub Emoji Cheat Sheet (rxaviers)](https://gist.github.com/rxaviers/7360908) - For the comprehensive list of markdown emojis used to visually organize this guide.
+
 ---
 
 ## :page_facing_up: 10. License
