@@ -34,7 +34,7 @@ Here you will find everything from bypassing Original Equipment Manufacturer (OE
 
 ---
 
-##:globe_with_meridians: 1. Introduction to the KaiOS Ecosystem
+:globe_with_meridians: ## 1. Introduction to the KaiOS Ecosystem
 
 KaiOS is a web-based mobile operating system designed for phones with physical keyboards (T9) and directional pads (D-pads), operating on highly constrained hardware (256MB - 512MB RAM). Developing for this platform requires mastering modern web technologies (HTML5, CSS, JS) under extreme performance optimization constraints.
 
@@ -44,7 +44,7 @@ There are two main approaches to development:
 
 ---
 
-##:hammer: 2. Development Environment & Debugging
+:hammer: ## 2. Development Environment & Debugging
 
 The biggest hurdle in KaiOS development is accessing the hidden developer menu. The method depends heavily on your phone's chipset:
 
@@ -83,7 +83,7 @@ In Waterfox Classic, open WebIDE, select "Remote Runtime", connect to `localhost
 
 ---
 
-##:building_construction: 3. Architectural Differences: KaiOS 2.5 vs 3.0
+:building_construction: ## 3. Architectural Differences: KaiOS 2.5 vs 3.0
 
 It is vital to know which version you are targeting, as the underlying engines differ completely:
 
@@ -96,7 +96,7 @@ It is vital to know which version you are targeting, as the underlying engines d
 
 ---
 
-##:art: 4. Best Practices, UI & UX (D-Pad Navigation)
+:art: ## 4. Best Practices, UI & UX (D-Pad Navigation)
 
 KaiOS does not have touch screens. Everything relies on DOM Focus management and mathematical scroll manipulation.
 
@@ -122,7 +122,7 @@ KaiOS does not have touch screens. Everything relies on DOM Focus management and
 
 ---
 
-##:iphone: 5. Hardware Projects (Example Apps)
+:iphone: ## 5. Hardware Projects (Example Apps)
 
 Inside the `HARDWARE APPS` directory, I have developed 6 practical applications demonstrating how to interact with the phone's sensors and hardware.
 
@@ -194,7 +194,7 @@ Real-time GPS tracker with Reverse Geocoding and SMS sharing.
 
 ---
 
-##:moneybag: 6. Publishing & Monetization
+:moneybag: ## 6. Publishing & Monetization
 
 Publishing on the KaiStore or JioStore requires strict adherence to design guidelines:
 
@@ -210,7 +210,7 @@ Publishing on the KaiStore or JioStore requires strict adherence to design guide
 
 ---
 
-##:rocket: 7. Ideas for Future Applications
+:rocket: ## 7. Ideas for Future Applications
 
 Based on *Tom Barrasso* analysis of empty niches in the KaiStore:
 
@@ -224,7 +224,7 @@ Based on *Tom Barrasso* analysis of empty niches in the KaiStore:
 
 ---
 
-##:handshake: 8. Contributing
+:handshake: ## 8. Contributing
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -236,7 +236,7 @@ Contributions are what make the open-source community such an amazing place to l
 
 ---
 
-##:books: 9. Credits & References
+:books: ## 9. Credits & References
 
 
 Much of the knowledge compiled in this guide was extracted and inspired by the incredible KaiOS community and the following pioneers:
@@ -253,7 +253,7 @@ Much of the knowledge compiled in this guide was extracted and inspired by the i
 
 ---
 
-##:page_facing_up: 10. License
+:page_facing_up: ## 10. License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
