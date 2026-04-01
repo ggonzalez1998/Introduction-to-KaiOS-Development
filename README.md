@@ -21,16 +21,16 @@ Here you will find everything from bypassing Original Equipment Manufacturer (OE
 ---
 
 ## :bookmark_tabs: Table of Contents
-1. [:globe_with_meridians: Introduction to the KaiOS Ecosystem](#1-introduction-to-the-kaios-ecosystem)
-2. [:hammer: Development Environment & Debugging](#2-development-environment--debugging)
-3. [:building_construction: Architectural Differences: KaiOS 2.5 vs 3.0](#3-architectural-differences-kaios-25-vs-30)
-4. [:art: Best Practices, UI & UX (D-Pad Navigation)](#4-best-practices-ui--ux-d-pad-navigation)
-5. [:iphone: Hardware Projects (Example Apps)](#5-hardware-projects-example-apps)
-6. [:moneybag: Publishing & Monetization](#6-publishing--monetization)
-7. [:rocket: Ideas for Future Applications](#7-ideas-for-future-applications)
-8. [:handshake: Contributing](#8-contributing)
-9. [:books: Credits & References](#8-credits--references)
-10. [:page_facing_up: License](#10-license)
+1. [:globe_with_meridians: Introduction to the KaiOS Ecosystem](#globe_with_meridians-1-introduction-to-the-kaios-ecosystem)
+2. [:hammer: Development Environment & Debugging](#hammer-2-development-environment--debugging)
+3. [:building_construction: Architectural Differences: KaiOS 2.5 vs 3.0](#building_construction-3-architectural-differences-kaios-25-vs-30)
+4. [:art: Best Practices, UI & UX (D-Pad Navigation)](#art-4-best-practices-ui--ux-d-pad-navigation)
+5. [:iphone: Hardware Projects (Example Apps)](#iphone-5-hardware-projects-example-apps)
+6. [:moneybag: Publishing & Monetization](#moneybag-6-publishing--monetization)
+7. [:rocket: Ideas for Future Applications](#rocket-7-ideas-for-future-applications)
+8. [:handshake: Contributing](#handshake-8-contributing)
+9. [:books: Credits & References](#books-9-credits--references)
+10. [:page_facing_up: License](#page_facing_up-10-license)
 
 ---
 
@@ -108,7 +108,7 @@ KaiOS does not have touch screens. Everything relies on DOM Focus management and
 
 **- D-Pad Management:** Capture `ArrowUp`, `ArrowDown`, `SoftLeft`, `SoftRight` events and interact using `document.activeElement`.
 
-** -Theme Color:** use `<meta name="theme-color" content="rgb(255, 255, 255)" />` (make sure to include spaces after commas) so the system Status Bar intelligently adapts its contrast.
+**- Theme Color:** use `<meta name="theme-color" content="rgb(255, 255, 255)" />` (make sure to include spaces after commas) so the system Status Bar intelligently adapts its contrast.
 
 **:x: DON'Ts:**
 
