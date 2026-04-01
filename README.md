@@ -102,23 +102,23 @@ KaiOS does not have touch screens. Everything relies on DOM Focus management and
 
 **:white_check_mark: DOs:**
 
-**- Keep Apps Small:** Under 4MB is ideal. Minify your JS/CSS aggressively.
+- **Keep Apps Small:** Under 4MB is ideal. Minify your JS/CSS aggressively.
 
-**- Clear Focus States:** Use CSS (`:focus`) to highlight elements strongly (e.g., color inversion, thick borders).
+- **Clear Focus States:** Use CSS (`:focus`) to highlight elements strongly (e.g., color inversion, thick borders).
 
-**- D-Pad Management:** Capture `ArrowUp`, `ArrowDown`, `SoftLeft`, `SoftRight` events and interact using `document.activeElement`.
+- **D-Pad Management:** Capture `ArrowUp`, `ArrowDown`, `SoftLeft`, `SoftRight` events and interact using `document.activeElement`.
 
-**- Theme Color:** use `<meta name="theme-color" content="rgb(255, 255, 255)" />` (make sure to include spaces after commas) so the system Status Bar intelligently adapts its contrast.
+- **Theme Color:** use `<meta name="theme-color" content="rgb(255, 255, 255)" />` (make sure to include spaces after commas) so the system Status Bar intelligently adapts its contrast.
 
 **:x: DON'Ts:**
 
-**- Animate complex properties:** Stick to `transform` and `opacity` to avoid layout thrashing and out-of-memory (OOM) crashes.
+- **Animate complex properties:** Stick to `transform` and `opacity` to avoid layout thrashing and out-of-memory (OOM) crashes.
 
-**- Exceed storage limits:** The `localStorage` API has a hard 5MB quota.
+- **Exceed storage limits:** The `localStorage` API has a hard 5MB quota.
 
-**- Use heavy frameworks:** Avoid React or Angular. Prefer Vanilla JS, Svelte, or Preact.
+- **Use heavy frameworks:** Avoid React or Angular. Prefer Vanilla JS, Svelte, or Preact.
 
-**- Rely on emulated cursors:** Setting `"cursor": true` in the manifest creates a slow, frustrating mouse-like experience. Build native D-pad navigation instead.
+- **Rely on emulated cursors:** Setting `"cursor": true` in the manifest creates a slow, frustrating mouse-like experience. Build native D-pad navigation instead.
 
 ---
 
@@ -138,9 +138,9 @@ Since older Gecko engines struggle with modern CSS `scroll-snap`, all these apps
 
 Voice recording app with persistent storage.
 
-**- Permissions:** `audio-capture`, `device-storage:music`.
+- **Permissions:** `audio-capture`, `device-storage:music`.
 
-**- Functionality:** Captures the microphone using `MediaRecorder`, generates an OGG Blob, and saves it directly to the SD card or internal memory using `navigator.getDeviceStorage`.
+- **Functionality:** Captures the microphone using `MediaRecorder`, generates an OGG Blob, and saves it directly to the SD card or internal memory using `navigator.getDeviceStorage`.
 
 :movie_camera: View Demo (Coming Soon).
 
@@ -148,9 +148,9 @@ Voice recording app with persistent storage.
 
 Live camera viewfinder and photo capture.
 
-**- Permissions:** `camera`, `video-capture`, `device-storage:pictures`.
+- **Permissions:** `camera`, `video-capture`, `device-storage:pictures`.
 
-**- Functionality:** Renders `getUserMedia` into a `<video>` tag, draws the exact frame onto a hidden `canvas`, and exports it as a JPEG directly to the user's gallery.
+- **Functionality:** Renders `getUserMedia` into a `<video>` tag, draws the exact frame onto a hidden `canvas`, and exports it as a JPEG directly to the user's gallery.
 
 :movie_camera: View Demo (Coming Soon).
 
@@ -158,9 +158,9 @@ Live camera viewfinder and photo capture.
 
 Robust LED flash controller.
 
-**- Permissions:** `certified` privilege required, `flashlight`, `vibrate`.
+- **Permissions:** `certified` privilege required, `flashlight`, `vibrate`.
 
-**- Functionality:** Implements dual control methods (using `navigator.mozFlashlight` or `setTorch`). Maintains visual synchronization with the actual hardware state and includes haptic feedback.
+- **Functionality:** Implements dual control methods (using `navigator.mozFlashlight` or `setTorch`). Maintains visual synchronization with the actual hardware state and includes haptic feedback.
 
 :movie_camera: View Demo (Coming Soon).
 
@@ -168,7 +168,7 @@ Robust LED flash controller.
 
 The ultimate keyboard navigation guide for complex interfaces.
 
-**- Functionality:** Demonstrates advanced use of 2D matrices (NavMaps) to navigate UI grids with the D-pad without getting the focus stuck.
+- **Functionality:** Demonstrates advanced use of 2D matrices (NavMaps) to navigate UI grids with the D-pad without getting the focus stuck.
 
 :movie_camera: View Demo (Coming Soon).
 
@@ -176,9 +176,9 @@ The ultimate keyboard navigation guide for complex interfaces.
 
 Diagnostic tool for reading system sensors.
 
-**- Permissions:** `device-storage:sdcard`.
+- **Permissions:** `device-storage:sdcard`.
 
-**- Functionality:** Extracts and displays real-time data from the Battery API (`mozBattery`), Network connection types, and calculates free storage space using asynchronous SD card requests.
+- **Functionality:** Extracts and displays real-time data from the Battery API (`mozBattery`), Network connection types, and calculates free storage space using asynchronous SD card requests.
 
 :movie_camera: View Demo (Coming Soon).
 
@@ -186,9 +186,9 @@ Diagnostic tool for reading system sensors.
 
 Real-time GPS tracker with Reverse Geocoding and SMS sharing.
 
-**- Permissions:** `geolocation`, `systemXHR`.
+- **Permissions:** `geolocation`, `systemXHR`.
 
-**- Functionality:** Activates GPS via `watchPosition`.  Makes secure Cross-Origin requests (`systemXHR`) to Nominatim (OpenStreetMap) to convert coordinates into street names. Uses `MozActivity` to open the native SMS app and share the location link.
+- **Functionality:** Activates GPS via `watchPosition`.  Makes secure Cross-Origin requests (`systemXHR`) to Nominatim (OpenStreetMap) to convert coordinates into street names. Uses `MozActivity` to open the native SMS app and share the location link.
 
 :movie_camera: View Demo (Coming Soon).
 
@@ -198,13 +198,13 @@ Real-time GPS tracker with Reverse Geocoding and SMS sharing.
 
 Publishing on the KaiStore or JioStore requires strict adherence to design guidelines:
 
-**- Icons:** Mandatory 56x56 and 112x112 px sizes (drop shadows recommended to stand out against system backgrounds).
+- **Icons:** Mandatory 56x56 and 112x112 px sizes (drop shadows recommended to stand out against system backgrounds).
 
-**- Marketing Banner:** 240x130 px (Non-transparent JPG).
+- **Marketing Banner:** 240x130 px (Non-transparent JPG).
 
-**- Screenshots:** Up to 5 images (240x320 px) completely free of debug icons in the top status bar.
+- **Screenshots:** Up to 5 images (240x320 px) completely free of debug icons in the top status bar.
 
-**- Monetization:** If publishing on the KaiStore, integrating the **KaiAds SDK** is mandatory. (Revenue split is 30% dev / 70% Kai, with a minimum payout threshold of $500).
+- **Monetization:** If publishing on the KaiStore, integrating the **KaiAds SDK** is mandatory. (Revenue split is 30% dev / 70% Kai, with a minimum payout threshold of $500).
 
 **:bulb: Note on Web Activities (Intents):** You can leverage `MozActivity` (KaiOS 2.5) or `WebActivity` (KaiOS 3.0) to open links, adjust network settings, or share files, enriching the user experience without reinventing the wheel.
 
@@ -214,13 +214,13 @@ Publishing on the KaiStore or JioStore requires strict adherence to design guide
 
 Based on *Tom Barrasso* analysis of empty niches in the KaiStore:
 
-**- Robocall Blocker:** A `certified` app using telephony APIs to block SPAM calls.
+- **Robocall Blocker:** A `certified` app using telephony APIs to block SPAM calls.
 
-**- File Sync (FTP/WebDAV):** Transfer data over Wi-Fi without needing to physically extract the SD card from behind the battery.
+- **File Sync (FTP/WebDAV):** Transfer data over Wi-Fi without needing to physically extract the SD card from behind the battery.
 
-**- Live Weather Radar:** Using canvas or Leaflet.js to show precipitation maps (currently almost non-existent on the platform).
+- **Live Weather Radar:** Using canvas or Leaflet.js to show precipitation maps (currently almost non-existent on the platform).
 
-**- Advanced Clipboard (Stash):** Since KaiOS lacks a global *Copy & Paste*, a centralized clipping app where users can send text via Web Activities would be highly useful.
+- **Advanced Clipboard (Stash):** Since KaiOS lacks a global *Copy & Paste*, a centralized clipping app where users can send text via Web Activities would be highly useful.
 
 ---
 
