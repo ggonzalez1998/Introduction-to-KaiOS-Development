@@ -152,17 +152,7 @@ Live camera viewfinder and photo capture.
 
 :movie_camera: View Demo (Coming Soon).
 
-:flashlight: **[3. FlashlightApp (Flashlight Pro)](HARDWARE%20APPS/FlashlightAndVibration)**
-
-Robust LED flash controller.
-
-- **Permissions:** `certified` privilege required, `flashlight`, `vibrate`.
-
-- **Functionality:** Implements dual control methods (using `navigator.mozFlashlight` or `setTorch`). Maintains visual synchronization with the actual hardware state and includes haptic feedback.
-
-:movie_camera: View Demo (Coming Soon).
-
-:keyboard: **[4. KeyBoardApp (KaiNav Guide)](HARDWARE%20APPS/KeyBoardNavigation)**
+:keyboard: **[3. KeyBoardApp (KaiNav Guide)](HARDWARE%20APPS/KeyBoardNavigation)**
 
 The ultimate keyboard navigation guide for complex interfaces.
 
@@ -170,7 +160,7 @@ The ultimate keyboard navigation guide for complex interfaces.
 
 :movie_camera: View Demo (Coming Soon).
 
-:gear: **[5. SystemApp (KaiSystem)](HARDWARE%20APPS/SystemApp)**
+:gear: **[4. SystemApp (KaiSystem)](HARDWARE%20APPS/SystemApp)**
 
 Diagnostic tool for reading system sensors.
 
@@ -180,7 +170,7 @@ Diagnostic tool for reading system sensors.
 
 :movie_camera: View Demo (Coming Soon).
 
-:compass: **[6. TrackingApp (KaiTracking)](HARDWARE%20APPS/TrackingGPS)**
+:compass: **[5. TrackingApp (KaiTracking)](HARDWARE%20APPS/TrackingGPS)**
 
 Real-time GPS tracker with Reverse Geocoding and SMS sharing.
 
