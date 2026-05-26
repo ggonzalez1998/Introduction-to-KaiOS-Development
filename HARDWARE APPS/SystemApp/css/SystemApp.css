@@ -2,18 +2,17 @@
   height: calc(100vh - 75px);
   overflow-y: auto;
   background-color: #1a1a1a;
-  position: relative; /* CRUCIAL para el cálculo de offsetTop */
+  position: relative;
   padding-top: 10px;
 }
 
-/* Ocultar barra de scroll para estética KaiOS */
 #content::-webkit-scrollbar {
   display: none;
 }
 
 .info-card {
   background: #333;
-  margin: 10px 15px 20px 15px; /* Más margen abajo para que no se peguen */
+  margin: 10px 15px 20px 15px;
   padding: 15px;
   border-radius: 6px;
   border: 1px solid #444;
@@ -46,7 +45,6 @@
   color: #fff;
 }
 
-/* Espaciador gigante al final para permitir que la última tarjeta suba al centro */
 .bottom-spacer {
   height: 150px;
   display: block;

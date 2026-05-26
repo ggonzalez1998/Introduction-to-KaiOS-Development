@@ -1,6 +1,7 @@
 "use strict";
 
 window.onload = function () {
+  // DOM elements and application state variables.
   var cards = document.querySelectorAll(".focusable");
   var content = document.getElementById("content");
   var video = document.getElementById("viewfinder");
@@ -13,6 +14,7 @@ window.onload = function () {
   var capturedBlob = null;
   var isStreaming = false;
 
+  // Manages visual focus and applies the "Mathematical Scroll" for D-Pad navigation.
   function setFocus(y) {
     if (!cards[y]) return;
     for (var i = 0; i < cards.length; i++) cards[i].classList.remove("focus");
@@ -22,7 +24,6 @@ window.onload = function () {
     activeItem.classList.add("focus");
     activeItem.focus();
 
-    // Scroll Matemático: Centra perfectamente el elemento activo
     var scrollPos =
       activeItem.offsetTop -
       content.offsetHeight / 2 +
@@ -30,6 +31,7 @@ window.onload = function () {
     content.scrollTop = scrollPos;
   }
 
+  // Initializes the camera stream and binds it to the video viewfinder.
   function startCamera() {
     status.textContent = "Cargando...";
     var constraints = { video: { width: 320, height: 240 }, audio: false };
@@ -46,7 +48,6 @@ window.onload = function () {
       btnCam.textContent = "CAPTURAR FOTO";
       status.textContent = "EN VIVO";
 
-      // Auto-foco en el visor para que el scroll lo centre
       setFocus(1);
     };
 
@@ -54,6 +55,7 @@ window.onload = function () {
       status.textContent = "Error: " + err.name;
     };
 
+    // Fallback compatibility handling for legacy and modern media device APIs.
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices
         .getUserMedia(constraints)
@@ -64,6 +66,7 @@ window.onload = function () {
     }
   }
 
+  // Captures the current video frame to a hidden canvas and creates a JPEG blob.
   function capture() {
     var canvas = document.getElementById("hidden-canvas");
     var ctx = canvas.getContext("2d");
@@ -75,7 +78,7 @@ window.onload = function () {
       img.style.display = "block";
       video.style.display = "none";
 
-      // Detener stream
+      // Stops the camera hardware after taking the picture to save memory/battery.
       if (streamInstance) {
         streamInstance.getTracks().forEach(function (t) {
           t.stop();
@@ -87,12 +90,12 @@ window.onload = function () {
       btnCam.textContent = "REPETIR FOTO";
       status.textContent = "VISTA PREVIA";
 
-      // Salto automático al botón de GUARDAR
       setFocus(2);
       if (navigator.vibrate) navigator.vibrate(60);
     }, "image/jpeg");
   }
 
+  // D-Pad keydown event listener for navigation, capturing, and closing.
   document.addEventListener("keydown", function (e) {
     switch (e.key) {
       case "ArrowUp":
@@ -105,14 +108,11 @@ window.onload = function () {
         break;
       case "Enter":
         if (currentY === 0) {
-          // Botón Cámara
           if (!isStreaming) startCamera();
           else capture();
         } else if (currentY === 1) {
-          // Click en el visor directamente
           if (isStreaming) capture();
         } else if (currentY === 2) {
-          // Botón Guardar
           savePhoto();
         }
         break;
@@ -128,6 +128,7 @@ window.onload = function () {
     }
   });
 
+  // Saves the captured JPEG blob to the physical device storage
   function savePhoto() {
     if (!capturedBlob) {
       alert("Haz una foto primero");

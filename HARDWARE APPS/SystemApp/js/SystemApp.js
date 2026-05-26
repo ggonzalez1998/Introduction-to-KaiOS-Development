@@ -1,36 +1,34 @@
 window.addEventListener("DOMContentLoaded", function () {
   "use strict";
 
+  // DOM elements and application state variables.
   var cards = document.querySelectorAll(".focusable");
   var content = document.getElementById("content");
   var currentY = 0;
 
+  // Manages visual focus and applies the "Mathematical Scroll" for D-Pad navigation.
   function setFocus(y) {
-    // 1. Quitar focos previos
     for (var i = 0; i < cards.length; i++) {
       cards[i].classList.remove("focus");
     }
 
-    // 2. Aplicar nuevo foco
     currentY = y;
     var activeItem = cards[currentY];
     if (activeItem) {
       activeItem.classList.add("focus");
       activeItem.focus();
-
-      // 3. SCROLL MATEMÁTICO (La solución definitiva)
-      // Calculamos la posición del elemento respecto al contenedor
+      // --- MATHEMATICAL SCROLL ---
       var itemTop = activeItem.offsetTop;
       var itemHeight = activeItem.offsetHeight;
       var contentHeight = content.offsetHeight;
-
-      // Esta fórmula centra el elemento en el visor de 2.4 pulgadas
+      // Calculates the position to keep the focused element perfectly centered.
       var scrollPos = itemTop - contentHeight / 2 + itemHeight / 2;
 
       content.scrollTop = scrollPos;
     }
   }
 
+  // Retrieves battery status and charging state using legacy Mozilla APIs.
   function getBatteryData() {
     var b = navigator.battery || navigator.mozBattery;
     var el = document.getElementById("val-0");
@@ -45,6 +43,7 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // Checks the current network connection type and online status.
   function getNetworkData() {
     var c = navigator.connection || navigator.mozConnection;
     var el = document.getElementById("val-1");
@@ -55,6 +54,7 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // Asynchronously calculates available free space on the SD card using privileged APIs.
   function getStorageData() {
     var el = document.getElementById("val-2");
     if (!navigator.getDeviceStorage) {
@@ -72,6 +72,7 @@ window.addEventListener("DOMContentLoaded", function () {
     };
   }
 
+  // D-Pad keydown event listener for navigation, data fetching, and app closure.
   document.addEventListener("keydown", function (event) {
     switch (event.key) {
       case "ArrowUp":
@@ -96,6 +97,5 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Inicio limpio
   setFocus(0);
 });

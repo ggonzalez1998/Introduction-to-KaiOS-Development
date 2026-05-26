@@ -1,11 +1,13 @@
 window.addEventListener("DOMContentLoaded", function () {
   "use strict";
 
+  // Application state variables for GPS tracking.
   var appInitialized = false;
   var watchId = null;
   var currentLat = null;
   var currentLon = null;
 
+  // Initializes the main logic and interface.
   function initApp() {
     if (appInitialized) return;
 
@@ -19,10 +21,11 @@ window.addEventListener("DOMContentLoaded", function () {
 
     appInitialized = true;
 
-    // Aunque estén separados físicamente, el mapa de navegación los une
+    // Navigation map for the physical D-Pad directional keys.
     var navMap = [[getPosBtn], [sendSmsBtn]];
     var currentY = 0;
 
+    // Manages visual focus for D-Pad navigation.
     function setFocus(y) {
       var items = document.querySelectorAll(".focusable");
       for (var i = 0; i < items.length; i++) {
@@ -35,11 +38,12 @@ window.addEventListener("DOMContentLoaded", function () {
       if (activeItem) {
         activeItem.classList.add("focus");
         activeItem.focus();
-        // Centramos el botón en pantalla para ver el contexto
+        // Uses native smooth scrolling to keep the element in view.
         activeItem.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     }
 
+    // Uses native MozActivity to launch the system SMS app with pre-filled location data.
     function shareViaSMS() {
       if (!currentLat || !currentLon) {
         alert("Primero obtén tu ubicación");
@@ -50,6 +54,7 @@ window.addEventListener("DOMContentLoaded", function () {
         "http://maps.google.com/maps?q=" + currentLat + "," + currentLon;
       var messageBody = "Mi ubicación: " + address + " " + googleMapsUrl;
 
+      // MozActivity is a KaiOS/FirefoxOS exclusive API for inter-app communication.
       if (typeof MozActivity !== "undefined") {
         try {
           new MozActivity({
@@ -62,6 +67,7 @@ window.addEventListener("DOMContentLoaded", function () {
       }
     }
 
+    // Performs reverse geocoding using OpenStreetMap via a privileged systemXHR request.
     function getAddress(lat, lon) {
       var addressText = document.getElementById("address-val");
       addressText.textContent = "Buscando calle...";
@@ -70,7 +76,7 @@ window.addEventListener("DOMContentLoaded", function () {
         lat +
         "&lon=" +
         lon;
-
+      // mozSystem: true bypasses CORS restrictions (requires 'systemXHR' permission in manifest).
       var xhr = new XMLHttpRequest({ mozSystem: true });
       xhr.open("GET", url, true);
       xhr.setRequestHeader("User-Agent", "KaiTrackingApp-TFG");
@@ -84,6 +90,7 @@ window.addEventListener("DOMContentLoaded", function () {
       xhr.send();
     }
 
+    // Requests high-accuracy GPS coordinates and clears the watcher once locked.
     function updateLocation() {
       var statusText = document.getElementById("status-text");
       statusText.textContent = "Buscando satélites...";
@@ -98,6 +105,7 @@ window.addEventListener("DOMContentLoaded", function () {
           document.getElementById("lon-val").textContent = currentLon;
           statusText.textContent = "Ubicación fijada";
           getAddress(currentLat, currentLon);
+          // Clear watch to save battery once the location is successfully acquired.
           navigator.geolocation.clearWatch(watchId);
           watchId = null;
         },
@@ -106,10 +114,11 @@ window.addEventListener("DOMContentLoaded", function () {
           navigator.geolocation.clearWatch(watchId);
           watchId = null;
         },
-        { enableHighAccuracy: true, timeout: 120000, maximumAge: 0 }
+        { enableHighAccuracy: true, timeout: 120000, maximumAge: 0 },
       );
     }
 
+    // D-Pad keydown event listener for navigation and actions.
     document.addEventListener("keydown", function (event) {
       switch (event.key) {
         case "ArrowUp":
@@ -127,6 +136,7 @@ window.addEventListener("DOMContentLoaded", function () {
         case "SoftRight":
         case "Backspace":
           event.preventDefault();
+          // Ensures the GPS hardware is released if the user exits during a search.
           if (watchId !== null) navigator.geolocation.clearWatch(watchId);
           window.close();
           break;
@@ -135,7 +145,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     setFocus(0);
   }
-
+  // Fallback to start the app if localization fails to load.
   if (navigator.mozL10n) navigator.mozL10n.once(initApp);
   else initApp();
 });

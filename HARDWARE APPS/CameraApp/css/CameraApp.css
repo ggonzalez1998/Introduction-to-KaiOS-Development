@@ -28,7 +28,6 @@
   transform: scale(1.02);
 }
 
-/* EL CONTENEDOR DE LA CÁMARA AHORA ES MÁS GRANDE */
 .media-container {
   width: 220px; /* Casi todo el ancho */
   height: 165px; /* Proporción 4:3 */
@@ -39,9 +38,8 @@
   display: block;
 }
 
-/* Estilo especial cuando el visor tiene el foco */
 .media-container.focus {
-  border: 3px solid #00ff00; /* Verde para indicar "En Vivo" */
+  border: 3px solid #00ff00;
   transform: scale(1.05);
 }
 

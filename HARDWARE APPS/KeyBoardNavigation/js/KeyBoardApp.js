@@ -3,6 +3,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
   var appInitialized = false;
 
+  // Initializes the main logic and interface.
   function initApp() {
     if (appInitialized) return;
 
@@ -11,14 +12,13 @@ window.addEventListener("DOMContentLoaded", function () {
     var inputElement = document.getElementById("main-input");
     var actionButton = document.getElementById("alert-btn");
 
-    // Verificar que los elementos existan antes de continuar
     if (!content || !inputElement || !actionButton) {
       return;
     }
 
     appInitialized = true;
 
-    // Mapa de navegación (ES5 compatible)
+    // Builds a 2D navigation map dynamically from DOM elements.
     var navMap = [];
     for (var i = 0; i < verticalItems.length; i++) {
       navMap.push([verticalItems[i]]);
@@ -29,9 +29,9 @@ window.addEventListener("DOMContentLoaded", function () {
     var currentY = 0;
     var currentX = 0;
 
+    // Manages visual focus, handles input states, and applies the "Mathematical Scroll".
     function setFocus(y, x) {
       var allFocusables = document.querySelectorAll(".focusable");
-      // Bucle for tradicional por compatibilidad con NodeList
       for (var j = 0; j < allFocusables.length; j++) {
         allFocusables[j].classList.remove("focus");
       }
@@ -43,24 +43,26 @@ window.addEventListener("DOMContentLoaded", function () {
       if (activeItem) {
         activeItem.classList.add("focus");
 
+        // Explicitly handles focus for text input elements to trigger the system keyboard.
         if (activeItem.tagName === "INPUT") {
           activeItem.focus();
         } else {
-          // Desenfocar el input si nos movemos a otro lado
+          // Removes focus from input to hide the keyboard when navigating away.
           if (document.activeElement.tagName === "INPUT") {
             document.activeElement.blur();
           }
         }
-
-        // --- SCROLL MATEMÁTICO ---
+        // --- MATHEMATICAL SCROLL ---
         var itemTop = activeItem.offsetTop;
         var itemHeight = activeItem.offsetHeight;
         var contentHeight = content.offsetHeight;
+        // Calculates the position to keep the focused element perfectly centered.
         var scrollPos = itemTop - contentHeight / 2 + itemHeight / 2;
         content.scrollTop = scrollPos;
       }
     }
 
+    // D-Pad keydown event listener for navigation and interactions.
     function handleKeyDown(event) {
       switch (event.key) {
         case "ArrowUp":
@@ -82,7 +84,7 @@ window.addEventListener("DOMContentLoaded", function () {
           break;
         case "SoftRight":
         case "Backspace":
-          // Solo cerramos si no estamos escribiendo
+          // Prevents app closure if the user is deleting text inside the input field.
           if (document.activeElement.tagName !== "INPUT") {
             event.preventDefault();
             window.close();
@@ -95,11 +97,9 @@ window.addEventListener("DOMContentLoaded", function () {
     setFocus(0, 0);
   }
 
-  // Fallback de inicio por si l10n falla
+  // Prevents startup conflicts by listening to l10n translations or using a 1-second timeout fallback.
   if (navigator.mozL10n) {
     navigator.mozL10n.once(initApp);
   }
-
-  // Si en 1 segundo no ha iniciado, forzamos inicio (evita pantalla congelada)
   setTimeout(initApp, 1000);
 });

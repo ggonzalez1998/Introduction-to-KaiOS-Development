@@ -7,6 +7,7 @@ window.addEventListener("DOMContentLoaded", function () {
   var audioBlob = null;
   var isRecording = false;
 
+  // Initializes the main logic and interface.
   function initApp() {
     if (appInitialized) return;
 
@@ -17,7 +18,6 @@ window.addEventListener("DOMContentLoaded", function () {
     var audioPlayer = document.getElementById("audio-player");
     var statusText = document.getElementById("status-text");
 
-    // Verificación de elementos críticos
     if (!recordBtn || !playBtn || !saveBtn || !content) {
       setTimeout(initApp, 100);
       return;
@@ -25,13 +25,13 @@ window.addEventListener("DOMContentLoaded", function () {
 
     appInitialized = true;
 
-    // Mapa de navegación
+    // Navigation map for the physical D-Pad directional keys.
     var navMap = [[recordBtn], [playBtn], [saveBtn]];
     var currentY = 0;
 
+    // Manages visual focus and applies the "Mathematical Scroll".
     function setFocus(y) {
       var items = document.querySelectorAll(".focusable");
-      // Bucle tradicional para máxima compatibilidad
       for (var i = 0; i < items.length; i++) {
         items[i].classList.remove("focus");
       }
@@ -43,17 +43,18 @@ window.addEventListener("DOMContentLoaded", function () {
         activeItem.classList.add("focus");
         activeItem.focus();
 
-        // --- SCROLL MATEMÁTICO ---
+        // --- MATHEMATICAL SCROLL ---
         var itemTop = activeItem.offsetTop;
         var itemHeight = activeItem.offsetHeight;
         var contentHeight = content.offsetHeight;
 
-        // Calculamos la posición para que el botón quede centrado
+        // Calculates the position to keep the focused button perfectly centered.
         var scrollPos = itemTop - contentHeight / 2 + itemHeight / 2;
         content.scrollTop = scrollPos;
       }
     }
 
+    // Saves the recorded audio blob to the physical device storage.
     function saveAudioToDisk() {
       if (!audioBlob) {
         statusText.textContent = "Nada que guardar";
@@ -85,6 +86,7 @@ window.addEventListener("DOMContentLoaded", function () {
       };
     }
 
+    // Toggles between starting and stopping the microphone recording.
     function toggleRecording() {
       if (!isRecording) {
         var constraints = { audio: true };
@@ -110,6 +112,7 @@ window.addEventListener("DOMContentLoaded", function () {
           statusText.textContent = "Error: " + err.name;
         };
 
+        // Fallback compatibility handling for legacy and modern media device APIs.
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
           navigator.mediaDevices
             .getUserMedia(constraints)
@@ -126,6 +129,7 @@ window.addEventListener("DOMContentLoaded", function () {
       }
     }
 
+    // D-Pad keydown event listener for navigation and actions.
     document.addEventListener("keydown", function (event) {
       switch (event.key) {
         case "ArrowUp":
@@ -152,7 +156,7 @@ window.addEventListener("DOMContentLoaded", function () {
     setFocus(0);
   }
 
-  // Inicio con seguridad
+  // Prevents startup conflicts by listening to l10n translations or using a 1-second timeout fallback.
   if (navigator.mozL10n) {
     navigator.mozL10n.once(initApp);
   }

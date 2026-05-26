@@ -1,7 +1,7 @@
 #content {
   height: calc(100vh - 75px);
   overflow-y: auto;
-  position: relative; /* CRUCIAL para el scroll matemático */
+  position: relative;
   background-color: #1a1a1a;
   display: block;
 }
@@ -62,7 +62,7 @@
 }
 
 .bottom-spacer {
-  height: 120px; /* Espacio extra para permitir el centrado del último botón */
+  height: 120px;
 }
 
 #softkey-bar {
