@@ -168,7 +168,7 @@ Voice recording app with persistent storage.
 
 - **Functionality:** Captures the microphone using `MediaRecorder`, generates an OGG Blob, and saves it directly to the SD card or internal memory using `navigator.getDeviceStorage`.
 
-:movie_camera: View Demo (Coming Soon).
+![AudioApp Interface](Images/AudioApp.png)
 
 :camera: **[2. CameraApp (KaiCam)](HARDWARE%20APPS/CameraApp)**
 
@@ -178,7 +178,7 @@ Live camera viewfinder and photo capture.
 
 - **Functionality:** Renders `getUserMedia` into a `<video>` tag, draws the exact frame onto a hidden `canvas`, and exports it as a JPEG directly to the user's gallery.
 
-:movie_camera: View Demo (Coming Soon).
+![CameraApp Interface](Images/CameraApp.png)
 
 :keyboard: **[3. KeyBoardApp (KaiNav Guide)](HARDWARE%20APPS/KeyBoardNavigation)**
 
@@ -186,7 +186,7 @@ The ultimate keyboard navigation guide for complex interfaces.
 
 - **Functionality:** Demonstrates advanced use of 2D matrices (NavMaps) to navigate UI grids with the D-pad without getting the focus stuck.
 
-:movie_camera: View Demo (Coming Soon).
+![KeyBoardApp Interface](Images/KeyBoardApp.png)
 
 :gear: **[4. SystemApp (KaiSystem)](HARDWARE%20APPS/SystemApp)**
 
@@ -196,7 +196,7 @@ Diagnostic tool for reading system sensors.
 
 - **Functionality:** Extracts and displays real-time data from the Battery API (`mozBattery`), Network connection types, and calculates free storage space using asynchronous SD card requests.
 
-:movie_camera: View Demo (Coming Soon).
+![SystemApp Interface](Images/SystemApp.png)
 
 :compass: **[5. TrackingApp (KaiTracking)](HARDWARE%20APPS/TrackingGPS)**
 
@@ -204,9 +204,9 @@ Real-time GPS tracker with Reverse Geocoding and SMS sharing.
 
 - **Permissions:** `geolocation`, `systemXHR`.
 
-- **Functionality:** Activates GPS via `watchPosition`.  Makes secure Cross-Origin requests (`systemXHR`) to Nominatim (OpenStreetMap) to convert coordinates into street names. Uses `MozActivity` to open the native SMS app and share the location link.
+- **Functionality:** Please use the app outdoors for a better GPS connection. Activates GPS via `watchPosition`.  Makes secure Cross-Origin requests (`systemXHR`) to Nominatim (OpenStreetMap) to convert coordinates into street names. Uses `MozActivity` to open the native SMS app and share the location link. 
 
-:movie_camera: View Demo (Coming Soon).
+![TrackingApp Interface](Images/TrackingApp.png)
 
 ---
 
