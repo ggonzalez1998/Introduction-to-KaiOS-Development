@@ -44,7 +44,7 @@ There are two main approaches to development:
 
 ## :hammer: 2. Development Environment & Debugging
 
-The biggest hurdle in KaiOS development is accessing the hidden developer menu. The method depends heavily on your phone's chipset:
+The biggest challenge in KaiOS development is accessing the hidden developer menu. The method depends heavily on your phone's chipset:
 
 - **Qualcomm-based:** Simply dial `*#*#33284#*#*` to activate the debugging tools.
 - **Spreadtrum-based:** Dial the code above, and then dial `*#*#0574#*#*` to explicitly enable the USB debugger.
@@ -91,10 +91,9 @@ python3 mtk_gui.py
 
 - Status: Idle: The software is ready and awaiting device connection.
 - Status: Device Linked: Once the phone is connected in BROM mode, the software identifies the SoC (MT6739) and enables the partition write tools.
+![MTKClient Linked](Images/MTKClientLinked.png)
 - Go to the Flash Tool tab, and click Unlock to free the Fastboot.
 - Go to Write partition(s) and select the modified `.bin` images (obtained from development forums) for the cache and boot partitions.
-
-![MTKClient Linked](Images/MTKClientLinked.png)
 
 **Reboot and Use:**
 After writing the partitions, reboot the device. The system will read the injected cache and permanently enable the "Developer" menu in Settings, allowing ADB access.
