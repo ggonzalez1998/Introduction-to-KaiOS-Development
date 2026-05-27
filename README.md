@@ -251,6 +251,8 @@ Contributions are what make the open-source community such an amazing place to l
 4. Push to the Branch (`git push origin feature/NameFeature`)
 5. Open a Pull Request
 
+If you need more detailed instructions on code standards, repository rules, or environment limits, please consult the [CONTRIBUTING.md](CONTRIBUTING.md) guide before opening a pull request.
+
 ---
 
 ## :books: 9. Credits & References
@@ -275,7 +277,7 @@ Much of the knowledge compiled in this guide was extracted and inspired by the i
 
 ## :page_facing_up: 10. License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
 ---
 
