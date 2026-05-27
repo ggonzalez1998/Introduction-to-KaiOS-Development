@@ -1,6 +1,6 @@
 # Introduction-to-KaiOS-Development
 
-![KaiOS Compatibility](https://img.shields.io/badge/KaiOS-2.5%20%7C%203.0-6F02B5?style=for-the-badge&logo=kaios)
+![KaiOS Compatibility](https://img.shields.io/badge/KaiOS-2.5-6F02B5?style=for-the-badge&logo=kaios)
 ![Status](https://img.shields.io/badge/Status-FY_Project-blue?style=for-the-badge)
 
 A beginner-friendly guide and code examples for developing applications for KaiOS, the OS powering smart feature phones.
