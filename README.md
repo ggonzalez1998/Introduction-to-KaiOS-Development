@@ -168,7 +168,10 @@ Voice recording app with persistent storage.
 
 - **Functionality:** Captures the microphone using `MediaRecorder`, generates an OGG Blob, and saves it directly to the SD card or internal memory using `navigator.getDeviceStorage`.
 
-![AudioApp Interface](Images/AudioApp.png)
+<details>
+  <summary><b>:eyes: View Application Interface Screenshot</b></summary>
+  ![AudioApp Interface](Images/AudioApp.png)
+</details>
 
 :camera: **[2. CameraApp (KaiCam)](HARDWARE%20APPS/CameraApp)**
 
@@ -178,7 +181,10 @@ Live camera viewfinder and photo capture.
 
 - **Functionality:** Renders `getUserMedia` into a `<video>` tag, draws the exact frame onto a hidden `canvas`, and exports it as a JPEG directly to the user's gallery.
 
-![CameraApp Interface](Images/CameraApp.png)
+<details>
+  <summary><b>:eyes: View Application Interface Screenshot</b></summary>
+  ![CameraApp Interface](Images/CameraApp.png)
+</details>
 
 :keyboard: **[3. KeyBoardApp (KaiNav Guide)](HARDWARE%20APPS/KeyBoardNavigation)**
 
@@ -186,7 +192,10 @@ The ultimate keyboard navigation guide for complex interfaces.
 
 - **Functionality:** Demonstrates advanced use of 2D matrices (NavMaps) to navigate UI grids with the D-pad without getting the focus stuck.
 
-![KeyBoardApp Interface](Images/KeyBoardApp.png)
+<details>
+  <summary><b>:eyes: View Application Interface Screenshot</b></summary>
+  ![KeyBoardApp Interface](Images/KeyBoardApp.png)
+</details>
 
 :gear: **[4. SystemApp (KaiSystem)](HARDWARE%20APPS/SystemApp)**
 
@@ -196,7 +205,10 @@ Diagnostic tool for reading system sensors.
 
 - **Functionality:** Extracts and displays real-time data from the Battery API (`mozBattery`), Network connection types, and calculates free storage space using asynchronous SD card requests.
 
-![SystemApp Interface](Images/SystemApp.png)
+<details>
+  <summary><b>:eyes: View Application Interface Screenshot</b></summary>
+  ![SystemApp Interface](Images/SystemApp.png)
+</details>
 
 :compass: **[5. TrackingApp (KaiTracking)](HARDWARE%20APPS/TrackingGPS)**
 
@@ -206,7 +218,10 @@ Real-time GPS tracker with Reverse Geocoding and SMS sharing.
 
 - **Functionality:** Please use the app outdoors for a better GPS connection. Activates GPS via `watchPosition`.  Makes secure Cross-Origin requests (`systemXHR`) to Nominatim (OpenStreetMap) to convert coordinates into street names. Uses `MozActivity` to open the native SMS app and share the location link. 
 
-![TrackingApp Interface](Images/TrackingApp.png)
+<details>
+  <summary><b>:eyes: View Application Interface Screenshot</b></summary>
+  ![TrackingApp Interface](Images/TrackingApp.png)
+</details>
 
 ---
 
