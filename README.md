@@ -170,7 +170,9 @@ Voice recording app with persistent storage.
 
 <details>
   <summary><b>:eyes: View Application Interface Screenshot</b></summary>
-  ![AudioApp Interface](Images/AudioApp.png)
+  <p align="center">
+    <img src="Images/AudioApp.png" alt="AudioApp Interface" width="240">
+  </p>
 </details>
 
 :camera: **[2. CameraApp (KaiCam)](HARDWARE%20APPS/CameraApp)**
@@ -183,7 +185,9 @@ Live camera viewfinder and photo capture.
 
 <details>
   <summary><b>:eyes: View Application Interface Screenshot</b></summary>
-  ![CameraApp Interface](Images/CameraApp.png)
+  <p align="center">
+    <img src="Images/CameraApp.png" alt="CameraApp Interface" width="240">
+  </p>
 </details>
 
 :keyboard: **[3. KeyBoardApp (KaiNav Guide)](HARDWARE%20APPS/KeyBoardNavigation)**
@@ -194,7 +198,9 @@ The ultimate keyboard navigation guide for complex interfaces.
 
 <details>
   <summary><b>:eyes: View Application Interface Screenshot</b></summary>
-  ![KeyBoardApp Interface](Images/KeyBoardApp.png)
+   <p align="center">
+    <img src="Images/KeyBoardApp.png" alt="KeyBoardApp Interface" width="240">
+  </p>
 </details>
 
 :gear: **[4. SystemApp (KaiSystem)](HARDWARE%20APPS/SystemApp)**
@@ -207,7 +213,9 @@ Diagnostic tool for reading system sensors.
 
 <details>
   <summary><b>:eyes: View Application Interface Screenshot</b></summary>
-  ![SystemApp Interface](Images/SystemApp.png)
+   <p align="center">
+    <img src="Images/SystemApp.png" alt="SystemApp Interface" width="240">
+  </p>
 </details>
 
 :compass: **[5. TrackingApp (KaiTracking)](HARDWARE%20APPS/TrackingGPS)**
@@ -220,7 +228,9 @@ Real-time GPS tracker with Reverse Geocoding and SMS sharing.
 
 <details>
   <summary><b>:eyes: View Application Interface Screenshot</b></summary>
-  ![TrackingApp Interface](Images/TrackingApp.png)
+   <p align="center">
+    <img src="Images/TrackingApp.png" alt="TrackingApp Interface" width="240">
+  </p>
 </details>
 
 ---
