@@ -57,15 +57,44 @@ The biggest hurdle in KaiOS development is accessing the hidden developer menu. 
 
 **1. Linux Preparation (Ubuntu/Debian):**
 ```bash
+# Install dependencies
 sudo apt install git build-essential curl libssl-dev python3-pip -y
-git clone [https://github.com/bkerler/mtkclient](https://github.com/bkerler/mtkclient) --recursive
+
+# Clone and setup MTKClient
+git clone https://github.com/bkerler/mtkclient --recursive
+cd mtkclient
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+pip install .
+
+# Setup permissions
+sudo usermod -a -G plugdev $USER
+sudo usermod -a -G dialout $USER
+sudo cp mtkclient/Setup/Linux/*.rules /etc/udev/rules.d
+sudo udevadm control -R
+sudo udevadm trigger
+deactivate
 ```
+*Note: Restart your computer after applying these group changes for them to take effect.*
+
 Install the dependencies and Pyenv (Python 3.10+ recommended). Ensure you configure the `udev` rules and add your user to the `dialout` and `plugdev` groups.
 
 **2. Unlocking and Flashing with MTKClient:**
+First, launch the GUI:
+```bash
+source .venv/bin/activate
+python3 mtk_gui.py
+```
 
-- Open the MTKClient app, go to the *Flash Tool* tab, and click *Unlock* to free the Fastboot.
-- Go to *Write partition(s)* and select the modified `.bin` images (obtained from development forums) for the `cache` and `boot` partitions.
+![MTKClient Idle](Images/MTKClientOn.png)
+
+- Status: Idle: The software is ready and awaiting device connection.
+- Status: Device Linked: Once the phone is connected in BROM mode, the software identifies the SoC (MT6739) and enables the partition write tools.
+- Go to the Flash Tool tab, and click Unlock to free the Fastboot.
+- Go to Write partition(s) and select the modified `.bin` images (obtained from development forums) for the cache and boot partitions.
+
+![MTKClient Linked](Images/MTKClientLinked.png)
 
 **Reboot and Use:**
 After writing the partitions, reboot the device. The system will read the injected cache and permanently enable the "Developer" menu in Settings, allowing ADB access.
