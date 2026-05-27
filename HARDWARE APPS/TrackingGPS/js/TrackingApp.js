@@ -93,7 +93,9 @@ window.addEventListener("DOMContentLoaded", function () {
     // Requests high-accuracy GPS coordinates and clears the watcher once locked.
     function updateLocation() {
       var statusText = document.getElementById("status-text");
-      statusText.textContent = "Buscando satélites...";
+
+      statusText.setAttribute("data-l10n-id", "status_searching");
+      statusText.textContent = "Esperando...";
 
       if (watchId !== null) navigator.geolocation.clearWatch(watchId);
 
@@ -103,18 +105,23 @@ window.addEventListener("DOMContentLoaded", function () {
           currentLon = pos.coords.longitude.toFixed(6);
           document.getElementById("lat-val").textContent = currentLat;
           document.getElementById("lon-val").textContent = currentLon;
-          statusText.textContent = "Ubicación fijada";
+
+          statusText.setAttribute("data-l10n-id", "status_success");
+          statusText.textContent = "Capturada";
+
           getAddress(currentLat, currentLon);
-          // Clear watch to save battery once the location is successfully acquired.
+
           navigator.geolocation.clearWatch(watchId);
           watchId = null;
         },
         function (err) {
-          statusText.textContent = "Error GPS: " + err.code;
+          statusText.setAttribute("data-l10n-id", "status_error");
+          statusText.textContent = "Error al localizar";
+
           navigator.geolocation.clearWatch(watchId);
           watchId = null;
         },
-        { enableHighAccuracy: true, timeout: 120000, maximumAge: 0 },
+        { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 },
       );
     }
 
