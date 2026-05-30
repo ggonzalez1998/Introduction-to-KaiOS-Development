@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "name": "KaiTracking",
   "description": "Aplicación de geolocalización en tiempo real.",
   "launch_path": "/TrackingApp.html",
@@ -17,7 +17,7 @@
       "description": "Requerido para obtener la ubicación del dispositivo."
     },
     "systemXHR": {
-      "description": "Requerido para reverse geocoding (convertir coordenadas a direcciones)."
+      "description": "Requerido para reverse geocoding."
     }
   },
   "locales": {
