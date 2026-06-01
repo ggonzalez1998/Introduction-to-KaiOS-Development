@@ -1,7 +1,7 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.3",
   "name": "KaiNav Guide",
-  "description": "Guía de navegación por teclado con scroll robusto.",
+  "description": "Keyboard navigation guide with robust scrolling.",
   "launch_path": "/KeyBoardApp.html",
   "type": "privileged",
   "icons": {
@@ -14,11 +14,11 @@
   },
   "permissions": {
     "systemXHR": {
-      "description": "Ejemplos de carga de datos remotos."
+      "description": "Examples of loading remote data."
     }
   },
   "locales": {
-    "en-US": { "name": "Nav Guide" },
+    "en": { "name": "Nav Guide" },
     "es": { "name": "Guía Navegación" }
   },
   "default_locale": "es"
