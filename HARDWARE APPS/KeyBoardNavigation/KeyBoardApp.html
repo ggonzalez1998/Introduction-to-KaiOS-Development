@@ -6,7 +6,11 @@
     <title>Guide Navigation</title>
     <link rel="stylesheet" href="css/Template.css" />
     <link rel="stylesheet" href="css/KeyBoardApp.css" />
-    <link rel="resource" type="application/l10n" href="data/locales.ini" />
+    <link
+      rel="resource"
+      type="application/l10n"
+      href="data/{{locale}}.properties"
+    />
     <script src="js/libs/l10n.js" defer></script>
     <script src="js/KeyBoardApp.js" defer></script>
   </head>
@@ -30,7 +34,9 @@
           placeholder="Write here..."
           data-l10n-id="input_ph"
         />
-        <button id="alert-btn" class="focusable" data-l10n-id="btn_show">Show Alert</button>
+        <button id="alert-btn" class="focusable" data-l10n-id="btn_show">
+          Show Alert
+        </button>
       </div>
 
       <div class="bottom-spacer"></div>
