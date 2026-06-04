@@ -160,7 +160,20 @@ Since older Gecko engines struggle with modern CSS `scroll-snap`, all these apps
 
 </details>
 
-:microphone: **[1. AudioApp (KaiVoice)](HARDWARE%20APPS/AudioApp)**
+:keyboard: **[1. KeyBoardApp (KaiNav Guide)](HARDWARE%20APPS/KeyBoardNavigation)**
+
+The ultimate keyboard navigation guide for complex interfaces.
+
+- **Functionality:** Demonstrates advanced use of 2D matrices (NavMaps) to navigate UI grids with the D-pad without getting the focus stuck.
+
+<details>
+  <summary><b>:eyes: View Application Interface Screenshot</b></summary>
+   <p align="center">
+    <img src="Images/KeyBoardApp.png" alt="KeyBoardApp Interface" width="240">
+  </p>
+</details>
+
+:microphone: **[2. AudioApp (KaiVoice)](HARDWARE%20APPS/AudioApp)**
 
 Voice recording app with persistent storage.
 
@@ -175,7 +188,7 @@ Voice recording app with persistent storage.
   </p>
 </details>
 
-:camera: **[2. CameraApp (KaiCam)](HARDWARE%20APPS/CameraApp)**
+:camera: **[3. CameraApp (KaiCam)](HARDWARE%20APPS/CameraApp)**
 
 Live camera viewfinder and photo capture.
 
@@ -187,19 +200,6 @@ Live camera viewfinder and photo capture.
   <summary><b>:eyes: View Application Interface Screenshot</b></summary>
   <p align="center">
     <img src="Images/CameraApp.png" alt="CameraApp Interface" width="240">
-  </p>
-</details>
-
-:keyboard: **[3. KeyBoardApp (KaiNav Guide)](HARDWARE%20APPS/KeyBoardNavigation)**
-
-The ultimate keyboard navigation guide for complex interfaces.
-
-- **Functionality:** Demonstrates advanced use of 2D matrices (NavMaps) to navigate UI grids with the D-pad without getting the focus stuck.
-
-<details>
-  <summary><b>:eyes: View Application Interface Screenshot</b></summary>
-   <p align="center">
-    <img src="Images/KeyBoardApp.png" alt="KeyBoardApp Interface" width="240">
   </p>
 </details>
 
