@@ -7,7 +7,14 @@ window.addEventListener("DOMContentLoaded", function () {
   var audioBlob = null;
   var isRecording = false;
 
-  // Initializes the main logic and interface.
+  // Helper function for dynamic runtime translations using Gaia's l10n.js
+  function _(key, fallback) {
+    if (navigator.mozL10n && navigator.mozL10n.get(key)) {
+      return navigator.mozL10n.get(key);
+    }
+    return fallback;
+  }
+
   function initApp() {
     if (appInitialized) return;
 
@@ -25,11 +32,11 @@ window.addEventListener("DOMContentLoaded", function () {
 
     appInitialized = true;
 
-    // Navigation map for the physical D-Pad directional keys.
+    // 1D array acting as a navigation map for the physical D-Pad
     var navMap = [[recordBtn], [playBtn], [saveBtn]];
     var currentY = 0;
 
-    // Manages visual focus and applies the "Mathematical Scroll".
+    // Updates visual focus and centers the active element on screen (Mathematical Scroll)
     function setFocus(y) {
       var items = document.querySelectorAll(".focusable");
       for (var i = 0; i < items.length; i++) {
@@ -43,76 +50,77 @@ window.addEventListener("DOMContentLoaded", function () {
         activeItem.classList.add("focus");
         activeItem.focus();
 
-        // --- MATHEMATICAL SCROLL ---
         var itemTop = activeItem.offsetTop;
         var itemHeight = activeItem.offsetHeight;
         var contentHeight = content.offsetHeight;
 
-        // Calculates the position to keep the focused button perfectly centered.
         var scrollPos = itemTop - contentHeight / 2 + itemHeight / 2;
         content.scrollTop = scrollPos;
       }
     }
 
-    // Saves the recorded audio blob to the physical device storage.
+    // Uses the KaiOS DeviceStorage API to save the audio file to the physical SD/Internal storage
     function saveAudioToDisk() {
       if (!audioBlob) {
-        statusText.textContent = "Nada que guardar";
+        statusText.textContent = _("status_nothing", "Nothing to save");
         return;
       }
 
       if (!navigator.getDeviceStorage) {
-        alert("Storage no soportado");
+        alert(_("alert_storage_no_supp", "Storage not supported"));
         return;
       }
 
       var storage = navigator.getDeviceStorage("music");
       var fileName = "Rec_" + Date.now() + ".ogg";
-      statusText.textContent = "Guardando...";
+      statusText.textContent = _("status_saving", "Saving...");
 
       var request = storage.addNamed(audioBlob, fileName);
 
       request.onsuccess = function () {
-        statusText.textContent = "Guardado en Música";
+        statusText.textContent = _("status_saved_music", "Saved to Music");
         if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
-        alert("Guardado: " + fileName);
+        alert(_("alert_saved", "Saved: ") + fileName);
       };
 
       request.onerror = function () {
-        statusText.textContent = "Error al guardar";
+        statusText.textContent = _("status_save_error", "Error saving");
         if (this.error.name === "SecurityError") {
-          alert("Error: Desconecta USB o revisa permisos");
+          alert(_("alert_security_error", "Error: Disconnect USB or check permissions"));
         }
       };
     }
 
-    // Toggles between starting and stopping the microphone recording.
+    // Handles microphone access via WebRTC (with legacy Gecko fallback) and MediaRecorder API
     function toggleRecording() {
       if (!isRecording) {
         var constraints = { audio: true };
         var onSuccess = function (stream) {
           mediaRecorder = new MediaRecorder(stream);
           audioChunks = [];
+          
           mediaRecorder.ondataavailable = function (e) {
             audioChunks.push(e.data);
           };
+          
           mediaRecorder.onstop = function () {
             audioBlob = new Blob(audioChunks, { type: "audio/ogg" });
             audioPlayer.src = URL.createObjectURL(audioBlob);
-            statusText.textContent = "Grabación lista";
+            statusText.textContent = _("status_rec_ready", "Recording ready");
           };
+          
           mediaRecorder.start();
           isRecording = true;
-          recordBtn.textContent = "DETENER";
-          statusText.textContent = "GRABANDO...";
+          recordBtn.textContent = _("btn_stop", "STOP");
+          statusText.textContent = _("status_recording", "RECORDING...");
           if (navigator.vibrate) navigator.vibrate(100);
         };
 
         var onError = function (err) {
-          statusText.textContent = "Error: " + err.name;
+          statusText.textContent = _("status_error", "Error: ") + err.name;
         };
 
-        // Fallback compatibility handling for legacy and modern media device APIs.
+        // Fallback for older KaiOS devices (Gecko 48) that don't support navigator.mediaDevices
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
           navigator.mediaDevices
             .getUserMedia(constraints)
@@ -125,18 +133,20 @@ window.addEventListener("DOMContentLoaded", function () {
       } else {
         if (mediaRecorder) mediaRecorder.stop();
         isRecording = false;
-        recordBtn.textContent = "GRABAR";
+        recordBtn.textContent = _("btn_record", "RECORD");
       }
     }
 
-    // D-Pad keydown event listener for navigation and actions.
+    // Maps KaiOS physical keys (D-Pad, Center button, Softkeys) to UI actions
     document.addEventListener("keydown", function (event) {
       switch (event.key) {
         case "ArrowUp":
+        case "Up":
           event.preventDefault();
           if (currentY > 0) setFocus(currentY - 1);
           break;
         case "ArrowDown":
+        case "Down":
           event.preventDefault();
           if (currentY < navMap.length - 1) setFocus(currentY + 1);
           break;
@@ -147,6 +157,7 @@ window.addEventListener("DOMContentLoaded", function () {
           break;
         case "SoftRight":
         case "Backspace":
+        case "BrowserBack":
           event.preventDefault();
           window.close();
           break;
@@ -156,7 +167,7 @@ window.addEventListener("DOMContentLoaded", function () {
     setFocus(0);
   }
 
-  // Prevents startup conflicts by listening to l10n translations or using a 1-second timeout fallback.
+  // Ensures l10n translations are loaded before booting the app to prevent race conditions
   if (navigator.mozL10n) {
     navigator.mozL10n.once(initApp);
   }
