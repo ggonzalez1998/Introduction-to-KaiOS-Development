@@ -1,7 +1,7 @@
 {
-  "version": "1.1.0",
+  "version": "1.1.2",
   "name": "KaiTracking",
-  "description": "Aplicación de geolocalización en tiempo real.",
+  "description": "Real-time geolocation app.",
   "launch_path": "/TrackingApp.html",
   "type": "privileged",
   "icons": {
@@ -14,21 +14,21 @@
   },
   "permissions": {
     "geolocation": {
-      "description": "Requerido para obtener la ubicación del dispositivo."
+      "description": "Required to get the device's physical location."
     },
     "systemXHR": {
-      "description": "Requerido para reverse geocoding."
+      "description": "Required for OpenStreetMap reverse geocoding."
     }
   },
   "locales": {
-    "en-US": {
+    "en": {
       "name": "KaiTracking",
       "description": "Real-time geolocation app."
     },
     "es": {
       "name": "Rastreo Kai",
-      "description": "App de geolocalización en tiempo real."
+      "description": "Aplicación de geolocalización en tiempo real."
     }
   },
-  "default_locale": "es"
+  "default_locale": "en-US"
 }
