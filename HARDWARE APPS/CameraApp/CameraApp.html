@@ -3,17 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no" />
-    <title>Cámara Kai</title>
+    <title data-l10n-id="app_title">KaiCam</title>
     <link rel="stylesheet" href="css/Template.css" />
     <link rel="stylesheet" href="css/CameraApp.css" />
+    
+    <link rel="resource" type="application/l10n" href="locales/{{locale}}.properties" />
+    
+    <script src="js/libs/l10n.js" defer></script>
     <script src="js/CameraApp.js" defer></script>
   </head>
   <body>
-    <div id="header">CÁMARA KAI</div>
+    <div id="header" data-l10n-id="app_title">KAICAM</div>
 
     <div id="content">
       <div class="nav-group">
-        <button id="btn-0" class="focusable">INICIAR CÁMARA</button>
+        <button id="btn-0" class="focusable" data-l10n-id="btn_start">START CAMERA</button>
       </div>
 
       <div id="media-box" class="media-container focusable">
@@ -24,11 +28,11 @@
           style="display: none"
         ></video>
         <img id="photo-preview" style="display: none" />
-        <div id="status-label">CÁMARA APAGADA</div>
+        <div id="status-label" data-l10n-id="status_off">CAMERA OFF</div>
       </div>
 
       <div class="nav-group">
-        <button id="btn-1" class="focusable">GUARDAR EN DISCO</button>
+        <button id="btn-1" class="focusable" data-l10n-id="btn_save">SAVE TO DISK</button>
       </div>
 
       <div class="bottom-spacer"></div>
@@ -43,8 +47,8 @@
 
     <div id="softkey-bar">
       <span id="softkey-lsk"></span>
-      <span id="softkey-csk">SELECT</span>
-      <span id="softkey-rsk">SALIR</span>
+      <span id="softkey-csk" data-l10n-id="sk_select">SELECT</span>
+      <span id="softkey-rsk" data-l10n-id="sk_exit">EXIT</span>
     </div>
   </body>
 </html>

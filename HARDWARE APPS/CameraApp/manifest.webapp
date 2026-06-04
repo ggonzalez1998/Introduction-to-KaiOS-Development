@@ -1,23 +1,35 @@
 {
-  "version": "1.0.2",
+  "version": "1.0.3",
   "name": "KaiCam",
-  "description": "Cámara con modo de seguridad.",
+  "description": "Camera app with secure preview mode.",
   "launch_path": "/CameraApp.html",
   "type": "privileged",
   "icons": {
     "56": "/img/icons/icon56.png",
     "128": "/img/icons/icon128.png"
   },
-  "developer": { "name": "Guillermo" },
+  "developer": {
+    "name": "Guillermo González Martín",
+    "url": "https://github.com/ggonzalez1998"
+  },
   "permissions": {
-    "camera": { "description": "Captura de fotos" },
-    "video-capture": { "description": "Visor en vivo" },
-    "audio-capture": { "description": "Necesario para el bus multimedia" },
+    "camera": { "description": "Required to capture photos." },
+    "video-capture": { "description": "Required for live viewfinder." },
+    "audio-capture": { "description": "Required for multimedia bus access." },
     "device-storage:pictures": {
       "access": "readwrite",
-      "description": "Guardar fotos"
+      "description": "Required to save photos to disk."
     }
   },
-  "locales": { "es": { "name": "Cámara Kai" } },
-  "default_locale": "es"
+  "locales": {
+    "en": {
+      "name": "KaiCam",
+      "description": "Camera app with secure preview mode."
+    },
+    "es": {
+      "name": "Cámara Kai",
+      "description": "Cámara con modo de seguridad."
+    }
+  },
+  "default_locale": "en-US"
 }
