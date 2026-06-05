@@ -239,7 +239,7 @@ Real-time GPS tracker with Reverse Geocoding and SMS sharing.
 
 Publishing on the KaiStore or JioStore requires strict adherence to design guidelines:
 
-- **Icons:** Mandatory 56x56 and 112x112 px sizes (drop shadows recommended to stand out against system backgrounds).
+- **Icons:** Mandatory 56x56 and 112x112 px sizes (drop shadows recommended to stand out against system backgrounds). If you are looking for free and high-quality UI assets, [Flaticon](https://www.flaticon.es/) is an excellent resource. To easily resize these images to the required KaiOS dimensions without losing quality, you can use [iLoveIMG](https://www.iloveimg.com/es).
 
 - **Marketing Banner:** 240x130 px (Non-transparent JPG).
 
@@ -296,6 +296,10 @@ Much of the knowledge compiled in this guide was extracted and inspired by the i
 - [Alura Cursos - Cómo escribir un README increíble](https://www.aluracursos.com/blog/como-escribir-un-readme-increible-en-tu-github) - For the structure, organization, and best practices applied to this README.
 
 - [GitHub Emoji Cheat Sheet (rxaviers)](https://gist.github.com/rxaviers/7360908) - For the comprehensive list of markdown emojis used to visually organize this guide.
+
+- [Flaticon](https://www.flaticon.es/) - Free UI icons used across the example hardware applications.
+
+- [iLoveIMG](https://www.iloveimg.com/es) - Image resizing utility used to adjust icon dimensions to meet KaiOS strict requirements.
 
 ---
 
