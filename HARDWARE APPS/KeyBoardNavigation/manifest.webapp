@@ -1,5 +1,5 @@
 {
-  "version": "1.0.4",
+  "version": "1.0.5",
   "name": "KaiNav Guide",
   "description": "Keyboard navigation guide with robust scrolling.",
   "launch_path": "/KeyBoardApp.html",
@@ -19,8 +19,14 @@
     }
   },
   "locales": {
-    "en": { "name": "Nav Guide" },
-    "es": { "name": "Guía Navegación" }
+    "en": {
+      "name": "D-Pad Navigation",
+      "description": "Navigation for D-Pad with robust scrolling."
+    },
+    "es": {
+      "name": "Navegación D-Pad",
+      "description": "Navegación para D-Pad con desplazamiento robusto."
+    }
   },
-  "default_locale": "es"
+  "default_locale": "en-US"
 }
