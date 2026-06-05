@@ -1,12 +1,13 @@
 {
-  "version": "1.1.0",
+  "version": "1.1.1",
   "name": "KaiVoice",
-  "description": "Grabadora de voz con guardado permanente.",
+  "description": "Voice recorder with permanent storage.",
   "launch_path": "/AudioApp.html",
   "type": "privileged",
   "icons": {
-    "56": "/img/icons/icon56.png",
-    "128": "/img/icons/icon128.png"
+    "56":   "/icons/icon-56x56.png",
+    "112":  "/icons/icon-112x112.png",
+    "128":  "/icons/icon-128x128.png"
   },
   "developer": {
     "name": "Guillermo González Martín",
@@ -14,16 +15,22 @@
   },
   "permissions": {
     "audio-capture": {
-      "description": "Requerido para usar el micrófono."
+      "description": "Required to use the microphone."
     },
     "device-storage:music": {
       "access": "readwrite",
-      "description": "Requerido para guardar audios en la memoria del teléfono."
+      "description": "Required to save audio in the phone's memory."
     }
   },
   "locales": {
-    "en-US": { "name": "KaiVoice" },
-    "es": { "name": "Voz Kai" }
+    "en": {
+      "name": "KaiVoice",
+      "description": "Voice recorder with permanent storage."
+    },
+    "es": {
+      "name": "Voz Kai",
+      "description": "Grabadora de voz con guardado permanente."
+    }
   },
   "default_locale": "es"
 }

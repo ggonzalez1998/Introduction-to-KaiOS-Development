@@ -6,43 +6,43 @@
     <title data-l10n-id="app_title">Tracking App</title>
     <link rel="stylesheet" href="css/Template.css" />
     <link rel="stylesheet" href="css/TrackingApp.css" />
-
+    <link rel="resource" type="application/l10n" href="locales/{{locale}}.properties" />
     <script src="js/libs/l10n.js" defer></script>
     <script src="js/TrackingApp.js" defer></script>
   </head>
   <body>
-    <div id="header" data-l10n-id="app_title">RASTREO GPS</div>
+    <div id="header" data-l10n-id="app_title">GPS TRACKING</div>
 
     <div id="content">
       <div class="nav-group">
         <button id="get-pos-btn" class="focusable" data-l10n-id="btn_get_pos">
-          ACTUALIZAR POSICIÓN
+          UPDATE POSITION
         </button>
       </div>
 
       <div class="info-card">
-        <p class="label" data-l10n-id="status_label">Estado:</p>
-        <p id="status-text" data-l10n-id="status_idle">Esperando...</p>
+        <p class="label" data-l10n-id="status_label">Status:</p>
+        <p id="status-text" data-l10n-id="status_idle">Ready</p>
       </div>
 
       <div class="geo-data">
         <div class="data-item">
-          <span class="label" data-l10n-id="lat_label">Latitud:</span>
+          <span class="label" data-l10n-id="lat_label">Latitude:</span>
           <span id="lat-val">-</span>
         </div>
         <div class="data-item">
-          <span class="label" data-l10n-id="lon_label">Longitud:</span>
+          <span class="label" data-l10n-id="lon_label">Longitude:</span>
           <span id="lon-val">-</span>
         </div>
         <div class="data-item">
-          <span class="label" data-l10n-id="address_label">Dirección:</span>
+          <span class="label" data-l10n-id="address_label">Address:</span>
           <span id="address-val">-</span>
         </div>
       </div>
 
       <div class="nav-group">
         <button id="send-sms-btn" class="focusable" data-l10n-id="btn_send_sms">
-          ENVIAR UBICACIÓN (SMS)
+          SEND LOCATION (SMS)
         </button>
       </div>
 
@@ -52,7 +52,7 @@
     <div id="softkey-bar">
       <span id="softkey-lsk"></span>
       <span id="softkey-csk" data-l10n-id="sk_select">SELECT</span>
-      <span id="softkey-rsk" data-l10n-id="sk_exit">SALIR</span>
+      <span id="softkey-rsk" data-l10n-id="sk_exit">EXIT</span>
     </div>
   </body>
 </html>

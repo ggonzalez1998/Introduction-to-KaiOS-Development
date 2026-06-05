@@ -1,12 +1,13 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "KaiSystem",
-  "description": "Herramienta de diagnóstico manual.",
+  "description": "Manual system diagnostic tool.",
   "launch_path": "/SystemApp.html",
   "type": "privileged",
   "icons": {
-    "56": "/img/icons/icon56.png",
-    "128": "/img/icons/icon128.png"
+    "56":   "/icons/icon-56x56.png",
+    "112":  "/icons/icon-112x112.png",
+    "128":  "/icons/icon-128x128.png"
   },
   "developer": {
     "name": "Guillermo González Martín",
@@ -15,12 +16,18 @@
   "permissions": {
     "device-storage:sdcard": {
       "access": "readonly",
-      "description": "Requerido para consultar el espacio libre en el dispositivo."
+      "description": "Required to query free space on the device."
     }
   },
   "locales": {
-    "en-US": { "name": "KaiSystem" },
-    "es": { "name": "Sistema Kai" }
+    "en": {
+      "name": "KaiSystem",
+      "description": "Manual system diagnostic tool."
+    },
+    "es": {
+      "name": "Sistema Kai",
+      "description": "Herramienta de diagnóstico manual."
+    }
   },
-  "default_locale": "es"
+  "default_locale": "en-US"
 }

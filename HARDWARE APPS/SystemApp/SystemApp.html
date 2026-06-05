@@ -3,31 +3,35 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no" />
-    <title>System App</title>
+    <title data-l10n-id="app_title">System Diagnostics</title>
     <link rel="stylesheet" href="css/Template.css" />
     <link rel="stylesheet" href="css/SystemApp.css" />
+    
+    <link rel="resource" type="application/l10n" href="locales/{{locale}}.properties" />
+    
+    <script src="js/libs/l10n.js" defer></script>
     <script src="js/SystemApp.js" defer></script>
   </head>
   <body>
-    <div id="header">DIAGNÓSTICO MANUAL</div>
+    <div id="header" data-l10n-id="app_title">SYSTEM DIAGNOSTICS</div>
 
     <div id="content">
       <div class="info-card focusable">
-        <p class="label">BATERÍA</p>
+        <p class="label" data-l10n-id="battery_label">BATTERY</p>
         <p class="value" id="val-0">---</p>
-        <p class="hint">SELECT para leer</p>
+        <p class="hint" data-l10n-id="hint_read">SELECT to read</p>
       </div>
 
       <div class="info-card focusable">
-        <p class="label">RED</p>
+        <p class="label" data-l10n-id="network_label">NETWORK</p>
         <p class="value" id="val-1">---</p>
-        <p class="hint">SELECT para leer</p>
+        <p class="hint" data-l10n-id="hint_read">SELECT to read</p>
       </div>
 
       <div class="info-card focusable">
-        <p class="label">ALMACENAMIENTO SD</p>
+        <p class="label" data-l10n-id="storage_label">SD STORAGE</p>
         <p class="value" id="val-2">---</p>
-        <p class="hint">SELECT para leer</p>
+        <p class="hint" data-l10n-id="hint_read">SELECT to read</p>
       </div>
 
       <div class="bottom-spacer"></div>
@@ -35,8 +39,8 @@
 
     <div id="softkey-bar">
       <span id="softkey-lsk"></span>
-      <span id="softkey-csk">SELECT</span>
-      <span id="softkey-rsk">SALIR</span>
+      <span id="softkey-csk" data-l10n-id="sk_select">SELECT</span>
+      <span id="softkey-rsk" data-l10n-id="sk_exit">EXIT</span>
     </div>
   </body>
 </html>

@@ -1,12 +1,13 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.5",
   "name": "KaiNav Guide",
-  "description": "Guía de navegación por teclado con scroll robusto.",
+  "description": "Keyboard navigation guide with robust scrolling.",
   "launch_path": "/KeyBoardApp.html",
   "type": "privileged",
   "icons": {
-    "56": "/img/icons/icon56.png",
-    "128": "/img/icons/icon128.png"
+    "56":   "/icons/icon-56x56.png",
+    "112":  "/icons/icon-112x112.png",
+    "128":  "/icons/icon-128x128.png"
   },
   "developer": {
     "name": "Guillermo González Martín",
@@ -14,12 +15,18 @@
   },
   "permissions": {
     "systemXHR": {
-      "description": "Ejemplos de carga de datos remotos."
+      "description": "Examples of loading remote data."
     }
   },
   "locales": {
-    "en-US": { "name": "Nav Guide" },
-    "es": { "name": "Guía Navegación" }
+    "en": {
+      "name": "D-Pad Navigation",
+      "description": "Navigation for D-Pad with robust scrolling."
+    },
+    "es": {
+      "name": "Navegación D-Pad",
+      "description": "Navegación para D-Pad con desplazamiento robusto."
+    }
   },
-  "default_locale": "es"
+  "default_locale": "en-US"
 }
