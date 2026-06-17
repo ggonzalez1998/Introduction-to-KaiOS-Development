@@ -23,7 +23,7 @@ Here you will find everything from bypassing Original Equipment Manufacturer (OE
 2. [:hammer: Development Environment & Debugging](#hammer-2-development-environment--debugging)
 3. [:building_construction: Architectural Differences: KaiOS 2.5 vs 3.0](#building_construction-3-architectural-differences-kaios-25-vs-30)
 4. [:art: Best Practices, UI & UX (D-Pad Navigation)](#art-4-best-practices-ui--ux-d-pad-navigation)
-5. [:iphone: Example Apps](#iphone-5-hardware-projects-example-apps)
+5. [:iphone: Example Apps](#iphone-5-example-apps)
 6. [:moneybag: Publishing & Monetization](#moneybag-6-publishing--monetization)
 7. [:rocket: Ideas for Future Applications](#rocket-7-ideas-for-future-applications)
 8. [:handshake: Contributing](#handshake-8-contributing)
@@ -150,7 +150,7 @@ KaiOS does not have touch screens. Everything relies on DOM Focus management and
 
 ## :iphone: 5. Example Apps
 
-Inside the `HARDWARE APPS` directory, I have developed 6 practical applications demonstrating how to interact with the phone's sensors and hardware.
+Inside the `EXAMPLE APPS` directory, I have developed 6 practical applications demonstrating how to interact with the phone's sensors and hardware.
 
 <details>
   
@@ -160,7 +160,7 @@ Since older Gecko engines struggle with modern CSS `scroll-snap`, all these apps
 
 </details>
 
-:keyboard: **[1. KeyBoardApp (KaiNav Guide)](HARDWARE%20APPS/KeyBoardNavigation)**
+:keyboard: **[1. KeyBoardApp (KaiNav Guide)](EXAMPLE%20APPS/KeyBoardNavigation)**
 
 The ultimate keyboard navigation guide for complex interfaces.
 
@@ -173,7 +173,7 @@ The ultimate keyboard navigation guide for complex interfaces.
   </p>
 </details>
 
-:microphone: **[2. AudioApp (KaiVoice)](HARDWARE%20APPS/AudioApp)**
+:microphone: **[2. AudioApp (KaiVoice)](EXAMPLE%20APPS/AudioApp)**
 
 Voice recording app with persistent storage.
 
@@ -188,7 +188,7 @@ Voice recording app with persistent storage.
   </p>
 </details>
 
-:camera: **[3. CameraApp (KaiCam)](HARDWARE%20APPS/CameraApp)**
+:camera: **[3. CameraApp (KaiCam)](EXAMPLE%20APPS/CameraApp)**
 
 Live camera viewfinder and photo capture.
 
@@ -203,7 +203,7 @@ Live camera viewfinder and photo capture.
   </p>
 </details>
 
-:gear: **[4. SystemApp (KaiSystem)](HARDWARE%20APPS/SystemApp)**
+:gear: **[4. SystemApp (KaiSystem)](EXAMPLE%20APPS/SystemApp)**
 
 Diagnostic tool for reading system sensors.
 
@@ -218,7 +218,7 @@ Diagnostic tool for reading system sensors.
   </p>
 </details>
 
-:compass: **[5. TrackingApp (KaiTracking)](HARDWARE%20APPS/TrackingGPS)**
+:compass: **[5. TrackingApp (KaiTracking)](EXAMPLE%20APPS/TrackingGPS)**
 
 Real-time GPS tracker with Reverse Geocoding and SMS sharing.
 
