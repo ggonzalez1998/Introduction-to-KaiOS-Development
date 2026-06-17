@@ -23,7 +23,7 @@ Here you will find everything from bypassing Original Equipment Manufacturer (OE
 2. [:hammer: Development Environment & Debugging](#hammer-2-development-environment--debugging)
 3. [:building_construction: Architectural Differences: KaiOS 2.5 vs 3.0](#building_construction-3-architectural-differences-kaios-25-vs-30)
 4. [:art: Best Practices, UI & UX (D-Pad Navigation)](#art-4-best-practices-ui--ux-d-pad-navigation)
-5. [:iphone: Hardware Projects (Example Apps)](#iphone-5-hardware-projects-example-apps)
+5. [:iphone: Example Apps](#iphone-5-hardware-projects-example-apps)
 6. [:moneybag: Publishing & Monetization](#moneybag-6-publishing--monetization)
 7. [:rocket: Ideas for Future Applications](#rocket-7-ideas-for-future-applications)
 8. [:handshake: Contributing](#handshake-8-contributing)
@@ -148,7 +148,7 @@ KaiOS does not have touch screens. Everything relies on DOM Focus management and
 
 ---
 
-## :iphone: 5. Hardware Projects (Example Apps)
+## :iphone: 5. Example Apps
 
 Inside the `HARDWARE APPS` directory, I have developed 6 practical applications demonstrating how to interact with the phone's sensors and hardware.
 
