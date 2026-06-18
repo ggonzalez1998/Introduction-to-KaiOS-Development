@@ -17,14 +17,14 @@ Instead of relying on a background daemon that continuously drains the battery, 
 
 ---
 
-## :triangular_ruler 2. Architectural Approach
+## :triangular_ruler: 2. Architectural Approach
 
 The app interfaces directly with Mozilla's proprietary WebAPIs and standard DOM APIs, bridging the gap between the web runtime layer (Gecko) and the Linux kernel (Gonk).
 
-1. **Vendor-Prefixed Hardware Polling:** In KaiOS 2.5 (Gecko 48), many standard APIs were still experimental or heavily prefixed. The application implements safe fallbacks to query hardware data:
+1. **Hardware part:** In KaiOS 2.5 (Gecko 48), many standard APIs were still experimental or heavily prefixed. The application implements safe fallbacks to query hardware data:
    - *Battery:* Checks for `navigator.battery` or falls back to `navigator.mozBattery`.
    - *Network:* Evaluates `navigator.connection` or `navigator.mozConnection` to determine the connection type (e.g., cellular, wifi), defaulting to a simple `navigator.onLine` boolean check if the detailed API is restricted.
-2. **Asynchronous DOMRequests:** Unlike modern JavaScript environments that rely on `Promises` (`async/await`), querying the physical disk in Gecko 48 returns a `DOMRequest` object. The application binds `.onsuccess` and `.onerror` callbacks to gracefully handle the response delay when calculating the SD card's free bytes via `navigator.getDeviceStorage('sdcard').freeSpace()`.
+2. **DOMRequests:** Unlike modern JavaScript environments that rely on `Promises` (`async/await`), querying the physical disk in Gecko 48 returns a `DOMRequest` object. The application binds `.onsuccess` and `.onerror` callbacks to gracefully handle the response delay when calculating the SD card's free bytes via `navigator.getDeviceStorage('sdcard').freeSpace()`.
 
 ---
 
@@ -32,7 +32,6 @@ The app interfaces directly with Mozilla's proprietary WebAPIs and standard DOM 
 
 - **Privileged Storage Access:** The application operates as a `privileged` packaged app. By explicitly declaring `"device-storage:sdcard": { "access": "readonly" }` in the `manifest.webapp`, the Gecko engine bypasses standard web sandboxing, granting the JavaScript runtime native read access to the physical hardware partitions.
 - **On-Demand Energy Efficiency:** By design, low-end Smart Feature Phones suffer from severe battery drain if applications constantly poll hardware APIs. This app employs an "On-Demand" architecture. The sensors remain completely dormant until the user explicitly triggers a hardware interrupt by pressing the `Enter` key on a specific UI card.
-- **Dynamic Localization Integration:** Hardware responses (like "Charging", "SD Not Ready", or "API Error") are not hardcoded. The logic dynamically wraps API responses into the `_()` helper function, instantly translating the hardware diagnosis through Gaia's `l10n.js` engine based on the system language.
 
 ---
 
@@ -42,4 +41,4 @@ By leveraging the sensor and storage APIs demonstrated in this codebase, develop
 
 - **Battery Health & Alarm Monitor:** A background service that checks the `mozBattery` API and triggers a native notification (or alarm sound) when the battery drops below 15% or reaches a full 100% charge to prevent battery degradation.
 - **Data Quota Manager:** An application that reads `navigator.connection.type`. If it detects the user is on a "cellular" network instead of "wifi", it can warn the user before they attempt to download large files, helping users in emerging markets save money on limited data plans.
-- **Smart Disk Cleaner:** Expanding the `getDeviceStorage` API to not only check `freeSpace()` but to iterate through the `sdcard` or `pictures` directories (using `enumerate()`). The app could automatically find and delete duplicate files or old WhatsApp voice notes to free up space on strictly limited 4GB internal storage devices.
+- **Smart Disk Cleaner:** Expanding the `getDeviceStorage` API using the `sdcard` or `pictures` directories (using `enumerate()`). The app could automatically find and delete duplicate files or old voice notes to free up space setting a limmit of 4GB internal storage.

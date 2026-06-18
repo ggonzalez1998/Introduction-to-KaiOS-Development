@@ -4,7 +4,7 @@
 
 ## :video_game: 1. Functionality
 
-The **KeyBoardApp** (commercially named *KaiNav Guide*) serves as the foundational reference implementation for non-touch spatial navigation within the KaiOS ecosystem. On devices with low-end physical hardware, developers cannot rely on traditional mouse pointer events or touchscreen coordinates.
+The **KeyBoardApp** (commercially named *KaiNav Guide*) serves as the foundational reference implementation for non-touch spatial navigation within the KaiOS devices. On devices with low-end physical hardware, developers cannot rely on traditional mouse pointer events or touchscreen coordinates.
 
 This application provides a fully operational, interactive user interface containing standard elements—such as vertical list items, a textual input field, and an action button—and demonstrates how a user can seamlessly traverse, focus, and interact with these components using exclusively the hardware Directional Pad (D-Pad) and the Center (Enter) key.
 
@@ -17,7 +17,7 @@ This application provides a fully operational, interactive user interface contai
 
 ---
 
-## :triangular_ruler 2. Architectural Approach
+## :triangular_ruler: 2. Architectural Approach
 
 The architectural spine of this application relies on a **Vanilla JavaScript Two-Dimensional Matrix (NavMap)** combined with an automated DOM focus management subsystem.
 
@@ -46,8 +46,6 @@ Unlike modern web applications that rely on heavy polyfills or high-overhead CSS
 ```
 - **Implicit Input Field Activation:** When the spatial pointer lands on a row containing an `HTMLInputElement`, the script explicitly fires `.focus()` on the node. This forces the underlying KaiOS kernel (Gonk) to display the native system T9 IME keyboard helper. Conversely, moving away from the input automatically triggers `.blur()`, hiding the system keyboard and freeing up valuable screen real estate.
 
-- **Embedded CodePen Demo:** To simplify testing without requiring physical device flashing, a functional web-based simulation is integrated via CodePen, serving as an interactive code preview for cross-platform evaluation.
-
 ---
 
 ## :rocket: 4. Derived Application Ideas
@@ -58,6 +56,6 @@ By extending the 2D NavMap matrix and the Mathematical Scroll architecture engin
 
 - **Settings Dashboard Grid:** Creating multi-column option grids where `ArrowLeft` and `ArrowRight` navigate between toggles, checkboxes, and sliders on the same row.
 
-- **Smart Feature Phone Launcher:** A 3x3 icon grid representing the main phone menu, utilizing bidirectional matrix navigation `([Y][X])` to handle edge boundaries and seamless wrapping.
+- **Smart Feature Phone Launcher:** A 3x3 icon grid representing the main phone menu, utilizing bidirectional matrix navigation `([Y][X])` to handle edge limits.
 
-- **Retro Gaming ROM Browser:** A visual list showcasing game titles and cover art, using the performant DOM focus mechanism to update previews smoothly without over-allocating heap memory.   
+- **Retro Gaming ROM Browser:** A visual list showcasing game titles and cover art, using the performant DOM focus mechanism to update previews without heap memory.   
