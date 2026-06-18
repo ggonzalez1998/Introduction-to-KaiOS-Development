@@ -150,7 +150,9 @@ KaiOS does not have touch screens. Everything relies on DOM Focus management and
 
 ## :iphone: 5. Example Apps
 
-Inside the `EXAMPLE APPS` directory, I have developed 6 practical applications demonstrating how to interact with the phone's sensors and hardware.
+Inside the `EXAMPLE APPS` directory, I have developed 5 practical applications demonstrating how to interact with the phone's sensors and hardware.
+
+Each application includes a dedicated sub-repository containing extensive implementation details, architectural insights, and quick-start snippets. **Furthermore, it should be noted that all components natively leverage Gecko's built-in `l10n` internationalization framework, incorporating fully operational English and Spanish localization pipelines for dynamic runtime rendering.**
 
 <details>
   
@@ -160,11 +162,19 @@ Since older Gecko engines struggle with modern CSS `scroll-snap`, all these apps
 
 </details>
 
+### :apps: Featured Source Code Examples
+
+---
+
 :keyboard: **[1. KeyBoardApp (KaiNav Guide)](EXAMPLE%20APPS/KeyBoardNavigation)**
 
-The ultimate keyboard navigation guide for complex interfaces.
+The ultimate keyboard navigation guide for non-touch interfaces.
 
-- **Functionality:** Demonstrates advanced use of 2D matrices (NavMaps) to navigate UI grids with the D-pad without getting the focus stuck.
+[![Documentation](https://img.shields.io/badge/Documentation-README-blue?style=flat-square&logo=markdown)](EXAMPLE%20APPS/KeyBoardNavigation) 
+[![Video Demo](https://img.shields.io/badge/Video-Demo-red?style=flat-square&logo=youtube)](https://youtube.com)
+
+- **Core Functionality:** Demonstrates advanced use of 2D matrices (NavMaps) to navigate UI grids with the physical D-pad without causing DOM focus locks.
+- **Deep Dive:** Read the fully documented [KeyBoardNavigation Architecture Guide](EXAMPLE%20APPS/KeyBoardNavigation) for further information.
 
 <details>
   <summary><b>:eyes: View Application Interface Screenshot</b></summary>
@@ -177,9 +187,12 @@ The ultimate keyboard navigation guide for complex interfaces.
 
 Voice recording app with persistent storage.
 
-- **Permissions:** `audio-capture`, `device-storage:music`.
+[![Documentation](https://img.shields.io/badge/Documentation-README-blue?style=flat-square&logo=markdown)](EXAMPLE%20APPS/AudioApp) 
+[![Video Demo](https://img.shields.io/badge/Video-Demo-red?style=flat-square&logo=youtube)](https://youtube.com)
 
-- **Functionality:** Captures the microphone using `MediaRecorder`, generates an OGG Blob, and saves it directly to the SD card or internal memory using `navigator.getDeviceStorage`.
+- **Permissions Required:** `audio-capture`, `device-storage:music`.
+- **Core Functionality:** Captures hardware audio inputs using the `MediaRecorder` API, handles runtime buffer packaging into raw OGG Blobs, and commits files directly to physical storage using `navigator.getDeviceStorage`.
+- **Deep Dive:** Explore the [KaiVoice Storage Blueprint](EXAMPLE%20APPS/AudioApp) for further information.
 
 <details>
   <summary><b>:eyes: View Application Interface Screenshot</b></summary>
@@ -192,9 +205,12 @@ Voice recording app with persistent storage.
 
 Live camera viewfinder and photo capture.
 
-- **Permissions:** `camera`, `video-capture`, `device-storage:pictures`.
+[![Documentation](https://img.shields.io/badge/Documentation-README-blue?style=flat-square&logo=markdown)](EXAMPLE%20APPS/CameraApp) 
+[![Video Demo](https://img.shields.io/badge/Video-Demo-red?style=flat-square&logo=youtube)](https://youtube.com)
 
-- **Functionality:** Renders `getUserMedia` into a `<video>` tag, draws the exact frame onto a hidden `canvas`, and exports it as a JPEG directly to the user's gallery.
+- **Permissions Required:** `camera`, `video-capture`, `device-storage:pictures`.
+- **Core Functionality:** Binds native sensor streams into HTML5 `<video>` blocks via `getUserMedia`. Grabs precise image inside a canvas layer to drop frame allocation right after export.
+- **Deep Dive:** Review the [KaiCam Lifecycle Optimization](EXAMPLE%20APPS/CameraApp) for further information.
 
 <details>
   <summary><b>:eyes: View Application Interface Screenshot</b></summary>
@@ -205,11 +221,14 @@ Live camera viewfinder and photo capture.
 
 :gear: **[4. SystemApp (KaiSystem)](EXAMPLE%20APPS/SystemApp)**
 
-Diagnostic tool for reading system sensors.
+Diagnostic tool processing real-time platform system telemetry.
 
-- **Permissions:** `device-storage:sdcard`.
+[![Documentation](https://img.shields.io/badge/Documentation-README-blue?style=flat-square&logo=markdown)](EXAMPLE%20APPS/SystemApp) 
+[![Video Demo](https://img.shields.io/badge/Video-Demo-red?style=flat-square&logo=youtube)](https://youtube.com)
 
-- **Functionality:** Extracts and displays real-time data from the Battery API (`mozBattery`), Network connection types, and calculates free storage space using asynchronous SD card requests.
+- **Permissions Required:** `device-storage:sdcard`.
+- **Core Functionality:** It gets real-time volatile storage calculations through (`mozBattery`, `mozConnection`).
+- **Deep Dive:** Check out the [KaiSystem Event Registry](EXAMPLE%20APPS/SystemApp) for further information.
 
 <details>
   <summary><b>:eyes: View Application Interface Screenshot</b></summary>
@@ -222,9 +241,12 @@ Diagnostic tool for reading system sensors.
 
 Real-time GPS tracker with Reverse Geocoding and SMS sharing.
 
-- **Permissions:** `geolocation`, `systemXHR`.
+[![Documentation](https://img.shields.io/badge/Documentation-README-blue?style=flat-square&logo=markdown)](EXAMPLE%20APPS/TrackingGPS) 
+[![Video Demo](https://img.shields.io/badge/Video-Demo-red?style=flat-square&logo=youtube)](https://youtube.com)
 
-- **Functionality:** Please use the app outdoors for a better GPS connection. Activates GPS via `watchPosition`.  Makes secure Cross-Origin requests (`systemXHR`) to Nominatim (OpenStreetMap) to convert coordinates into street names. Uses `MozActivity` to open the native SMS app and share the location link. 
+- **Permissions Required:** `geolocation`, `systemXHR`.
+- **Core Functionality:** Obtain GNSS triangulation arrays out-of-doors via `watchPosition`. Then communicate over OpenStreetMap API getting the address of the location, having the option of sharing it via SMS.
+- **Deep Dive:** Read the full [KaiTracking Payload & Intent Dispatch Reference](EXAMPLE%20APPS/TrackingGPS) for further information.
 
 <details>
   <summary><b>:eyes: View Application Interface Screenshot</b></summary>
