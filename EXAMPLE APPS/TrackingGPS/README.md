@@ -9,9 +9,12 @@ The **TrackingApp** (commercially named *KaiTracking*) is a real-time geolocatio
 Using exclusively the physical D-Pad, users can trigger the hardware GPS receiver to get their precise Latitude and Longitude. The application then get the geolocation address though a API request and allows the user to share their exact location via the system's SMS application.
 
 <details>
-  <summary><b>:camera: Video Representative</b></summary>
+  <summary><b>:camera: Interface & Video Demo</b></summary>
    <p align="center">
-    <img src="Images/TrackingApp.png" alt="TrackingApp Interface" width="240">
+    <img src="Images/TrackingApp.png" alt="TrackingApp Interface" width="240"><br><br>
+    <a href="../../VIDEOS/KaiTracking%20App.mp4">
+      <img src="https://img.shields.io/badge/Watch-Video_Demo-red?style=for-the-badge&logo=video" alt="Watch Video Demo">
+    </a>
   </p>
 </details>
 

@@ -9,9 +9,12 @@ The **SystemApp** (commercially named *KaiSystem*) is a manual diagnostic tool d
 Instead of relying on a background daemon that continuously drains the battery, this application gives the user direct control over hardware polling. Using the physical D-Pad, users can navigate between different hardware modules (Battery, Network, SD Storage) and press the center key (`SELECT`) to query the hardware sensors and APIs instantly, displaying the results directly on the active card.
 
 <details>
-  <summary><b>:camera: Video Representative</b></summary>
+  <summary><b>:camera: Interface & Video Demo</b></summary>
    <p align="center">
-    <img src="Images/SystemApp.png" alt="SystemApp Interface" width="240">
+    <img src="Images/SystemApp.png" alt="SystemApp Interface" width="240"><br><br>
+    <a href="../../VIDEOS/KaiSystem%20App.mp4">
+      <img src="https://img.shields.io/badge/Watch-Video_Demo-red?style=for-the-badge&logo=video" alt="Watch Video Demo">
+    </a>
   </p>
 </details>
 

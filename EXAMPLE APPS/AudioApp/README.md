@@ -9,9 +9,12 @@ The **AudioApp** (commercially named *KaiVoice*) is a fully functional voice rec
 Designed for non-touch interfaces, the user can navigate via the D-Pad to toggle microphone recording, playback the captured audio buffer in real-time, and securely export the encoded media file directly to the device's internal memory or SD card.
 
 <details>
-  <summary><b>:camera: Video Representative</b></summary>
+  <summary><b>:camera: Interface & Video Demo</b></summary>
    <p align="center">
-    <img src="Images/AudioApp.png" alt="AudioApp Interface" width="240">
+    <img src="Images/AudioApp.png" alt="AudioApp Interface" width="240"><br><br>
+    <a href="../../VIDEOS/KaiVoice%20App.mp4">
+      <img src="https://img.shields.io/badge/Watch-Video_Demo-red?style=for-the-badge&logo=video" alt="Watch Video Demo">
+    </a>
   </p>
 </details>
 

@@ -9,9 +9,12 @@ The **CameraApp** (commercially named *KaiCam*) is a multimedia application that
 Designed specifically for non-touch interfaces, the user utilizes the D-Pad to initialize the camera hardware, capture a frame, review the photograph, and securely write the resulting image file directly to the device's physical storage (Gallery/SD Card).
 
 <details>
-  <summary><b>:camera: Video Representative</b></summary>
+  <summary><b>:camera: Interface & Video Demo</b></summary>
    <p align="center">
-    <img src="Images/CameraApp.png" alt="CameraApp Interface" width="240">
+    <img src="Images/CameraApp.png" alt="CameraApp Interface" width="240"><br><br>
+    <a href="../../VIDEOS/KaiCamApp.mp4">
+      <img src="https://img.shields.io/badge/Watch-Video_Demo-red?style=for-the-badge&logo=video" alt="Watch Video Demo">
+    </a>
   </p>
 </details>
 

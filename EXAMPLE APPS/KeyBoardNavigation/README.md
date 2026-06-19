@@ -9,9 +9,12 @@ The **KeyBoardApp** (commercially named *KaiNav Guide*) serves as the foundation
 This application provides a fully operational, interactive user interface containing standard elements—such as vertical list items, a textual input field, and an action button—and demonstrates how a user can seamlessly traverse, focus, and interact with these components using exclusively the hardware Directional Pad (D-Pad) and the Center (Enter) key.
 
 <details>
-  <summary><b>:camera: Video Representative</b></summary>
+  <summary><b>:camera: Interface & Video Demo</b></summary>
    <p align="center">
-    <img src="Images/KeyBoardApp.png" alt="KeyBoardApp Interface" width="240">
+    <img src="Images/KeyBoardApp.png" alt="KeyBoardApp Interface" width="240"><br><br>
+    <a href="../../VIDEOS/KayNavApp.mp4">
+      <img src="https://img.shields.io/badge/Watch-Video_Demo-red?style=for-the-badge&logo=video" alt="Watch Video Demo">
+    </a>
   </p>
 </details>
 

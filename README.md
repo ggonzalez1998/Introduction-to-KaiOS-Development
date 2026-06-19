@@ -101,6 +101,8 @@ After writing the partitions, reboot the device. The system will read the inject
 
 **Connection via Waterfox Classic and WebIDE**
 *(Applies to all chipsets once Developer Mode is active)*
+> **:movie_camera: Video Tutorial:** If you want a visual guide, watch the step-by-step **[Sideloading & Deployment Video Guide](VIDEOS/SideLoadingVideo.mp4)** included in this repository to see the ADB tunnel and WebIDE installation process in action.
+
 To install applications, we use Waterfox Classic, as modern Firefox versions removed the WebIDE component. Run the following command in your terminal to forward the debugging ports:
 ```bash
 adb forward tcp:6000 localfilesystem:/data/local/debugger-socket
@@ -171,7 +173,7 @@ Since older Gecko engines struggle with modern CSS `scroll-snap`, all these apps
 The ultimate keyboard navigation guide for non-touch interfaces.
 
 [![Documentation](https://img.shields.io/badge/Documentation-README-blue?style=flat-square&logo=markdown)](EXAMPLE%20APPS/KeyBoardNavigation) 
-[![Video Demo](https://img.shields.io/badge/Video-Demo-red?style=flat-square&logo=youtube)](https://youtube.com)
+[![Video Demo](https://img.shields.io/badge/Video-Demo-red?style=flat-square&logo=video)](VIDEOS/KayNavApp.mp4)
 
 - **Core Functionality:** Demonstrates advanced use of 2D matrices (NavMaps) to navigate UI grids with the physical D-pad without causing DOM focus locks.
 - **Deep Dive:** Read the fully documented [KeyBoardNavigation Architecture Guide](EXAMPLE%20APPS/KeyBoardNavigation) for further information.
@@ -188,7 +190,7 @@ The ultimate keyboard navigation guide for non-touch interfaces.
 Voice recording app with persistent storage.
 
 [![Documentation](https://img.shields.io/badge/Documentation-README-blue?style=flat-square&logo=markdown)](EXAMPLE%20APPS/AudioApp) 
-[![Video Demo](https://img.shields.io/badge/Video-Demo-red?style=flat-square&logo=youtube)](https://youtube.com)
+[![Video Demo](https://img.shields.io/badge/Video-Demo-red?style=flat-square&logo=video)](VIDEOS/KaiVoice%20App.mp4)
 
 - **Permissions Required:** `audio-capture`, `device-storage:music`.
 - **Core Functionality:** Captures hardware audio inputs using the `MediaRecorder` API, handles runtime buffer packaging into raw OGG Blobs, and commits files directly to physical storage using `navigator.getDeviceStorage`.
@@ -206,7 +208,7 @@ Voice recording app with persistent storage.
 Live camera viewfinder and photo capture.
 
 [![Documentation](https://img.shields.io/badge/Documentation-README-blue?style=flat-square&logo=markdown)](EXAMPLE%20APPS/CameraApp) 
-[![Video Demo](https://img.shields.io/badge/Video-Demo-red?style=flat-square&logo=youtube)](https://youtube.com)
+[![Video Demo](https://img.shields.io/badge/Video-Demo-red?style=flat-square&logo=video)](VIDEOS/KaiCamApp.mp4)
 
 - **Permissions Required:** `camera`, `video-capture`, `device-storage:pictures`.
 - **Core Functionality:** Binds native sensor streams into HTML5 `<video>` blocks via `getUserMedia`. Grabs precise image inside a canvas layer to drop frame allocation right after export.
@@ -224,7 +226,7 @@ Live camera viewfinder and photo capture.
 Diagnostic tool processing real-time platform system telemetry.
 
 [![Documentation](https://img.shields.io/badge/Documentation-README-blue?style=flat-square&logo=markdown)](EXAMPLE%20APPS/SystemApp) 
-[![Video Demo](https://img.shields.io/badge/Video-Demo-red?style=flat-square&logo=youtube)](https://youtube.com)
+[![Video Demo](https://img.shields.io/badge/Video-Demo-red?style=flat-square&logo=video)](VIDEOS/KaiSystem%20App.mp4)
 
 - **Permissions Required:** `device-storage:sdcard`.
 - **Core Functionality:** It gets real-time volatile storage calculations through (`mozBattery`, `mozConnection`).
@@ -242,7 +244,7 @@ Diagnostic tool processing real-time platform system telemetry.
 Real-time GPS tracker with Reverse Geocoding and SMS sharing.
 
 [![Documentation](https://img.shields.io/badge/Documentation-README-blue?style=flat-square&logo=markdown)](EXAMPLE%20APPS/TrackingGPS) 
-[![Video Demo](https://img.shields.io/badge/Video-Demo-red?style=flat-square&logo=youtube)](https://youtube.com)
+[![Video Demo](https://img.shields.io/badge/Video-Demo-red?style=flat-square&logo=video)](VIDEOS/KaiTracking%20App.mp4)
 
 - **Permissions Required:** `geolocation`, `systemXHR`.
 - **Core Functionality:** Obtain GNSS triangulation arrays out-of-doors via `watchPosition`. Then communicate over OpenStreetMap API getting the address of the location, having the option of sharing it via SMS.
