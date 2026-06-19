@@ -12,8 +12,8 @@ Using exclusively the physical D-Pad, users can trigger the hardware GPS receive
   <summary><b>:camera: Interface & Video Demo</b></summary>
    <p align="center">
     <img src="Images/TrackingApp.png" alt="TrackingApp Interface" width="240"><br><br>
-    <a href="../../VIDEOS/KaiTracking%20App.mp4">
-      <img src="https://img.shields.io/badge/Watch-Video_Demo-red?style=for-the-badge&logo=video" alt="Watch Video Demo">
+    <a href="https://youtu.be/COeLLPivNPM" target="_blank">
+      <img src="https://img.shields.io/badge/Watch-YouTube_Demo-red?style=for-the-badge&logo=youtube" alt="Watch Video Demo">
     </a>
   </p>
 </details>
